@@ -70,7 +70,8 @@
                     tools:ignore="RtlCompat" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
+                android:orientation="horizontal"
                 android:id="@+id/lnPass"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
@@ -78,23 +79,35 @@
                 android:layout_marginHorizontal="@dimen/_30sdp">
 
                 <ImageView
+                    android:layout_centerVertical="true"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_password" />
 
                 <EditText
+                    android:layout_centerVertical="true"
+                    android:inputType="textPassword"
                     android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/rubik_medium"
                     android:id="@+id/edtPass"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_36sdp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_26sdp"
                     android:background="#00ffffff"
                     android:hint="password"
                     tools:ignore="RtlCompat" />
-            </LinearLayout>
+                <ImageView
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/imgEye"
+                    android:src="@drawable/ic_pincode"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    tools:ignore="RtlCompat" />
+            </RelativeLayout>
 
             <CheckBox
                 android:layout_marginTop="@dimen/_10sdp"
@@ -113,7 +126,7 @@
                 android:textColor="#0070d9"
                 android:background="@drawable/ct_bt_login"
                 android:id="@+id/btnLogin"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:layout_below="@+id/chkRemember"
@@ -193,6 +206,7 @@
                     android:src="@drawable/ic_password" />
 
                 <EditText
+                    android:inputType="textPassword"
                     android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/rubik_medium"
                     android:id="@+id/edtPassSignUp"
@@ -218,6 +232,7 @@
                     android:src="@drawable/ic_password" />
 
                 <EditText
+                    android:inputType="textPassword"
                     android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/rubik_medium"
                     android:id="@+id/edtComfigPassSignUp"
@@ -229,6 +244,32 @@
                     android:hint="Comfirm password"
                     tools:ignore="RtlCompat" />
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lnPin"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_below="@+id/lnComfirmPassSignUp"
+                android:layout_marginHorizontal="@dimen/_30sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_pincode" />
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:id="@+id/edtPin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="#00ffffff"
+                    android:hint="PIN code"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
             <Button
                 android:textColor="#0070d9"
                 android:background="@drawable/ct_bt_login"
@@ -236,7 +277,7 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:layout_below="@+id/lnComfirmPassSignUp"
+                android:layout_below="@+id/lnPin"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_36sdp"
                 android:text="Sign up" />
