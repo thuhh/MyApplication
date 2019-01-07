@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.database.RDBUser;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText edtUserSignup, edtPassSignup, edtComfig, edtPinCode;
 
     RelativeLayout rlLogin, rlSignup;
+    ViewFlipper viewFlipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initUI() {
         rdbUser = RDBUser.getAppDatabase(this);
         users = rdbUser.userDAO().getAllApp();
-
+        viewFlipper = findViewById(R.id.viewFlipper);
         rlLogin = findViewById(R.id.rlLogin);
         rlSignup = findViewById(R.id.rlSignup);
         btnLogin = findViewById(R.id.btnLogin);
@@ -123,8 +126,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                     if (d!=0) {
-                        startActivity(new Intent(this, MainActivity.class));
-                        finish();
+//                        startActivity(new Intent(this, MainActivity.class));
+//                        finish();
+                        viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+                        viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
+                        viewFlipper.setFlipInterval(1);
+                        viewFlipper.setDisplayedChild(2);
                     }
                     else {
                         Toast.makeText(this, "Tài khoản hoặc mật khẩu không đúng!",Toast.LENGTH_LONG).show();
@@ -155,9 +162,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 txtSignup.setTextColor(Color.BLUE);
                 break;
             case R.id.txtSignup:
-                txtSignup.setTextColor(Color.BLUE);
-                rlLogin.setVisibility(View.GONE);
-                rlSignup.setVisibility(View.VISIBLE);
+//                txtSignup.setTextColor(Color.BLUE);
+//                rlLogin.setVisibility(View.GONE);
+//                rlSignup.setVisibility(View.VISIBLE);
+                viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+                viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
+                viewFlipper.setFlipInterval(1);
+                viewFlipper.setDisplayedChild(1);
                 break;
             case R.id.imgEye:
                 break;
@@ -168,9 +179,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void insertUser() {
         rdbUser.userDAO().insertAll(new User(edtUserSignup.getText().toString().trim(),edtPassSignup.getText().toString().trim(),edtComfig.getText().toString().trim(),edtPinCode.getText().toString().trim()));
-        rlLogin.setVisibility(View.VISIBLE);
-        rlSignup.setVisibility(View.GONE);
+//        rlLogin.setVisibility(View.VISIBLE);
+//        rlSignup.setVisibility(View.GONE);
         edtUserLogin.setText(edtUserSignup.getText().toString().trim());
         edtPassLogin.setText(edtPassSignup.getText().toString().trim());
+        viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+        viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
+        viewFlipper.setFlipInterval(1);
+        viewFlipper.setDisplayedChild(0);
     }
 }
