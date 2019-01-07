@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlue">#3485EF</color>
+    <color name="colorGreen">#1FD07B</color>
+    <color name="colorPurple">#AD5EFC</color>
+    <color name="colorYellow">#FFDE8B</color>
+    <color name="colorBlueDark">#3485EF</color>
+    <color name="colorBlueGray">#72A4FF</color>
+    <color name="colorRed">#FC6A5E</color>
+    <color name="colorClickSelect">#b3b3b3</color>
+    <color name="transf">#00ffffff</color>
+    <color name="colorTrans">#10000000</color>
+    <color name="colorTextStep">#00265F</color>
+    <color name="black">#000000</color>
+    <color name="red">#e74c3c</color>
+    <color name="color_text">@android:color/black</color>
+    <color name="gray">#FDFDFD</color>
+    <color name="white">#ffffff</color>
+    <color name="colorGood">#277DEE</color>
+    <color name="colorNotGood">#B0BEC5</color>
 </resources>
