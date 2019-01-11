@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activiti.FoodActivity">
+    <ImageView
+        android:id="@+id/imgBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg5" />
+    <RelativeLayout
+        android:id="@+id/rlBg"
+        android:background="@drawable/ct_bg_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ctBt"
+        android:id="@+id/ln_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:scaleType="fitCenter"
+        tools:ignore="RtlCompat">
+
+    </ImageView>
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/rvFood"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ctBt"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+    </android.support.v7.widget.RecyclerView>
+    <android.support.constraint.ConstraintLayout
+        android:background="#fff"
+        android:id="@+id/ctBt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+        <Button
+            android:text="Add"
+            android:id="@+id/btnAdd"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+        <Button
+            android:text="Search"
+            android:id="@+id/btnSearch"
+            app:layout_constraintStart_toEndOf="@id/btnAdd"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+        <Button
+            app:layout_constraintStart_toEndOf="@id/btnSearch"
+            android:text="Menu"
+            android:id="@+id/btnKhac"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
