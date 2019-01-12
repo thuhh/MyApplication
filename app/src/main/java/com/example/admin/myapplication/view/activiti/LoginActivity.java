@@ -141,9 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btnLogin:
                 users = rdbUser.userDAO().getAllUser();
-                Log.e("sdsdsd111",users.size()+"");
                 if (users.size()>0) {
-                    Log.e("sdsdsd111",users.get(0).getUsername()+"");
                     int d = 0;
                     for(int i=0; i<users.size(); i++){
                         if (users.get(i).getUsername().equals(edtUserLogin.getText().toString().trim())&&users.get(i).getPassword().equals(edtPassLogin.getText().toString().trim())){
@@ -151,7 +149,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                     if (d!=0) {
-                        Log.e("sdsdsd111",users.get(0).getUsername()+"");
                         viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
                         viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
                         viewFlipper.setDisplayedChild(2);

@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "TbFood")
 public class Food {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
     private int id;
@@ -21,9 +21,9 @@ public class Food {
     @ColumnInfo(name = "newFood")
     private boolean newFood;
     @ColumnInfo(name = "image")
-    private byte[] image;
+    private String image;
 
-    public Food(@NonNull int id, String name, String type, String money, boolean newFood, byte[] image) {
+    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -73,11 +73,11 @@ public class Food {
         this.newFood = newFood;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

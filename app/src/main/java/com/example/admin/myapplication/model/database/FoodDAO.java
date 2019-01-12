@@ -15,7 +15,7 @@ import io.reactivex.Flowable;
 public interface FoodDAO {
 
     @Query("SELECT * FROM TbFood WHERE id=:id")
-    Flowable<Food> getStepById(int id);
+    Flowable<Food> getFoodById(int id);
 
     @Query("SELECT * FROM tbfood")
     List<Food> getAllFood();

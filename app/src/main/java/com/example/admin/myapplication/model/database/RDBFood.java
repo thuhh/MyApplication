@@ -18,7 +18,7 @@ public abstract class RDBFood extends RoomDatabase {
 
     public static RDBFood getAppDatabase(Context context) {
         if (mInstance == null) {
-            mInstance = Room.databaseBuilder(context.getApplicationContext(), RDBFood.class, "qlnh.db")
+            mInstance = Room.databaseBuilder(context.getApplicationContext(), RDBFood.class, "food.db")
                     .allowMainThreadQueries()
                     .build();
         }

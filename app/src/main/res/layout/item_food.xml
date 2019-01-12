@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:padding="@dimen/_2sdp"
+    android:layout_height="@dimen/_200sdp"
     android:background="#ca7474"
     android:id="@+id/ctFood"
     android:layout_gravity="center"
@@ -30,6 +31,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgFood"
         app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintWidth_percent="0.9"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+    <TextView
+        android:id="@+id/txtMoney"
+        android:gravity="center"
+        android:fontFamily="@font/rubik_medium"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="#fff"
+        android:text="Gà Hầm Thuốc Bắc"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintWidth_percent="0.9"
         android:layout_width="0dp"
         android:layout_height="0dp" />

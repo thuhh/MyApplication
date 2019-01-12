@@ -42,7 +42,6 @@ class AlbumActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
         MyPreferenceHelper.setInt( MyPreferenceHelper.SELECT_POSITION,-1,this)
-        Log.e("??????????????????mmmmm","//////////////////////////////");
         setUpAlbum()
         setUpAllImage()
         toggleAlbum.setOnClickListener { toggleAlbum() }
