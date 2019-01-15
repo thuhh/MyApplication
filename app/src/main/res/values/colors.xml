@@ -24,4 +24,5 @@
     <color name="white">#ffffff</color>
     <color name="colorGood">#277DEE</color>
     <color name="colorNotGood">#B0BEC5</color>
+    <color name="grey_translucent">#FFFF00</color>
 </resources>

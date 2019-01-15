@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_56sdp">
+
+        <FrameLayout
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:id="@+id/left_header"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:background="?attr/selectableItemBackground"
+                android:id="@+id/iconX"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_cancel1" />
+
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/clearTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Clear" />
+        </FrameLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/toggleAlbum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:textColor="#302f2f"
+                android:id="@+id/nameAlbum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="All Photos"
+                android:textSize="20sp"
+                tools:ignore="RtlCompat" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_arrown_down2" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:background="#00ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:background="@color/black"
+            android:id="@+id/layoutAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleAlbum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+    </FrameLayout>
+
+
+</LinearLayout>
