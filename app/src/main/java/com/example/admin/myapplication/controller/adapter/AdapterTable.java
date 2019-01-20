@@ -3,13 +3,10 @@ package com.example.admin.myapplication.controller.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,21 +19,21 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.IOnClick;
-import com.example.admin.myapplication.model.object.Food;
+import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
+public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
     private IOnClick iOnClickSetColor;
-    private List<Food> list;
-    private List<Food> filter;
-    private List<Food> items;
+    private List<TableDinner> list;
+    private List<TableDinner> filter;
+    private List<TableDinner> items;
     private Context context;
 
 
-    public AdapterFood(IOnClick iOnClickSetColor, List<Food> list, Context context) {
+    public AdapterTable(IOnClick iOnClickSetColor, List<TableDinner> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -46,7 +43,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     @NonNull
     @Override
     public Viewholor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table, parent, false);
         return new Viewholor(view);
     }
 
@@ -55,24 +52,19 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMoney.setText(list.get(position).getMoney());
-        if (list.get(position).isNewFood()) {
-            holder.imgNew.setVisibility(View.VISIBLE);
+        holder.txtMember.setText(list.get(position).getMember()+"");
+        if (list.get(position).isStatus()) {
+            holder.imgTable.setImageResource(R.drawable.ic_logo_table_true);
         }else {
-            holder.imgNew.setVisibility(View.GONE);
+            holder.imgTable.setImageResource(R.drawable.ic_logo_table);
         }
-        holder.ctFood.setOnClickListener(new View.OnClickListener() {
+        holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iOnClickSetColor.iClick("");
                 context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
-        Glide.with(context)
-                .asBitmap()
-                .load(list.get(position).getImage())
-                .into(holder.imgFood);
-
 
     }
 
@@ -82,18 +74,17 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     }
 
     public class Viewholor extends RecyclerView.ViewHolder {
-        ImageView imgFood, imgNew;
+        ImageView imgTable;
         TextView txtName;
-        TextView txtMoney;
-        ConstraintLayout ctFood;
+        TextView txtMember;
+        ConstraintLayout ctTable;
 
         public Viewholor(View itemView) {
             super(itemView);
-            imgFood = itemView.findViewById(R.id.imgFood);
-            imgNew = itemView.findViewById(R.id.imgNew);
+            imgTable = itemView.findViewById(R.id.imgTable);
             txtName = itemView.findViewById(R.id.txtName);
-            ctFood = itemView.findViewById(R.id.ctFood);
-            txtMoney = itemView.findViewById(R.id.txtMoney);
+            txtMember = itemView.findViewById(R.id.txtMember);
+            ctTable = itemView.findViewById(R.id.ctTable);
         }
     }
 
@@ -103,15 +94,13 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<Food> results = new ArrayList<>();
+                final List<TableDinner> results = new ArrayList<>();
                 if (filter == null)
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final Food g : filter) {
-                            Log.e("sdsd56",g.getName());
-                            if (g.getName().toLowerCase().contains(constraint.toString()) ||
-                                    g.getType().toLowerCase().contains(constraint.toString())) {
+                        for (final TableDinner g : filter) {
+                            if (g.getName().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);
                             }
                         }
@@ -124,7 +113,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                items = (List<Food>) results.values;
+                items = (List<TableDinner>) results.values;
                 notifyDataSetChanged();
             }
         };

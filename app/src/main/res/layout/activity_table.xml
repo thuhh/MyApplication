@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activiti.FoodActivity">
+    tools:context=".view.activiti.TableActivity">
+
     <ImageView
         android:id="@+id/imgBg"
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvFood"
+        android:id="@+id/rvTable"
         app:layout_constraintTop_toBottomOf="@+id/edtSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,4 +72,5 @@
             android:layout_width="0dp"
             android:layout_height="0dp" />
     </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

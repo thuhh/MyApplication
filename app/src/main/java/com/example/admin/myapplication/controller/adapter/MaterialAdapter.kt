@@ -10,13 +10,13 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.admin.myapplication.R
-import com.example.admin.myapplication.model.database.RDBMaterial
 import com.example.admin.myapplication.model.`object`.Material
+import com.example.admin.myapplication.model.database.RDBApp
 
 
 class MaterialAdapter(internal var context: Context, private val listStorage: List<Material>) : BaseAdapter() {
     private var layoutInflater: LayoutInflater?= null
-    private lateinit var rdbMaterial: RDBMaterial
+    private lateinit var rdbMaterial: RDBApp
     private lateinit var listMaterial: List<Material>
 
     private var isTouched: Boolean? = false
@@ -46,7 +46,7 @@ class MaterialAdapter(internal var context: Context, private val listStorage: Li
             if (convertView == null) {
                 listViewHolder = ViewHolder()
                 convertView = layoutInflater!!.inflate(R.layout.item_material, parent, false)
-                rdbMaterial = RDBMaterial.getAppDatabase(context)
+                rdbMaterial = RDBApp.getAppDatabase(context)
                 listMaterial = rdbMaterial.materialDAO().allApp
 
                 listViewHolder.imgPicture = convertView!!.findViewById(R.id.imgPicture)

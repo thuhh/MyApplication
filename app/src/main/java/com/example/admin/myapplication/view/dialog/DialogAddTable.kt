@@ -4,27 +4,24 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
-import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
-import com.example.admin.myapplication.model.`object`.Food
+import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.AlbumActivity
-import kotlinx.android.synthetic.main.dialog_add_food.*
+import kotlinx.android.synthetic.main.dialog_add_table.*
 
-class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
+class DialogAddTable(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.imgImage) {
-//            iClickDialog!!.onclick("sub12free")
             var i = Intent(context, AlbumActivity::class.java)
             context.startActivity(i)
         } else if (v?.id == R.id.btnSave) {
-            Log.e("sdsd65",MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)+"////")
-            rdbFood!!.foodDAO().insertAll(Food(foods!!.size+1,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),radNew.isChecked,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)))
+            var member = edtMember.text.toString().trim().toInt()
+            rdbTable!!.tableDAO().insertAll(TableDinner(tables!!.size+1,edtName.text.toString().trim(),member,radStatus.isChecked))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()
@@ -33,29 +30,24 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
 
 
     private var iClickDialog: IClickDialog? = null
-    private var rdbFood : RDBApp? =null;
-    private var foods: List<Food> ? =null
+    private var rdbTable : RDBApp? =null;
+    private var tables: List<TableDinner> ? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         val inflater = this.layoutInflater
         setCancelable(false)
-        val view = inflater.inflate(R.layout.dialog_add_food, null)
+        val view = inflater.inflate(R.layout.dialog_add_table, null)
         setContentView(view)
         try {
-            rdbFood = RDBApp.getAppDatabase(context)
-            foods = rdbFood!!.foodDAO().allFood
+            rdbTable = RDBApp.getAppDatabase(context)
+            tables = rdbTable!!.tableDAO().allTable
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
-        radNew.setOnClickListener(this)
-
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)!=null){
-            loadImage()
-        }
-
+        radStatus.setOnClickListener(this)
     }
 
     fun setClick(iClickDialog: IClickDialog) {
@@ -69,11 +61,5 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         dismiss()
     }
 
-    private fun loadImage() {
-        Glide.with(context)
-                .asBitmap()
-                .load(MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context))
-                .into(imgImage)
-    }
 
 }
