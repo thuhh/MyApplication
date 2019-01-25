@@ -46,126 +46,6 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/rlLogin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:id="@+id/lnUser"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_user" />
-
-                    <EditText
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtUser"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:background="#00ffffff"
-                        android:hint="user name"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:orientation="horizontal"
-                    android:id="@+id/lnPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_below="@+id/lnUser"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
-
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_password" />
-
-                    <EditText
-                        android:layout_centerVertical="true"
-                        android:inputType="textPassword"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtPass"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_26sdp"
-                        android:background="#00ffffff"
-                        android:hint="password"
-                        tools:ignore="RtlCompat" />
-                    <ImageView
-
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/imgEye"
-                        android:src="@drawable/ic_pincode"
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        tools:ignore="RtlCompat" />
-                </RelativeLayout>
-
-                <CheckBox
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:layout_marginStart="@dimen/_25sdp"
-                    android:layout_below="@+id/lnPass"
-                    android:id="@+id/chkRemember"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_12sdp"
-                    android:text="Remember me"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="RtlCompat" />
-
-                <Button
-                    android:textColor="#0070d9"
-                    android:background="@drawable/ct_bt_login"
-                    android:id="@+id/btnLogin"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:layout_below="@+id/chkRemember"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_36sdp"
-                    android:text="Login" />
-                <TextView
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_16sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:layout_marginTop="@dimen/_13sdp"
-                    android:gravity="center"
-                    android:layout_below="@+id/lnPass"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_12sdp"
-                    android:text="Forget password ?"
-                    android:id="@+id/txtForget"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:ignore="RtlCompat" />
-                <TextView
-                    android:fontFamily="@font/yellowtailregular"
-                    android:id="@+id/txtSignup"
-                    android:layout_marginTop="@dimen/_35sdp"
-                    android:gravity="center"
-                    android:layout_below="@+id/btnLogin"
-                    android:textSize="@dimen/_14sdp"
-                    android:textColor="#fff"
-                    android:text="Sign up new account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-            <RelativeLayout
                 android:layout_below="@+id/txtRes"
                 android:id="@+id/rlSignup"
                 android:layout_width="match_parent"
@@ -289,6 +169,126 @@
 
 
             </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:id="@+id/lnUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginHorizontal="@dimen/_30sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_user" />
+
+                    <EditText
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:id="@+id/edtUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="#00ffffff"
+                        android:hint="user name"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/lnPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/lnUser"
+                    android:layout_marginHorizontal="@dimen/_30sdp">
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_password" />
+
+                    <EditText
+                        android:layout_centerVertical="true"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:id="@+id/edtPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_26sdp"
+                        android:background="#00ffffff"
+                        android:hint="password"
+                        tools:ignore="RtlCompat" />
+                    <ImageView
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/imgEye"
+                        android:src="@drawable/ic_pincode"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        tools:ignore="RtlCompat" />
+                </RelativeLayout>
+
+                <CheckBox
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/rubik_regular"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_below="@+id/lnPass"
+                    android:id="@+id/chkRemember"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="Remember me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlCompat" />
+
+                <Button
+                    android:textColor="#0070d9"
+                    android:background="@drawable/ct_bt_login"
+                    android:id="@+id/btnLogin"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_below="@+id/chkRemember"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_36sdp"
+                    android:text="Login" />
+                <TextView
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:fontFamily="@font/rubik_regular"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:gravity="center"
+                    android:layout_below="@+id/lnPass"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="Forget password ?"
+                    android:id="@+id/txtForget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:fontFamily="@font/yellowtailregular"
+                    android:id="@+id/txtSignup"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:layout_below="@+id/btnLogin"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="#fff"
+                    android:text="Sign up new account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
             <android.support.constraint.ConstraintLayout
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingHorizontal="@dimen/_40sdp"
@@ -306,11 +306,13 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgBanAn"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/noodles"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -341,11 +343,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgDoAn"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/data"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -376,11 +380,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgNgLieu"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/data"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -411,11 +417,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgThongKe"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/chart_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -448,11 +456,13 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgTaiKhoan"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/account_success"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -485,11 +495,13 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/bg1"
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgCaiDat"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/gears"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"

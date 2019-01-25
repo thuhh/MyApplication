@@ -26,6 +26,6 @@ public interface UserDAO {
     void delete(String id);// xoas theo id
 
     @Query("UPDATE tbuser SET password=(:pass) AND configPass = (:pass) AND pinCode = (:pin) WHERE username=(:id)")
-    void update(String id, String pass, String pin);
+    void update(int id, String pass, String pin);
 
 }

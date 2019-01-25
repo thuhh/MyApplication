@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.adapter.MaterialAdapter;
-import com.example.admin.myapplication.model.database.RDBMaterial;
 import com.example.admin.myapplication.model.object.Material;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class Fragment_material extends Fragment implements View.OnClickListener 
     ListView lstMaterial;
     ArrayList<Material> materials;
 
-    RDBMaterial rdbMaterial;
 
 
 
@@ -43,8 +41,6 @@ public class Fragment_material extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_material, container, false);
         lstMaterial = view.findViewById(R.id.lstMaterial);
-        rdbMaterial = RDBMaterial.getAppDatabase(getContext());
-        materials = (ArrayList<Material>) rdbMaterial.materialDAO().getAllApp();
 
         MaterialAdapter adapter = new MaterialAdapter(getContext(),materials);
         lstMaterial.setAdapter(adapter);

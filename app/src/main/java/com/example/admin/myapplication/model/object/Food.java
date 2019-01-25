@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 
 @Entity(tableName = "TbFood")
 public class Food {
-
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
