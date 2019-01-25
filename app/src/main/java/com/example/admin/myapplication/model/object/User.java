@@ -12,6 +12,8 @@ public class User implements Serializable {
 
     @NonNull
     @PrimaryKey
+    @ColumnInfo(name = "id")
+    private int id;
     @ColumnInfo(name = "username")
     private String username;
     @ColumnInfo(name = "password")
@@ -21,7 +23,8 @@ public class User implements Serializable {
     @ColumnInfo(name = "pinCode")
     private String pinCode;
 
-    public User(String username, String password, String comfigPassword, String pinCode) {
+    public User(@NonNull int id, String username, String password, String comfigPassword, String pinCode) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.comfigPassword = comfigPassword;
@@ -58,5 +61,14 @@ public class User implements Serializable {
 
     public void setPinCode(String pinCode) {
         this.pinCode = pinCode;
+    }
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 }
