@@ -34,8 +34,9 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
 
 
     private var iClickDialog: IClickDialog? = null
-    private var rdbFood : RDBApp? =null;
+    private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -56,6 +57,7 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         if (MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)!=null){
             loadImage()
         }
+
 
     }
 

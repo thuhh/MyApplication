@@ -34,6 +34,11 @@
         android:layout_height="@dimen/_200sdp">
 
     </android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/btnAddFood"
+        android:text="Add Food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <TextView
         android:text="Thanh toán: 54645"
         android:textColor="#000"

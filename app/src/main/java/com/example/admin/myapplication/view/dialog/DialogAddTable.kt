@@ -28,7 +28,6 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
         }
     }
 
-
     private var iClickDialog: IClickDialog? = null
     private var rdbTable : RDBApp? =null;
     private var tables: List<TableDinner> ? =null
@@ -48,7 +47,6 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
         radStatus.setOnClickListener(this)
-        btnAddFood.setOnClickListener(this)
     }
 
     fun setClick(iClickDialog: IClickDialog) {
@@ -58,7 +56,7 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
     override fun onBackPressed() {
         super.onBackPressed()
         MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
-        iClickDialog!!.onclick("sub12free")
+        iClickDialog!!.onclick("sdasd")
         dismiss()
     }
 
