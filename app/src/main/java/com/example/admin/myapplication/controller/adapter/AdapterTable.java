@@ -21,6 +21,7 @@ import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.IOnClick;
 import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
+import com.example.admin.myapplication.view.activiti.DetailTableActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,8 +62,8 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("");
-                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
+//                iOnClickSetColor.iClick("itemTable");
+                context.startActivity(new Intent(context, DetailTableActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
 

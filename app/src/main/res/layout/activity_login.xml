@@ -526,9 +526,5 @@
             </android.support.constraint.ConstraintLayout>
         </ViewFlipper>
 
-
-
-
-
     </RelativeLayout>
 </RelativeLayout>

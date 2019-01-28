@@ -65,11 +65,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             edtUserLogin.setText(MyPreferenceHelper.getString(MyPreferenceHelper.userName, this));
             edtPassLogin.setText(MyPreferenceHelper.getString(MyPreferenceHelper.password, this));
             new CountDownTimer(2000, 1000) {
-
                 public void onTick(long millisUntilFinished) {
 
                 }
-
                 public void onFinish() {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
@@ -152,9 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (users.get(i).getUsername().equals(edtUserLogin.getText().toString().trim()) && users.get(i).getPassword().equals(edtPassLogin.getText().toString().trim())) {
                                 MyPreferenceHelper.setInt(MyPreferenceHelper.idUser,users.get(i).getId(),this);
                                 d++;
+                                Toast.makeText(this, "Tồn tại", Toast.LENGTH_LONG).show();
                             }
                         }
                         if (d != 0) {
+                            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
                             viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
                             viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
                             viewFlipper.setDisplayedChild(2);
@@ -169,19 +169,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btnSignUp:
-                if (users.size() > 0) {
-                    int d = 0;
-                    for (int i = 0; i < users.size(); i++) {
-                        if (users.get(i).getUsername().equals(edtUserSignup.getText().toString().trim())) {
-                            Toast.makeText(this, "Tài khoản đã tồn tại!", Toast.LENGTH_LONG).show();
-                            d++;
+                if (users!=null) {
+                    if (users.size() > 0) {
+                        int d = 0;
+                        for (int i = 0; i < users.size(); i++) {
+                            if (users.get(i).getUsername().equals(edtUserSignup.getText().toString().trim())) {
+                                Toast.makeText(this, "Tài khoản đã tồn tại!", Toast.LENGTH_LONG).show();
+                                d++;
+                            }
                         }
-                    }
-                    if (d == 0) {
+                        if (d == 0) {
+                            insertUser();
+                        }
+                    } else {
                         insertUser();
                     }
-                } else {
-                    insertUser();
                 }
                 break;
             case R.id.txtForget:
