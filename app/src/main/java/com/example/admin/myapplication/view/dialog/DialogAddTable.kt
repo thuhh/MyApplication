@@ -21,13 +21,12 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
             context.startActivity(i)
         } else if (v?.id == R.id.btnSave) {
             var member = edtMember.text.toString().trim().toInt()
-            rdbTable!!.tableDAO().insertAll(TableDinner(tables!!.size+1,edtName.text.toString().trim(),member,radStatus.isChecked))
+            rdbTable!!.tableDAO().insertAll(TableDinner(tables!!.size+1,edtName.text.toString().trim(),member,radStatus.isChecked,MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()
         }
     }
-
 
     private var iClickDialog: IClickDialog? = null
     private var rdbTable : RDBApp? =null;
@@ -57,7 +56,7 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
     override fun onBackPressed() {
         super.onBackPressed()
         MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
-        iClickDialog!!.onclick("sub12free")
+        iClickDialog!!.onclick("sdasd")
         dismiss()
     }
 

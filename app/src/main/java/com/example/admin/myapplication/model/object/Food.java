@@ -21,14 +21,23 @@ public class Food {
     private boolean newFood;
     @ColumnInfo(name = "image")
     private String image;
+    @ColumnInfo(name = "material")
+    private String material;
+    @ColumnInfo(name = "sale")
+    private String sale;
+    @ColumnInfo(name = "userid")
+    private int userId;
 
-    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image) {
+    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image, String material, String sale, int userId) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.money = money;
         this.newFood = newFood;
         this.image = image;
+        this.material = material;
+        this.sale = sale;
+        this.userId = userId;
     }
 
     @NonNull
@@ -78,5 +87,29 @@ public class Food {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getSale() {
+        return sale;
+    }
+
+    public void setSale(String sale) {
+        this.sale = sale;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

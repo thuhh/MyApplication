@@ -18,12 +18,16 @@ public class TableDinner {
     private int member;
     @ColumnInfo(name = "status")
     private boolean status;
+    @ColumnInfo(name = "iduser")
+    private int iduser;
 
-    public TableDinner(@NonNull int id, String name, int member, boolean status) {
+
+    public TableDinner(@NonNull int id, String name, int member, boolean status, int iduser) {
         this.id = id;
         this.name = name;
         this.member = member;
         this.status = status;
+        this.iduser = iduser;
     }
 
     @NonNull
@@ -59,4 +63,11 @@ public class TableDinner {
         this.status = status;
     }
 
+    public int getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
+    }
 }

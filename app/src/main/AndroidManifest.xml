@@ -26,7 +26,12 @@
         <activity android:name=".view.activiti.AlbumActivity" />
         <activity android:name=".view.activiti.DetailFoodActivity" />
         <activity android:name=".view.activiti.TableActivity" />
-        <activity android:name=".view.activiti.MainDetailTable"></activity>
+        <activity android:name=".view.activiti.MainDetailTable" />
+        <activity android:name=".view.activiti.MaterialActivity" />
+        <activity android:name=".view.activiti.ReportActivity" />
+        <activity android:name=".view.activiti.SettingActivity" />
+        <activity android:name=".view.activiti.AcountActivity" />
+        <activity android:name=".view.activiti.DetailTableActivity"></activity>
     </application>
 
 </manifest>

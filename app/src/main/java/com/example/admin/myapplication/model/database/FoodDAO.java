@@ -26,7 +26,7 @@ public interface FoodDAO {
     @Query("DELETE FROM tbfood WHERE id=(:id)")
     void delete(String id);// xoas theo id
 
-    @Query("UPDATE tbfood SET name=(:name) AND type = (:type) AND money = (:money) AND newFood = (:newFood) AND image = (:image) WHERE id=(:id)")
-    void update(int id, String name, String type,String money, boolean newFood, String image);
+    @Query("UPDATE tbfood SET name=(:name) AND type = (:type) AND money = (:money) AND newFood = (:newFood) AND image = (:image) AND material = (:material) AND sale = (:sale) AND userid = (:userid) WHERE id=(:id)")
+    void update(int id, String name, String type,String money, boolean newFood, String image, String material, String sale, int userid);
 
 }

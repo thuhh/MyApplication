@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         int d = 0;
                         for (int i = 0; i < users.size(); i++) {
                             if (users.get(i).getUsername().equals(edtUserLogin.getText().toString().trim()) && users.get(i).getPassword().equals(edtPassLogin.getText().toString().trim())) {
+                                MyPreferenceHelper.setInt(MyPreferenceHelper.idUser,users.get(i).getId(),this);
                                 d++;
                             }
                         }
@@ -200,16 +201,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 nextActivity(2, FoodActivity.class);
                 break;
             case R.id.ctNguyenLieu:
-                nextActivity(3, FoodActivity.class);
+                nextActivity(3, MaterialActivity.class);
                 break;
             case R.id.ctBaoCao:
-                nextActivity(3, FoodActivity.class);
+                nextActivity(3, ReportActivity.class);
                 break;
             case R.id.ctCaiDat:
-                nextActivity(3, FoodActivity.class);
+                nextActivity(3, SettingActivity.class);
                 break;
             case R.id.ctTaiKhoan:
-                nextActivity(3, FoodActivity.class);
+                nextActivity(3, AcountActivity.class);
                 break;
 
             default:
@@ -218,7 +219,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void insertUser() {
-        rdbApp.userDAO().insertAll(new User(edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
+        rdbApp.userDAO().insertAll(new User(rdbApp.userDAO().getAllUser().size()+1,edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
         edtUserLogin.setText(edtUserSignup.getText().toString().trim());
         edtPassLogin.setText(edtPassSignup.getText().toString().trim());
         viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
