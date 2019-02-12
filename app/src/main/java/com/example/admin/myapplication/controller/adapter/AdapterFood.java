@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.IOnClick;
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
 import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
 
@@ -29,14 +30,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
-    private IOnClick iOnClickSetColor;
+    private ItemTableClick iOnClickSetColor;
     private List<Food> list;
     private List<Food> filter;
     private List<Food> items;
     private Context context;
 
 
-    public AdapterFood(IOnClick iOnClickSetColor, List<Food> list, Context context) {
+    public AdapterFood(ItemTableClick iOnClickSetColor, List<Food> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -64,8 +65,8 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("");
-                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
+                iOnClickSetColor.iClick("click",position);
+//                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
         Glide.with(context)

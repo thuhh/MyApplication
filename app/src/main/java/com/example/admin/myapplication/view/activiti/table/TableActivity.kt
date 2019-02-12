@@ -1,29 +1,33 @@
-package com.example.admin.myapplication.view.activiti
+package com.example.admin.myapplication.view.activiti.table
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
-import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.adapter.AdapterTable
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
-import com.example.admin.myapplication.controller.interfaces.IOnClick
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
-import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
-import com.example.admin.myapplication.view.dialog.DialogAddFood
+import com.example.admin.myapplication.view.activiti.LoginActivity
 import com.example.admin.myapplication.view.dialog.DialogAddTable
 import kotlinx.android.synthetic.main.activity_table.*
 
-class TableActivity : AppCompatActivity(), IClickDialog, IOnClick, View.OnClickListener {
+class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, ItemTableClick {
+    override fun iClick(check: String?, id: Int) {
+        if (check=="detail"){
+            Log.e("sdsd",id.toString())
+            startActivity(Intent(this, DetailTableActivity::class.java).putExtra("tableId",id))
+        }
+    }
+
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnAdd){
             MyPreferenceHelper.setString(this,MyPreferenceHelper.DialogFood,"yes")
@@ -33,19 +37,15 @@ class TableActivity : AppCompatActivity(), IClickDialog, IOnClick, View.OnClickL
             edtSearch.visibility = View.VISIBLE
             search()
         } else if (v?.id == R.id.btnKhac){
-            startActivity(Intent(this@TableActivity,LoginActivity::class.java).putExtra("menu",1))
+            startActivity(Intent(this@TableActivity, LoginActivity::class.java).putExtra("menu",1))
             finish()
         }
-    }
-
-    override fun iClick(check: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onclick(check: String?) {
         if (check=="save"){
             tables = rdbTable!!.tableDAO().allTable
-           initListItem()
+            initListItem()
         }
     }
 

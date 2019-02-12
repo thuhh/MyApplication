@@ -12,6 +12,7 @@ import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.interfaces.IOnClick
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
@@ -19,10 +20,11 @@ import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.dialog.DialogAddFood
 import kotlinx.android.synthetic.main.activity_food.*
 
-class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, IOnClick {
-    override fun iClick(check: String?) {
-
+class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, ItemTableClick {
+    override fun iClick(check: String?, id: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     override fun onclick(check: String?) {
         if (check=="save"){
@@ -75,7 +77,6 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, IO
         try {
             rdbFood = RDBApp.getAppDatabase(this)
             foods = rdbFood!!.foodDAO().allFood
-            Log.e("Sdsdsd",foods!!.size.toString())
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }

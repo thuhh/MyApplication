@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.IOnClick;
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
 
@@ -26,14 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
-    private IOnClick iOnClickSetColor;
+    private ItemTableClick iOnClickSetColor;
     private List<TableDinner> list;
     private List<TableDinner> filter;
     private List<TableDinner> items;
     private Context context;
 
 
-    public AdapterTable(IOnClick iOnClickSetColor, List<TableDinner> list, Context context) {
+    public AdapterTable(ItemTableClick iOnClickSetColor, List<TableDinner> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -61,8 +62,7 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("");
-                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
+                iOnClickSetColor.iClick("detail",list.get(position).getId());
             }
         });
 
