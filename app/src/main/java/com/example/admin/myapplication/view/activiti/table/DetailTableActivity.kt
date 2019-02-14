@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import com.example.admin.myapplication.R
@@ -19,8 +20,6 @@ import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.dialog.DialogAddTable
 import kotlinx.android.synthetic.main.activity_detail_table.*
-import kotlinx.android.synthetic.main.activity_food.*
-import kotlinx.android.synthetic.main.activity_table.*
 import java.util.*
 import java.util.Arrays.asList
 
@@ -28,6 +27,18 @@ import java.util.Arrays.asList
 class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
         ctAddFood.visibility = View.GONE
+        var list = ""
+        if (table!!.listFood != null) {
+            list = table!!.listFood
+        }
+        if (list!="") {
+            table!!.setListFood(list + "," + allFoods!![id].id.toString())
+        }else{
+            table!!.setListFood(allFoods!![id].id.toString())
+        }
+        Log.e("sdsd",  table!!.listFood)
+
+
     }
 
     override fun iClick(check: String?) {
@@ -46,12 +57,12 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
     var id = 0;
     private var rdbTable: RDBApp? = null
     private var reports: List<Report>? = null
+    private var tables: List<TableDinner>? = null
     private var allFoods: List<Food>? = null
     var foods: MutableList<Food> = mutableListOf<Food>()
     //    private var listFood: String = "0"
     private var listFood: List<String>? = null
-
-    private var report: Report? = null
+    private var table: TableDinner? = null
     private var adapterFoodTable: AdapterFoodTable? = null
     private var adapterFood: AdapterFood? = null
     private var dialogAddTable: DialogAddTable? = null
@@ -63,30 +74,32 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
         try {
             rdbTable = RDBApp.getAppDatabase(this)
             reports = rdbTable!!.reportDAO().allReport
+            tables = rdbTable!!.tableDAO().allTable
             allFoods = rdbTable!!.foodDAO().allFood
         } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
 
-//        if (intent.getIntExtra("tableId",0)>0){
-//            id = intent.getIntExtra("tableId",0)
-//            report = reports!![id]
-//            listFood = Arrays.asList(report!!.listFood.split(",")) as List<String>
-//            for (i in 0 until listFood!!.size){
-//                var food : Food
-//                food = allFoods!!.get(listFood!!.get(i) as Int)
-//                foods!!.add(food)
-//            }
-//        }
+        id = intent.getIntExtra("tableId", 0)
+        table = tables!![id]
+        if (table!!.listFood.toString().trim()!="") {
+            listFood = table!!.listFood.split(",")
+            if (listFood!!.size > 0) {
+                for (i in 0 until listFood!!.size) {
+                    var idFood = listFood!![i].toInt()
+                    var food: Food
+                    food = allFoods!!.get(idFood)
+                    foods!!.add(food)
+                }
+            }
+        }
+        txtTable.text = "Table $id"
 //
-//        txtTable.text = "Table $id"
-//
-//
-//        adapterFoodTable = AdapterFoodTable(this, foods,this)
-//        val manager = LinearLayoutManager(this)
-//        manager.orientation = LinearLayout.VERTICAL
-//        rvTable!!.layoutManager = manager!!
-//        rvTable.adapter = adapterFoodTable
+        adapterFoodTable = AdapterFoodTable(this, foods, this)
+        val manager = LinearLayoutManager(this)
+        manager.orientation = LinearLayout.VERTICAL
+        rcFood!!.layoutManager = manager!!
+        rcFood.adapter = adapterFoodTable
 
 
         adapterFood = AdapterFood(this, allFoods, this)
@@ -96,3 +109,4 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
         rcAddFood.adapter = adapterFood
     }
 }
+

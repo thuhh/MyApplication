@@ -18,15 +18,18 @@ public class TableDinner {
     private int member;
     @ColumnInfo(name = "status")
     private boolean status;
+    @ColumnInfo(name = "listFood")
+    private String listFood;
     @ColumnInfo(name = "iduser")
     private int iduser;
 
 
-    public TableDinner(@NonNull int id, String name, int member, boolean status, int iduser) {
+    public TableDinner(@NonNull int id, String name, int member, boolean status, String listFood, int iduser) {
         this.id = id;
         this.name = name;
         this.member = member;
         this.status = status;
+        this.listFood = listFood;
         this.iduser = iduser;
     }
 
@@ -69,5 +72,13 @@ public class TableDinner {
 
     public void setIduser(int iduser) {
         this.iduser = iduser;
+    }
+
+    public String getListFood() {
+        return listFood;
+    }
+
+    public void setListFood(String listFood) {
+        this.listFood = listFood;
     }
 }
