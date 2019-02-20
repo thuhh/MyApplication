@@ -24,9 +24,9 @@ public interface TableDAO {
     void insertAll(TableDinner tableDinner);
 
     @Query("DELETE FROM tbtable WHERE id=(:id)")
-    void delete(String id);// xoas theo id
+    void delete(int id);// xoas theo id
 
     @Query("UPDATE tbtable SET name=(:name) AND member = (:member) AND status = (:status) AND listFood = :listFood AND iduser = (:iduser) WHERE id=(:id)")
-    void update(int id, String name, String member, boolean status,String listFood, int iduser);
+    void update(int id, String name, int member, boolean status,String listFood, int iduser);
 
 }

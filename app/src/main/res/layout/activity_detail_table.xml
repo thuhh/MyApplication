@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:background="#fff"
     tools:context=".view.activiti.table.DetailTableActivity">
-
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -33,8 +35,9 @@
             android:layout_height="wrap_content" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcFood"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
         <Button
@@ -42,13 +45,24 @@
             android:text="Add Food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/txtSumMoney"
-            android:text="Tổng tiền: 54645"
-            android:textColor="#000"
-            android:textSize="@dimen/_20sdp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Tổng tiền: "
+                android:textColor="#000"
+                android:textSize="@dimen/_20sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/txtSumMoney"
+                android:text="0"
+                android:textColor="#000"
+                android:textSize="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <Button
             android:id="@+id/btnThanhtoan"
             android:text="Thanh toán"
@@ -56,6 +70,7 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
 
     <android.support.constraint.ConstraintLayout
         android:visibility="gone"

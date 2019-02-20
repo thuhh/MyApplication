@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import com.example.admin.myapplication.R
@@ -24,9 +25,10 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
             tables = rdbTable!!.tableDAO().allTable
             var member = edtMember.text.toString().trim().toInt()
             var id = 0
-            if (tables!!.size>0) {
-                id = tables!!.size +1
+            if (tables!!.isNotEmpty()) {
+                id = tables!!.size
             }
+            Log.e("sdsd",id.toString()+tables?.size)
             rdbTable!!.tableDAO().insertAll(TableDinner(id,edtName.text.toString().trim(),member,radStatus.isChecked,"",MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")

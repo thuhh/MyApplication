@@ -2,39 +2,33 @@ package com.example.admin.myapplication.controller.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
-import com.example.admin.myapplication.controller.interfaces.IOnClick;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
-import com.example.admin.myapplication.model.object.TableDinner;
-import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
+import com.example.admin.myapplication.model.object.Report;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
+public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor> {
     private ItemTableClick iOnClickSetColor;
-    private List<TableDinner> list;
-    private List<TableDinner> filter;
-    private List<TableDinner> items;
+    private List<Report> list;
+    private List<Report> filter;
+    private List<Report> items;
     private Context context;
 
 
-    public AdapterTable(ItemTableClick iOnClickSetColor, List<TableDinner> list, Context context) {
+    public AdapterReport(ItemTableClick iOnClickSetColor, List<Report> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -44,21 +38,19 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
     @NonNull
     @Override
     public Viewholor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_report, parent, false);
         return new Viewholor(view);
     }
 
     @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
+    public void onBindViewHolder(@NonNull Viewholor holder, @SuppressLint("RecyclerView") final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMember.setText(list.get(position).getMember()+"");
-        if (list.get(position).isStatus()) {
-            holder.imgTable.setImageResource(R.drawable.ic_logo_table_true);
-        }else {
-            holder.imgTable.setImageResource(R.drawable.ic_logo_table);
-        }
+        holder.txtMoney.setText(list.get(position).getMoney());
+        holder.txtTime.setText(list.get(position).getTime());
+        holder.txtDate.setText(list.get(position).getDate());
+
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,16 +71,18 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
     }
 
     public class Viewholor extends RecyclerView.ViewHolder {
-        ImageView imgTable;
         TextView txtName;
-        TextView txtMember;
+        TextView txtMoney;
+        TextView txtTime;
+        TextView txtDate;
         ConstraintLayout ctTable;
 
         public Viewholor(View itemView) {
             super(itemView);
-            imgTable = itemView.findViewById(R.id.imgTable);
-            txtName = itemView.findViewById(R.id.txtName);
-            txtMember = itemView.findViewById(R.id.txtMember);
+            txtDate = itemView.findViewById(R.id.txtDate);
+            txtTime = itemView.findViewById(R.id.txtTime);
+            txtMoney = itemView.findViewById(R.id.txtMoney);
+            txtName = itemView.findViewById(R.id.txtNameReport);
             ctTable = itemView.findViewById(R.id.ctTable);
         }
     }
@@ -99,12 +93,12 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<TableDinner> results = new ArrayList<>();
+                final List<Report> results = new ArrayList<>();
                 if (filter == null)
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final TableDinner g : filter) {
+                        for (final Report g : filter) {
                             if (g.getName().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);
                             }
@@ -118,7 +112,7 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                items = (List<TableDinner>) results.values;
+                items = (List<Report>) results.values;
                 notifyDataSetChanged();
             }
         };

@@ -26,7 +26,7 @@ public interface ReportDAO {
     @Query("DELETE FROM tbreport WHERE id=(:id)")
     void delete(String id);// xoas theo id
 
-    @Query("UPDATE tbreport SET name=(:name) AND tableId = (:idTAble) AND listFood=(:listFood) AND money = (:money) AND time = (:time) WHERE id=(:id)")
-    void update(int id, String name, int idTAble, String listFood, String money, String time);
+    @Query("UPDATE tbreport SET name=(:name) AND tableId = (:idTAble) AND listFood=(:listFood) AND money = (:money) AND time = (:time) AND date = (:date) WHERE id=(:id)")
+    void update(int id, String name, int idTAble, String listFood, String money, String time, String date);
 
 }

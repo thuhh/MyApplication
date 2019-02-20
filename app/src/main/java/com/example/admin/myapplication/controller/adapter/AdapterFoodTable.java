@@ -60,13 +60,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
         } else {
             holder.imgNew.setVisibility(View.GONE);
         }
-//        holder.ctFood.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                iOnClickSetColor.iClick("");
-//                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
-//            }
-//        });
+
         Glide.with(context)
                 .asBitmap()
                 .load(list.get(position).getImage())

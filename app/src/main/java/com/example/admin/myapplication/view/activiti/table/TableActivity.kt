@@ -55,7 +55,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                adapterTable!!.getFilter().filter(charSequence)
+                adapterTable!!.filter.filter(charSequence)
 
             }
 
@@ -64,7 +64,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
             }
         })
     }
-    private var rdbTable : RDBApp? =null;
+    private var rdbTable : RDBApp? =null
     private var tables: List<TableDinner> ? =null
     private var adapterTable: AdapterTable? = null
     private var dialogAddTable : DialogAddTable?= null
@@ -77,7 +77,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
-        dialogAddTable = DialogAddTable(this);
+        dialogAddTable = DialogAddTable(this)
         dialogAddTable!!.setClick(this)
 
         initListener()
@@ -94,7 +94,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
     private fun initListItem() {
         adapterTable = AdapterTable(this@TableActivity, tables,this)
         val manager = GridLayoutManager(this, 3)
-        rvTable!!.layoutManager = manager!!
+        rvTable!!.layoutManager = manager
         rvTable!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rvTable.adapter = adapterTable
     }

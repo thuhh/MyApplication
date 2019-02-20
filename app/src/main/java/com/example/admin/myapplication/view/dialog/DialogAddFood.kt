@@ -25,7 +25,11 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         } else if (v?.id == R.id.btnSave) {
             rdbFood = RDBApp.getAppDatabase(context)
             foods = rdbFood!!.foodDAO().allFood
-            rdbFood!!.foodDAO().insertAll(Food(foods!!.size+1,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
+            var id = 0
+            if (foods!!.isNotEmpty()) {
+                id = foods!!.size
+            }
+            rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
                     radNew.isChecked,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")

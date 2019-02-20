@@ -21,14 +21,17 @@ public class Report {
     private String money;
     @ColumnInfo(name = "time")
     private String time;
+    @ColumnInfo(name = "date")
+    private String date;
 
-    public Report(@NonNull int id, String name, int idTAble, String listFood, String money, String time) {
+    public Report(@NonNull int id, String name, int idTAble, String listFood, String money, String time,String date) {
         this.id = id;
         this.name = name;
         this.idTAble = idTAble;
         this.listFood = listFood;
         this.money = money;
         this.time = time;
+        this.date = date;
     }
 
     @NonNull
@@ -78,5 +81,13 @@ public class Report {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
