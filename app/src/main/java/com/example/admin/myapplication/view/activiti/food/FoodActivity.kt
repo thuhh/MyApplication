@@ -1,4 +1,4 @@
-package com.example.admin.myapplication.view.activiti
+package com.example.admin.myapplication.view.activiti.food
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -6,17 +6,16 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
-import com.example.admin.myapplication.controller.interfaces.IOnClick
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.database.RDBApp
+import com.example.admin.myapplication.view.activiti.LoginActivity
 import com.example.admin.myapplication.view.dialog.DialogAddFood
 import kotlinx.android.synthetic.main.activity_food.*
 
@@ -47,7 +46,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             edtSearch.visibility = View.VISIBLE
             search()
         }else if (v?.id == R.id.btnKhac){
-            startActivity(Intent(this@FoodActivity,LoginActivity::class.java).putExtra("menu",1))
+            startActivity(Intent(this@FoodActivity, LoginActivity::class.java).putExtra("menu",1))
             finish()
         }
     }
@@ -86,7 +85,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         initListener()
 
         if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this)!=null){
-            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this).equals("yes")){
+            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this) == "yes"){
                 dialogAddFood!!.show()
             }
         }

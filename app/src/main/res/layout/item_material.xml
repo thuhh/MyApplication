@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/ctMatetial"
     android:layout_height="120dp">
 
     <ImageView
@@ -28,31 +30,32 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="GÀ ĐÔNG TẢO"
-            android:textSize="@dimen/_14sdp"
-            android:textColor="#fff"
-            android:gravity="center_vertical"
             android:id="@+id/txtName"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHeight_percent="0.3"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
-        <TextView
-            android:text="Thực phẩm: Tươi sống"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="#fff"
+            android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:id="@+id/txtType"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            app:layout_constraintWidth_percent="1"
+            android:text="GÀ ĐÔNG TẢO"
+            android:textColor="#fff"
+            android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="1" />
+
+        <TextView
+            android:id="@+id/txtType"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="23dp"
+            android:gravity="center_vertical"
+            android:text="Thực phẩm: Tươi sống"
+            android:textColor="#fff"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            app:layout_constraintWidth_percent="1" />
         <TextView
             android:text="Địa điểm Cung Cấp: Hưng Yên"
             android:textSize="@dimen/_10sdp"
@@ -66,18 +69,19 @@
             app:layout_constraintHeight_percent="0.2"
             android:layout_width="0dp"
             android:layout_height="0dp" />
+
         <TextView
-            android:text="Ngày mua: 01/01/2019"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="#fff"
-            android:gravity="center_vertical"
             android:id="@+id/txtDate"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddress"
-            app:layout_constraintWidth_percent="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHeight_percent="0.2"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="27dp"
+            android:gravity="center_vertical"
+            android:text="Ngày mua: 01/01/2019"
+            android:textColor="#fff"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddress"
+            app:layout_constraintWidth_percent="1" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

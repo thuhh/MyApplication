@@ -4,6 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activiti.AcountActivity">
+    tools:context=".view.activiti.account.AcountActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:background="#fff"
+        android:id="@+id/ctTop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp" />
+        <TextView
+            android:textColor="#000"
+            android:textSize="@dimen/_20sdp"
+            android:text="Accounts"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/btnList"
+            android:src="@drawable/ic_back"
+            app:layout_constraintEnd_toStartOf="@id/btnChart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp" />
+        <ImageView
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/btnChart"
+            android:src="@drawable/ic_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp" />
+    </android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.RecyclerView
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ctTop"
+        android:id="@+id/rcAccount"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+    </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

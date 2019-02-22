@@ -1,4 +1,4 @@
-package com.example.admin.myapplication.view.activiti
+package com.example.admin.myapplication.view.activiti.report
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

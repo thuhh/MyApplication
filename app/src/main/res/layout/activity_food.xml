@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activiti.FoodActivity">
+    tools:context=".view.activiti.food.FoodActivity">
     <ImageView
         android:id="@+id/imgBg"
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
 
     </android.support.v7.widget.RecyclerView>
     <android.support.constraint.ConstraintLayout
+
         android:background="#fff"
         android:id="@+id/ctBt"
         app:layout_constraintBottom_toBottomOf="parent"

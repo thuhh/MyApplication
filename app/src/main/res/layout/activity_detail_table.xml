@@ -1,95 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     tools:context=".view.activiti.table.DetailTableActivity">
-<android.support.v4.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp">
-
-            <TextView
-                android:textSize="@dimen/_16sdp"
-                android:textColor="#000"
-                android:gravity="center"
-                android:text="Detail table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/txtTable"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="#000"
-            android:text="table 1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcFood"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.RecyclerView>
-        <Button
-            android:id="@+id/btnAddFood"
-            android:text="Add Food"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Tổng tiền: "
-                android:textColor="#000"
-                android:textSize="@dimen/_20sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/txtSumMoney"
-                android:text="0"
-                android:textColor="#000"
-                android:textSize="@dimen/_20sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <Button
-            android:id="@+id/btnThanhtoan"
-            android:text="Thanh toán"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
 
     <android.support.constraint.ConstraintLayout
-        android:visibility="gone"
-        android:id="@+id/ctAddFood"
-        android:background="#bd000000"
+        android:id="@+id/ctTop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detail"
+            android:textColor="#000"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        app:layout_constraintTop_toBottomOf="@+id/ctTop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="table 1"
+                android:textColor="#000"
+                android:textSize="@dimen/_20sdp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcFood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/btnAddFood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Food" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng tiền: "
+                    android:textColor="#000"
+                    android:textSize="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/txtSumMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_20sdp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:id="@+id/btnThanhtoan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ctAddFood"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#bd000000"
+        android:visibility="gone">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rcAddFood"
-            app:layout_constraintHeight_percent="0.8"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8">
 
         </android.support.v7.widget.RecyclerView>
     </android.support.constraint.ConstraintLayout>
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

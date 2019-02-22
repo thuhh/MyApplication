@@ -22,6 +22,10 @@ import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.model.database.RDBApp;
 import com.example.admin.myapplication.model.object.User;
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper;
+import com.example.admin.myapplication.view.activiti.account.AcountActivity;
+import com.example.admin.myapplication.view.activiti.food.FoodActivity;
+import com.example.admin.myapplication.view.activiti.material.MaterialActivity;
+import com.example.admin.myapplication.view.activiti.report.ReportActivity;
 import com.example.admin.myapplication.view.activiti.table.TableActivity;
 
 import java.util.List;
@@ -72,8 +76,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 public void onFinish() {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                    finish();
                 }
             }.start();
 

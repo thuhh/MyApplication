@@ -3,7 +3,6 @@ package com.example.admin.myapplication.controller.adapter
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.util.ImageViewForListImage
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
-import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.ImageModel
-import com.example.admin.myapplication.view.activiti.FoodActivity
+import com.example.admin.myapplication.view.activiti.food.FoodActivity
 import java.util.*
 
 class AdapterAllImage(private val context: Context, private val width: Int) : RecyclerView.Adapter<AdapterAllImage.ImageHolder>() {

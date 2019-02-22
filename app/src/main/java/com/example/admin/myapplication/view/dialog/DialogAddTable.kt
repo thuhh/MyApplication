@@ -12,7 +12,7 @@ import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
-import com.example.admin.myapplication.view.activiti.AlbumActivity
+import com.example.admin.myapplication.view.activiti.iamge.AlbumActivity
 import kotlinx.android.synthetic.main.dialog_add_table.*
 
 class DialogAddTable(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {

@@ -11,11 +11,13 @@ import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
+import com.example.admin.myapplication.model.`object`.Material
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.iamge.AlbumActivity
-import kotlinx.android.synthetic.main.dialog_add_food.*
+import kotlinx.android.synthetic.main.dialog_add_material.*
+import java.util.*
 
-class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
+class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.imgImage) {
 //            iClickDialog!!.onclick("sub12free")
@@ -23,13 +25,15 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
             context.startActivity(i)
         } else if (v?.id == R.id.btnSave) {
             rdbFood = RDBApp.getAppDatabase(context)
-            foods = rdbFood!!.foodDAO().allFood
+            materials = rdbFood!!.materialDAO().allApp
             var id = 0
-            if (foods!!.isNotEmpty()) {
-                id = foods!!.size
+            if (materials!!.isNotEmpty()) {
+                id = materials!!.size
             }
-            rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                    radNew.isChecked,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+
+            val calendar = Calendar.getInstance()
+            rdbFood!!.materialDAO().insertAll(Material(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtSL.text.toString().toInt(),edtMoney.text.toString().trim().toLong(),calendar.get(Calendar.DATE).toString(),edtAddress.text.toString().trim(),
+                    MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()
@@ -39,29 +43,27 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
 
     private var iClickDialog: IClickDialog? = null
     private var rdbFood : RDBApp? =null
-    private var foods: List<Food> ? =null
+    private var materials: List<Material> ? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         val inflater = this.layoutInflater
         setCancelable(false)
-        val view = inflater.inflate(R.layout.dialog_add_food, null)
+        val view = inflater.inflate(R.layout.dialog_add_material, null)
         setContentView(view)
         try {
             rdbFood = RDBApp.getAppDatabase(context)
-            foods = rdbFood!!.foodDAO().allFood
+            materials = rdbFood!!.materialDAO().allApp
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
-        radNew.setOnClickListener(this)
 
         if (MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)!=null){
             loadImage()
         }
-
 
     }
 

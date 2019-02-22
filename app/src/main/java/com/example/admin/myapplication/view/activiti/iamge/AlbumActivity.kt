@@ -1,4 +1,4 @@
-package com.example.admin.myapplication.view.activiti
+package com.example.admin.myapplication.view.activiti.iamge
 
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity

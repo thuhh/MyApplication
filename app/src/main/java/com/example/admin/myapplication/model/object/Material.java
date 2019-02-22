@@ -26,9 +26,9 @@ public class Material {
     @ColumnInfo(name = "address")
     private String adrress;
     @ColumnInfo(name = "image")
-    private byte[] image;
+    private String image;
 
-    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, byte[] image) {
+    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -88,11 +88,11 @@ public class Material {
         this.adrress = adrress;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

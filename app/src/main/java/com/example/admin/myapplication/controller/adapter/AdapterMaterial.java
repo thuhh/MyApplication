@@ -2,7 +2,6 @@ package com.example.admin.myapplication.controller.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -18,22 +17,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
-import com.example.admin.myapplication.controller.interfaces.IOnClick;
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
-import com.example.admin.myapplication.view.activiti.food.DetailFoodActivity;
+import com.example.admin.myapplication.model.object.Material;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.Viewholor> {
-    private IOnClick iOnClickSetColor;
-    private List<Food> list;
-    private List<Food> filter;
-    private List<Food> items;
+public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewholor> {
+    private ItemTableClick iOnClickSetColor;
+    private List<Material> list;
+    private List<Material> filter;
+    private List<Material> items;
     private Context context;
 
 
-    public AdapterChoseFood(IOnClick iOnClickSetColor, List<Food> list, Context context) {
+    public AdapterMaterial(ItemTableClick iOnClickSetColor, List<Material> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -43,7 +42,7 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
     @NonNull
     @Override
     public Viewholor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_material, parent, false);
         return new Viewholor(view);
     }
 
@@ -52,17 +51,15 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMoney.setText(list.get(position).getMoney());
-        if (list.get(position).isNewFood()) {
-            holder.imgNew.setVisibility(View.VISIBLE);
-        }else {
-            holder.imgNew.setVisibility(View.GONE);
-        }
+        holder.txtAddress.setText(list.get(position).getAdrress());
+        holder.txtType.setText(list.get(position).getType());
+        holder.txtDate.setText(list.get(position).getTimeBuy());
+
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("");
-                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
+                iOnClickSetColor.iClick("click",position);
+//                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
         Glide.with(context)
@@ -79,18 +76,21 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
     }
 
     public class Viewholor extends RecyclerView.ViewHolder {
-        ImageView imgFood, imgNew;
+        ImageView imgFood;
         TextView txtName;
-        TextView txtMoney;
+        TextView txtType;
+        TextView txtAddress;
+        TextView txtDate;
         ConstraintLayout ctFood;
 
         public Viewholor(View itemView) {
             super(itemView);
-            imgFood = itemView.findViewById(R.id.imgFood);
-            imgNew = itemView.findViewById(R.id.imgNew);
+            imgFood = itemView.findViewById(R.id.imgPicture);
             txtName = itemView.findViewById(R.id.txtName);
-            ctFood = itemView.findViewById(R.id.ctFood);
-            txtMoney = itemView.findViewById(R.id.txtMoney);
+            txtType = itemView.findViewById(R.id.txtType);
+            ctFood = itemView.findViewById(R.id.ctMatetial);
+            txtAddress = itemView.findViewById(R.id.txtAddress);
+            txtDate = itemView.findViewById(R.id.txtDate);
         }
     }
 
@@ -100,13 +100,12 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<Food> results = new ArrayList<>();
+                final List<Material> results = new ArrayList<>();
                 if (filter == null)
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final Food g : filter) {
-                            Log.e("sdsd56",g.getName());
+                        for (final Material g : filter) {
                             if (g.getName().toLowerCase().contains(constraint.toString()) ||
                                     g.getType().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);
@@ -121,7 +120,7 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                items = (List<Food>) results.values;
+                items = (List<Material>) results.values;
                 notifyDataSetChanged();
             }
         };

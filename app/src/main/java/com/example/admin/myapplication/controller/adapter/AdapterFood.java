@@ -2,14 +2,10 @@ package com.example.admin.myapplication.controller.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +17,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
-import com.example.admin.myapplication.controller.interfaces.IOnClick;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
-import com.example.admin.myapplication.view.activiti.DetailFoodActivity;
 
 import java.util.ArrayList;
 import java.util.List;

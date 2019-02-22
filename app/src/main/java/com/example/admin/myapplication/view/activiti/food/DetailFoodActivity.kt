@@ -1,9 +1,7 @@
-package com.example.admin.myapplication.view.activiti
+package com.example.admin.myapplication.view.activiti.food
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
@@ -17,7 +15,7 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
 
         }else if (v?.id==R.id.flDelete){
 
-        }else if (v?.id==R.id.imgBack){
+        }else if (v?.id==R.id.btnBack){
 
         }else if (v?.id==R.id.txtBuy){
 

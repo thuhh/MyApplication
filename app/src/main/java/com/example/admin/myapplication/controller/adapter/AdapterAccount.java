@@ -2,7 +2,6 @@ package com.example.admin.myapplication.controller.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -18,22 +17,21 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
-import com.example.admin.myapplication.controller.interfaces.IOnClick;
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
-import com.example.admin.myapplication.view.activiti.food.DetailFoodActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.Viewholor> {
-    private IOnClick iOnClickSetColor;
+public class AdapterAccount extends RecyclerView.Adapter<AdapterAccount.Viewholor> {
+    private ItemTableClick iOnClickSetColor;
     private List<Food> list;
     private List<Food> filter;
     private List<Food> items;
     private Context context;
 
 
-    public AdapterChoseFood(IOnClick iOnClickSetColor, List<Food> list, Context context) {
+    public AdapterAccount(ItemTableClick iOnClickSetColor, List<Food> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -61,8 +59,8 @@ public class AdapterChoseFood extends RecyclerView.Adapter<AdapterChoseFood.View
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("");
-                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
+                iOnClickSetColor.iClick("click",position);
+//                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
         Glide.with(context)

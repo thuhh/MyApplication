@@ -55,7 +55,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable,table?.name,table?.member!!,true,table?.listFood, table?.iduser!!))
 
-//            rdbTable!!.tableDAO().update(idTable,table?.name,table?.member!!,true,table?.listFood, table?.iduser!!)
         }
 
     }
@@ -76,7 +75,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
             }
             rdbTable!!.reportDAO().insertAll(Report(id, "Report$id",idTable,table!!.listFood,txtSumMoney.text.toString(),time,calendar.get(Calendar.DATE).toString()))
         }
-
     }
 
     private var idTable = 0

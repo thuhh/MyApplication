@@ -20,17 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activiti.RegisterActivity" />
-        <activity android:name=".view.activiti.MainActivity" />
-        <activity android:name=".view.activiti.FoodActivity" />
-        <activity android:name=".view.activiti.AlbumActivity" />
-        <activity android:name=".view.activiti.DetailFoodActivity" />
+        <activity android:name=".view.activiti.food.FoodActivity" />
+        <activity android:name=".view.activiti.iamge.AlbumActivity" />
+        <activity android:name=".view.activiti.food.DetailFoodActivity" />
         <activity android:name=".view.activiti.table.TableActivity" />
         <activity android:name=".view.activiti.MainDetailTable" />
-        <activity android:name=".view.activiti.MaterialActivity" />
-        <activity android:name=".view.activiti.ReportActivity" />
+        <activity android:name=".view.activiti.material.MaterialActivity" />
+        <activity android:name=".view.activiti.report.ReportActivity" />
         <activity android:name=".view.activiti.SettingActivity" />
-        <activity android:name=".view.activiti.AcountActivity" />
+        <activity android:name=".view.activiti.account.AcountActivity" />
         <activity android:name=".view.activiti.table.DetailTableActivity"></activity>
     </application>
 
