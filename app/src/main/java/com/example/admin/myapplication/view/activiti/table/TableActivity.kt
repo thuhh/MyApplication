@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_table.*
 class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
         if (check=="detail"){
-            Log.e("sdsd",id.toString())
             startActivity(Intent(this, DetailTableActivity::class.java).putExtra("tableId",id))
         }
     }
@@ -35,7 +34,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
             dialogAddTable!!.show()
         }
         else if (v?.id == R.id.btnSearch){
-            edtSearch.visibility = View.VISIBLE
+            lnSearch.visibility = View.VISIBLE
             search()
         } else if (v?.id == R.id.btnKhac){
             startActivity(Intent(this@TableActivity, LoginActivity::class.java).putExtra("menu",1))

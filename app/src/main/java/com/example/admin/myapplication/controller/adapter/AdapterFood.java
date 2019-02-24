@@ -63,10 +63,16 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
 //                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
-        Glide.with(context)
-                .asBitmap()
-                .load(list.get(position).getImage())
-                .into(holder.imgFood);
+        String image = list.get(position).getImage();
+        if (image !=null && image != ""){
+            Glide.with(context)
+                    .asBitmap()
+                    .load(image)
+                    .into(holder.imgFood);
+        }else{
+            holder.imgFood.setImageResource(R.drawable.ic_name_food);
+        }
+
 
 
     }
@@ -104,7 +110,6 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
                         for (final Food g : filter) {
-                            Log.e("sdsd56",g.getName());
                             if (g.getName().toLowerCase().contains(constraint.toString()) ||
                                     g.getType().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);

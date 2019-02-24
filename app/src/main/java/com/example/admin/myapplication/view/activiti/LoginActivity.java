@@ -174,7 +174,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btnSignUp:
-                if (users.size() > 0) {
+                if (users!=null && users.size() > 0) {
                     int d = 0;
                     for (int i = 0; i < users.size(); i++) {
                         if (users.get(i).getUsername().equals(edtUserSignup.getText().toString().trim())) {

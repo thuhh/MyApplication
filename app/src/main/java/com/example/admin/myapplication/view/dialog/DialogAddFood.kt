@@ -29,11 +29,21 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
                 id = foods!!.size
             }
             rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                    radNew.isChecked,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                    true,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
+            resetData()
             dismiss()
         }
+    }
+
+    private fun resetData() {
+        MyPreferenceHelper.setString(context,MyPreferenceHelper.SELECT_IMAGE, "")
+        edtName.setText("")
+        edtType.setText("")
+        edtMoney.setText("")
+        edtMaterial.setText("")
+        edtSale.setText("")
     }
 
 
@@ -56,13 +66,13 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         }
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
-        radNew.setOnClickListener(this)
 
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)!=null){
+        val image = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
+        if (image !=null && image != ""){
             loadImage()
+        }else{
+            imgImage.setImageResource(R.drawable.ic_logo_crab)
         }
-
-
     }
 
     fun setClick(iClickDialog: IClickDialog) {

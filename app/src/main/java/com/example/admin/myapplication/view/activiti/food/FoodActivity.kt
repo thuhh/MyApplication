@@ -1,5 +1,6 @@
 package com.example.admin.myapplication.view.activiti.food
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -42,12 +43,12 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             MyPreferenceHelper.setString(this,MyPreferenceHelper.DialogFood,"yes")
             dialogAddFood!!.show()
         }
-        else if (v?.id == R.id.btnSearch){
-            edtSearch.visibility = View.VISIBLE
-            search()
-        }else if (v?.id == R.id.btnKhac){
+        else if (v?.id == R.id.btnKhac){
             startActivity(Intent(this@FoodActivity, LoginActivity::class.java).putExtra("menu",1))
             finish()
+        }else if (v?.id == R.id.btnSearch){
+            lnSearch.visibility = View.VISIBLE
+            search()
         }
     }
 
@@ -70,6 +71,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     private var foods: List<Food> ? =null
     private var adapterFood: AdapterFood? = null
     private var dialogAddFood : DialogAddFood ?= null
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
@@ -99,8 +101,8 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
 
     private fun initListener() {
         btnAdd.setOnClickListener(this)
-        btnSearch.setOnClickListener(this)
         btnKhac.setOnClickListener(this)
+        btnSearch.setOnClickListener(this)
     }
 
     override fun onDestroy() {
