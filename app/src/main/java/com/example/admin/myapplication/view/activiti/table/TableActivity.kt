@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -92,9 +93,8 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
 
     private fun initListItem() {
         adapterTable = AdapterTable(this@TableActivity, tables,this)
-        val manager = GridLayoutManager(this, 3)
+        val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         rvTable!!.layoutManager = manager
-        rvTable!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rvTable.adapter = adapterTable
     }
 

@@ -18,22 +18,22 @@ import kotlinx.android.synthetic.main.dialog_add_table.*
 class DialogAddTable(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.imgImage) {
-            var i = Intent(context, AlbumActivity::class.java)
-            context.startActivity(i)
+//            var i = Intent(context, AlbumActivity::class.java)
+//            context.startActivity(i)
         } else if (v?.id == R.id.btnSave) {
             rdbTable = RDBApp.getAppDatabase(context)
             tables = rdbTable!!.tableDAO().allTable
-            var member = edtMember.text.toString().trim().toInt()
+            val member = edtMember.text.toString().trim().toInt()
             var id = 0
             if (tables!!.isNotEmpty()) {
                 id = tables!!.size
             }
-            Log.e("sdsd",id.toString()+tables?.size)
             rdbTable!!.tableDAO().insertAll(TableDinner(id,edtName.text.toString().trim(),member,radStatus.isChecked,"",MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
+            edtName.setText("")
+            edtMember.setText("")
             dismiss()
-
         }
     }
 

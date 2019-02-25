@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a3cacaca">
+    android:background="#d0475063">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -42,14 +42,14 @@
 
             <EditText
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#bab8b8"
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Tên"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
@@ -60,7 +60,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -71,14 +71,14 @@
 
             <EditText
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#bebbbb"
                 android:id="@+id/edtType"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Loại đồ"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
@@ -89,7 +89,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -100,14 +100,14 @@
 
             <EditText
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#bebbbb"
                 android:id="@+id/edtMoney"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Giá $"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
@@ -118,7 +118,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -129,14 +129,14 @@
 
             <EditText
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#bebbbb"
                 android:id="@+id/edtMaterial"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Nguyên liệu chính"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
@@ -147,7 +147,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -159,13 +159,13 @@
             <EditText
                 android:id="@+id/edtSale"
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#bebbbb"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="giảm giá %"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />

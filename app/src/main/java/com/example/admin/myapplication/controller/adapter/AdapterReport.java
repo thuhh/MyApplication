@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
+import com.example.admin.myapplication.model.database.RDBApp;
 import com.example.admin.myapplication.model.object.Report;
+import com.example.admin.myapplication.model.object.TableDinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor>
     private List<Report> filter;
     private List<Report> items;
     private Context context;
+
+    private RDBApp rdbApp;
 
 
     public AdapterReport(ItemTableClick iOnClickSetColor, List<Report> list, Context context) {
@@ -39,6 +43,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor>
     @Override
     public Viewholor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_report, parent, false);
+        rdbApp = RDBApp.getAppDatabase(context);
         return new Viewholor(view);
     }
 
@@ -46,10 +51,12 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor>
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, @SuppressLint("RecyclerView") final int position) {
-        holder.txtName.setText(list.get(position).getName());
+        holder.txtName.setText(list.get(position).getName()+":");
         holder.txtMoney.setText(list.get(position).getMoney());
-        holder.txtTime.setText(list.get(position).getTime());
-        holder.txtDate.setText(list.get(position).getDate());
+        holder.txtTime.setText("Time: " +list.get(position).getTime());
+        holder.txtDate.setText("Date: "+list.get(position).getDate());
+
+        holder.txtTable.setText(rdbApp.tableDAO().getTableById(list.get(position).getIdTAble()).getName());
 
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +82,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor>
         TextView txtMoney;
         TextView txtTime;
         TextView txtDate;
+        TextView txtTable;
         ConstraintLayout ctTable;
 
         public Viewholor(View itemView) {
@@ -83,6 +91,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.Viewholor>
             txtTime = itemView.findViewById(R.id.txtTime);
             txtMoney = itemView.findViewById(R.id.txtMoney);
             txtName = itemView.findViewById(R.id.txtNameReport);
+            txtTable = itemView.findViewById(R.id.txtNameTable);
             ctTable = itemView.findViewById(R.id.ctTable);
         }
     }

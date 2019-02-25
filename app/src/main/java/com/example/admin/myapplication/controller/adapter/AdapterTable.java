@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.admin.myapplication.R;
@@ -77,7 +78,7 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         ImageView imgTable;
         TextView txtName;
         TextView txtMember;
-        ConstraintLayout ctTable;
+        LinearLayout ctTable;
 
         public Viewholor(View itemView) {
             super(itemView);

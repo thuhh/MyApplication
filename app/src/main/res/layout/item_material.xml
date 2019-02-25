@@ -3,21 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
     android:id="@+id/ctMatetial"
+    android:background="@drawable/bg_cir_blue"
     android:layout_height="120dp">
 
     <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_logo_crab"
+        android:padding="@dimen/_5sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_material"
         android:id="@+id/imgPicture"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.7"
+        app:layout_constraintHeight_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.25" />
 
     <android.support.constraint.ConstraintLayout
         android:layout_marginLeft="16dp"
@@ -34,8 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center_vertical"
+            android:fontFamily="@font/raleway_medium"
             android:text="GÀ ĐÔNG TẢO"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.3"
@@ -49,7 +54,7 @@
             android:layout_height="23dp"
             android:gravity="center_vertical"
             android:text="Thực phẩm: Tươi sống"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.2"
@@ -59,7 +64,7 @@
         <TextView
             android:text="Địa điểm Cung Cấp: Hưng Yên"
             android:textSize="@dimen/_10sdp"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:gravity="center_vertical"
             android:id="@+id/txtAddress"
             app:layout_constraintTop_toBottomOf="@+id/txtType"
@@ -76,7 +81,7 @@
             android:layout_height="27dp"
             android:gravity="center_vertical"
             android:text="Ngày mua: 01/01/2019"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.2"

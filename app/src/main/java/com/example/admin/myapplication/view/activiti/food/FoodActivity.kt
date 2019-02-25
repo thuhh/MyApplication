@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_food.*
 
 class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.e("sdsd","ssss")
     }
 
 
@@ -92,7 +93,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             }
         }
         adapterFood = AdapterFood(this@FoodActivity, foods,this)
-        val manager = GridLayoutManager(this, 2)
+        val manager = GridLayoutManager(this, 1)
         rvFood!!.layoutManager = manager!!
         rvFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rvFood.adapter = adapterFood

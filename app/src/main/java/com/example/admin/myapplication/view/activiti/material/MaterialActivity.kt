@@ -4,7 +4,9 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterMaterial
@@ -25,6 +27,7 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
             dialogAddMaterial!!.show()
         }
         else if (v?.id == R.id.btnSearch){
+            lnSearch.visibility = View.VISIBLE
             search()
         }else if (v?.id == R.id.btnKhac){
             startActivity(Intent(this, LoginActivity::class.java).putExtra("menu",1))
@@ -33,7 +36,18 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
     }
 
     private fun search() {
+        edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                adapterMaterial!!.filter.filter(charSequence)
+
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+
+            }
+        })
     }
 
     override fun onclick(check: String?) {
@@ -41,7 +55,7 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
             materials = rdbMaterial!!.materialDAO().allApp
             adapterMaterial = AdapterMaterial(this, materials,this)
             val manager = GridLayoutManager(this, 1)
-            rcMaterial!!.layoutManager = manager!!
+            rcMaterial!!.layoutManager = manager
             rcMaterial!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
             rcMaterial.adapter = adapterMaterial
             MyPreferenceHelper.setString(this, MyPreferenceHelper.SELECT_IMAGE,"")
@@ -49,11 +63,11 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
     }
 
     override fun iClick(check: String?, id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.e("sdsd","kkk")
     }
 
 
-    private var rdbMaterial : RDBApp? =null;
+    private var rdbMaterial : RDBApp? =null
     private var materials: List<Material> ? =null
     private var adapterMaterial: AdapterMaterial? = null
     private var dialogAddMaterial : DialogAddMaterial?= null
@@ -67,7 +81,7 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
-        dialogAddMaterial = DialogAddMaterial(this);
+        dialogAddMaterial = DialogAddMaterial(this)
         dialogAddMaterial!!.setClick(this)
 
         initListener()
@@ -79,7 +93,7 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
         }
         adapterMaterial = AdapterMaterial(this, materials,this)
         val manager = GridLayoutManager(this, 1)
-        rcMaterial!!.layoutManager = manager!!
+        rcMaterial!!.layoutManager = manager
         rcMaterial!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rcMaterial.adapter = adapterMaterial
     }

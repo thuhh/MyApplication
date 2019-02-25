@@ -4,22 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2e374b"
     tools:context=".view.activiti.table.TableActivity">
 
-    <ImageView
-        android:id="@+id/imgBg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg5" />
     <RelativeLayout
-        android:id="@+id/rlBg"
-        android:background="@drawable/ct_bg_login"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </RelativeLayout>
-    <RelativeLayout
-        android:background="#ffffff"
+        android:background="#424C61"
         android:id="@+id/ctToolbar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_percent="0.08"
@@ -38,9 +27,9 @@
         <TextView
             android:gravity="center"
             android:layout_toRightOf="@+id/btnKhac"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="#000"
-            android:text="Food Manager"
+            android:textSize="@dimen/_16sdp"
+            android:textColor="#ffffff"
+            android:text="Table Manager"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <ImageView
@@ -67,10 +56,10 @@
     </RelativeLayout>
     <LinearLayout
         android:visibility="gone"
-        android:layout_margin="@dimen/_2sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_2sdp"
         app:layout_constraintTop_toBottomOf="@+id/ctToolbar"
-        android:background="@drawable/ct_button_search"
+        android:background="@drawable/bg_cir_blue"
         android:padding="@dimen/_5sdp"
         android:id="@+id/lnSearch"
         app:layout_constraintHeight_percent="0.08"
@@ -82,8 +71,8 @@
             android:layout_width="40dp"
             android:layout_height="match_parent" />
         <EditText
-            android:textColor="#000"
-            android:textColorHint="#000000"
+            android:textColor="#ffffff"
+            android:textColorHint="#c7c7c7"
             android:id="@+id/edtSearch"
             android:background="#00ffffff"
             android:hint="Search"

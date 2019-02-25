@@ -6,18 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".view.activiti.LoginActivity">
 
-    <ImageView
-        android:id="@+id/imgBg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg5" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:background="@drawable/ct_bg_login">
+        android:background="#2e374b">
 
         <ImageView
             android:id="@+id/imgLogo"
@@ -36,7 +30,7 @@
             android:layout_below="@+id/imgLogo"
             android:gravity="center"
             android:text="RESTAURANT"
-            android:textColor="#fff"
+            android:textColor="#ffffff"
             android:textSize="@dimen/_26sdp" />
 
         <ViewFlipper
@@ -52,11 +46,13 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:id="@+id/lnUserSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -78,11 +74,14 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:id="@+id/lnPassSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_below="@+id/lnUserSignUp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -104,11 +103,14 @@
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:id="@+id/lnComfirmPassSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_below="@+id/lnPassSignUp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -130,11 +132,14 @@
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:id="@+id/lnPin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_below="@+id/lnComfirmPassSignUp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -156,7 +161,9 @@
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <Button
-                    android:textColor="#0070d9"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:textColor="#d27700"
                     android:background="@drawable/ct_bt_login"
                     android:id="@+id/btnSignUp"
                     android:layout_marginTop="@dimen/_18sdp"
@@ -175,11 +182,13 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:id="@+id/lnUser"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -201,12 +210,15 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
                     android:orientation="horizontal"
                     android:id="@+id/lnPass"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_below="@+id/lnUser"
-                    android:layout_marginHorizontal="@dimen/_30sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
                     <ImageView
                         android:layout_centerVertical="true"
@@ -306,13 +318,11 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_table_false"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgBanAn"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/noodles"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -321,9 +331,9 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:text="QL Bàn Ăn"
                         app:layout_constraintTop_toBottomOf="@+id/imgBanAn"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -336,20 +346,18 @@
                 </android.support.constraint.ConstraintLayout>
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/ctDoAn"
-                    android:background="@drawable/bg_cir_blue_dark"
+                    android:background="@drawable/bg_cir_blue"
                     app:layout_constraintWidth_percent="0.45"
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_chicken"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgDoAn"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/data"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -358,9 +366,10 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
+                        android:textSize="@dimen/_12sdp"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:text="QL Món Ăn"
                         app:layout_constraintTop_toBottomOf="@+id/imgDoAn"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -373,20 +382,18 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/ctNguyenLieu"
-                    android:background="@drawable/bg_cir_green"
+                    android:background="@drawable/bg_cir_blue"
                     app:layout_constraintWidth_percent="0.45"
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toBottomOf="@+id/ctBanAn"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_material_1"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgNgLieu"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/data"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -395,9 +402,10 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
+                        android:textSize="@dimen/_12sdp"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:text="QL Nguyên Liệu"
                         app:layout_constraintTop_toBottomOf="@+id/imgNgLieu"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -410,20 +418,18 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/ctBaoCao"
-                    android:background="@drawable/bg_cir_purple"
+                    android:background="@drawable/bg_cir_blue"
                     app:layout_constraintWidth_percent="0.45"
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toBottomOf="@+id/ctDoAn"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="0dp">
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_report"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgThongKe"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/chart_icon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -432,10 +438,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:text="QL Thống kế"
+                        android:textSize="@dimen/_12sdp"
                         app:layout_constraintTop_toBottomOf="@+id/imgThongKe"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -448,7 +455,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/ctTaiKhoan"
-                    android:background="@drawable/bg_cir_red"
+                    android:background="@drawable/bg_cir_blue"
                     app:layout_constraintWidth_percent="0.45"
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toBottomOf="@+id/ctNguyenLieu"
@@ -456,13 +463,11 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_user_1"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgTaiKhoan"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/account_success"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -471,9 +476,10 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
+                        android:textSize="@dimen/_12sdp"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:text="QL Tài Khoản"
                         app:layout_constraintTop_toBottomOf="@+id/imgTaiKhoan"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -487,7 +493,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_marginTop="@dimen/_10sdp"
                     android:id="@+id/ctCaiDat"
-                    android:background="@drawable/bg_cir_yellow"
+                    android:background="@drawable/bg_cir_blue"
                     app:layout_constraintWidth_percent="0.45"
                     app:layout_constraintHeight_percent="0.3"
                     app:layout_constraintTop_toBottomOf="@+id/ctBaoCao"
@@ -495,13 +501,11 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp">
 
-                    <com.airbnb.lottie.LottieAnimationView
+                    <ImageView
+                        android:src="@drawable/ic_setting"
                         android:scaleType="centerInside"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgCaiDat"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/gears"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -510,10 +514,11 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp" />
                     <TextView
-                        android:fontFamily="@font/raleway_medium"
+                        android:fontFamily="@font/rubik_bold"
                         android:gravity="center"
-                        android:textColor="#000"
+                        android:textColor="#fdfdfd"
                         android:text="Cài Đặt"
+                        android:textSize="@dimen/_12sdp"
                         app:layout_constraintTop_toBottomOf="@+id/imgCaiDat"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

@@ -3,22 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#fff"
+    android:background="#2e374b"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".view.activiti.SettingActivity">
 
     <RelativeLayout
+        android:background="#424C61"
+        android:id="@+id/ctToolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp">
-
+        android:layout_height="@dimen/_56sdp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_button_back"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_back"
+            android:id="@+id/btnKhac"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp" />
         <TextView
-            android:textSize="@dimen/_16sdp"
-            android:textColor="#000"
+            android:fontFamily="@font/raleway_regular"
             android:gravity="center"
+            android:layout_toRightOf="@+id/btnKhac"
+            android:textSize="@dimen/_16sdp"
+            android:textColor="#ffffff"
             android:text="Settings"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent" />
+
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,11 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/ct_st_bg"
+            android:background="@drawable/bg_cir_blue"
             android:gravity="center_vertical"
             tools:ignore="UnusedAttribute">
 
             <TextView
+                android:fontFamily="@font/raleway_regular"
                 android:textSize="@dimen/_16sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +56,7 @@
                 android:layout_marginStart="50dp"
                 android:gravity="center"
                 android:text="Âm Nhạc"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 tools:ignore="RtlCompat" />
 
 
@@ -76,7 +90,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_cir_purple"
                 android:padding="10dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_music" />
         </android.support.v7.widget.CardView>
 
 
@@ -92,11 +106,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/ct_st_bg"
+            android:background="@drawable/bg_cir_blue"
             android:gravity="center_vertical"
             tools:ignore="UnusedAttribute">
 
             <TextView
+                android:fontFamily="@font/raleway_regular"
                 android:textSize="@dimen/_16sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +119,7 @@
                 android:layout_marginStart="50dp"
                 android:gravity=""
                 android:text="Ngôn Ngữ"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 tools:ignore="RtlCompat" />
 
 
@@ -138,7 +153,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_cir_yellow"
                 android:padding="10dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_language" />
         </android.support.v7.widget.CardView>
 
 
@@ -154,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/ct_st_bg"
+            android:background="@drawable/bg_cir_blue"
             android:gravity="center_vertical"
             tools:ignore="UnusedAttribute">
 
@@ -166,7 +181,7 @@
                 android:layout_marginStart="50dp"
                 android:gravity="center_vertical"
                 android:text="Chia sẻ"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 tools:ignore="RtlCompat" />
 
 
@@ -198,7 +213,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_cir_blue_dark"
                 android:padding="10dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_share" />
         </android.support.v7.widget.CardView>
 
 
@@ -214,11 +229,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:background="@drawable/ct_st_bg"
+            android:background="@drawable/bg_cir_blue"
             android:gravity="center_vertical"
             tools:ignore="UnusedAttribute">
 
             <TextView
+                android:fontFamily="@font/raleway_regular"
                 android:textSize="@dimen/_16sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -226,7 +242,7 @@
                 android:layout_marginStart="50dp"
                 android:gravity="center_vertical"
                 android:text="Thông báo"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 tools:ignore="RtlCompat" />
 
             <android.support.v7.widget.SwitchCompat
@@ -255,7 +271,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/bg_cir_red"
                 android:padding="10dp"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_notifi" />
         </android.support.v7.widget.CardView>
 
 

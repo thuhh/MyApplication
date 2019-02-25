@@ -1,96 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_150sdp"
-    android:padding="@dimen/_5sdp"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_item_food"
-    android:layout_marginHorizontal="@dimen/_5sdp"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_100sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:background="@drawable/bg_cir_blue"
+    android:layout_marginHorizontal="@dimen/_10sdp"
     android:id="@+id/ctFood"
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_logo"
-        android:id="@+id/imgFood"
-        android:layout_marginTop="@dimen/_5sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.6"
-        app:layout_constraintWidth_percent="0.9"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-    <TextView
-        android:id="@+id/txtName"
-        android:gravity="center"
-        android:fontFamily="@font/rubik_medium"
-        android:textSize="@dimen/_14sdp"
-        android:textColor="#000000"
-        android:text="Gà Hầm Thuốc Bắc"
-        android:layout_marginTop="@dimen/_5sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgFood"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/txtMoney"
-        android:gravity="center"
-        android:fontFamily="@font/rubik_regular"
-        android:textSize="@dimen/_12sdp"
-        android:textColor="#000000"
-        android:text="Giá: 545"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
     <LinearLayout
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/txtMoney"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp">
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_logo_crab"
+            android:id="@+id/imgFood"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_15sdp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/raleway_medium"
+                android:gravity="center"
+                android:text="Gà hầm thuốc bắc"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_14sdp" />
 
-        <Button
+            <TextView
+                android:id="@+id/txtMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:fontFamily="@font/raleway_medium"
+                android:gravity="center"
+                android:text="200k/đĩa"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:orientation="vertical"
             android:layout_gravity="center_vertical"
-            android:id="@+id/btnDown"
-            android:layout_width="@dimen/_16sdp"
-            android:layout_height="@dimen/_16sdp" />
-        <TextView
-            android:id="@+id/txtCount"
-            android:textColor="#000"
-            android:gravity="center"
-            android:text="1"
-            android:layout_gravity="center_vertical"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_30sdp" />
-        <Button
-            android:layout_gravity="center_vertical|right"
-            android:id="@+id/btnUp"
-            android:layout_width="@dimen/_16sdp"
-            android:layout_height="@dimen/_16sdp" />
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content">
+            <Button
+                android:background="@drawable/ic_plus"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btnUp"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/raleway_regular"
+                android:id="@+id/txtCount"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="1"
+
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_30sdp" />
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_minus"
+                android:id="@+id/btnDown"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp" />
+        </LinearLayout>
+
     </LinearLayout>
     <ImageView
         android:id="@+id/imgNew"
         android:layout_margin="@dimen/_5sdp"
         android:src="@drawable/ic_new"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.2"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp" />
     <ImageView
-        android:background="#000"
+        android:src="@drawable/ic_cancle"
         android:id="@+id/imgCancel"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.2"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp" />
 </android.support.constraint.ConstraintLayout>

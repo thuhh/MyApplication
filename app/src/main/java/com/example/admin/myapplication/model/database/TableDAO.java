@@ -15,7 +15,7 @@ import io.reactivex.Flowable;
 public interface TableDAO {
 
     @Query("SELECT * FROM TbTable WHERE id=:id")
-    Flowable<TableDinner> getTableById(int id);
+    TableDinner getTableById(int id);
 
     @Query("SELECT * FROM tbtable")
     List<TableDinner> getAllTable();

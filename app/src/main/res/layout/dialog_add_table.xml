@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#7fffffff"
+    android:background="#d0475063"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,18 +19,20 @@
         app:layout_constraintWidth_percent="0.8">
 
         <ImageView
+            android:background="@drawable/bg_cir_blue"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_gravity="center"
             android:id="@+id/imgImage"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_120sdp"
-            android:src="@drawable/ic_table_false" />
+            android:src="@drawable/ic_table" />
         <RadioButton
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:textColor="#000"
+            android:textColor="#ffffff"
             android:id="@+id/radStatus"
-            android:text="Trống"
+            android:text="Có khách"
+            android:fontFamily="@font/raleway_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
@@ -38,26 +40,26 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_name_food" />
+                android:src="@drawable/ic_add_table" />
 
             <EditText
                 android:textColor="#fff"
-                android:textColorHint="#fff"
+                android:textColorHint="#ced4d0d0"
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="#00ffffff"
-                android:fontFamily="@font/rubik_medium"
-                android:hint="Tên"
+                android:fontFamily="@font/raleway_medium"
+                android:hint="Tên bàn"
                 android:textSize="@dimen/_12sdp"
                 tools:ignore="RtlCompat" />
         </LinearLayout>
@@ -67,19 +69,20 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/ct_button_init">
+            android:background="@drawable/bg_cir_blue">
 
             <ImageView
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_type_name" />
+                android:src="@drawable/ic_members" />
 
             <EditText
+                android:fontFamily="@font/raleway_medium"
                 android:inputType="number"
                 android:paddingStart="@dimen/_10sdp"
-                android:textColorHint="#ffffff"
+                android:textColorHint="#ced4d0d0"
                 android:textColor="#ffffff"
                 android:background="#00565555"
                 android:textSize="@dimen/_13sdp"
