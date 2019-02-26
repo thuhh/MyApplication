@@ -67,12 +67,6 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
 
-        val image = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
-        if (image !=null && image != ""){
-            loadImage()
-        }else{
-            imgImage.setImageResource(R.drawable.ic_logo_crab)
-        }
     }
 
     fun setClick(iClickDialog: IClickDialog) {
@@ -87,10 +81,13 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
     }
 
     private fun loadImage() {
-        Glide.with(context)
-                .asBitmap()
-                .load(MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context))
-                .into(imgImage)
+        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
+        if(path!=null && path.length>5) {
+            Glide.with(context)
+                    .asBitmap()
+                    .load(MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context))
+                    .into(imgImage)
+        }
     }
 
 }

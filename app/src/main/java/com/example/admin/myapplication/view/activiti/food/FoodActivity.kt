@@ -31,8 +31,8 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         if (check=="save"){
             foods = rdbFood!!.foodDAO().allFood
             adapterFood = AdapterFood(this@FoodActivity, foods,this)
-            val manager = GridLayoutManager(this, 2)
-            rvFood!!.layoutManager = manager!!
+            val manager = GridLayoutManager(this, 1)
+            rvFood!!.layoutManager = manager
             rvFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
             rvFood.adapter = adapterFood
             MyPreferenceHelper.setString(this, MyPreferenceHelper.SELECT_IMAGE,"")
@@ -58,7 +58,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                adapterFood!!.getFilter().filter(charSequence)
+                adapterFood!!.filter.filter(charSequence)
 
             }
 
@@ -68,7 +68,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         })
     }
 
-    private var rdbFood : RDBApp? =null;
+    private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
     private var adapterFood: AdapterFood? = null
     private var dialogAddFood : DialogAddFood ?= null
@@ -82,7 +82,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
-        dialogAddFood = DialogAddFood(this);
+        dialogAddFood = DialogAddFood(this)
         dialogAddFood!!.setClick(this)
 
         initListener()
@@ -94,7 +94,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         }
         adapterFood = AdapterFood(this@FoodActivity, foods,this)
         val manager = GridLayoutManager(this, 1)
-        rvFood!!.layoutManager = manager!!
+        rvFood!!.layoutManager = manager
         rvFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rvFood.adapter = adapterFood
 

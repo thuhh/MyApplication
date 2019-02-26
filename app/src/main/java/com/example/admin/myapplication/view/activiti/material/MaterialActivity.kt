@@ -77,6 +77,15 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
 
         try {
             rdbMaterial = RDBApp.getAppDatabase(this)
+            if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstMaterial, this)) {
+                rdbMaterial!!.materialDAO().insertAll(Material(0, "Bạch tuộc biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material1"))
+                rdbMaterial!!.materialDAO().insertAll(Material(1, "Gà", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material2"))
+                rdbMaterial!!.materialDAO().insertAll(Material(2, "Ếch", "3", 5, 200, "10:30", "Hải phòng", "R.drawable.material3"))
+                rdbMaterial!!.materialDAO().insertAll(Material(3, "Ngao biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material4"))
+                rdbMaterial!!.materialDAO().insertAll(Material(4, "Tôm hùm", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material5"))
+                rdbMaterial!!.materialDAO().insertAll(Material(5, "Thịt trâu gác bếp", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material6"))
+                MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
+            }
             materials = rdbMaterial!!.materialDAO().allApp
         }catch (e: IllegalStateException){
             e.printStackTrace()

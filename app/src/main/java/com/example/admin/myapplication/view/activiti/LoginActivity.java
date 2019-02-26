@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -20,6 +21,9 @@ import android.widget.ViewFlipper;
 
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.model.database.RDBApp;
+import com.example.admin.myapplication.model.object.Food;
+import com.example.admin.myapplication.model.object.Material;
+import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.model.object.User;
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper;
 import com.example.admin.myapplication.view.activiti.account.AcountActivity;
@@ -85,6 +89,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             chkRemember.setChecked(false);
         }
     }
+
+    void loadData(int userId){
+        if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstData,this)) {
+            //add food
+            rdbApp.foodDAO().insertAll(new Food(0, "Bạch tuộc xào lăn", "đồ nhậu", "150", true, "R.drawable.food1", "Bạch tuộc", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(1, "Trứng gà non xào nóng", "đồ nhậu", "150", true, "R.drawable.food2", "Trứng gà non", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(2, "Ếch đồng xào sả ớt", "đồ nhậu", "150", true, "R.drawable.food3", "Ếch đồng", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(3, "Gà rang tẩm bột", "đồ nhậu", "150", true, "R.drawable.food4", "Thịt gà", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(4, "Cá đồng kho tàu", "đồ nhậu", "150", true, "R.drawable.food5", "Cá đồng", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(5, "Chân gà rim mật ong", "đồ nhậu", "150", true, "R.drawable.food6", "Chân gà, mật ong", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(6, "Lòng non luộc tới", "đồ nhậu", "150", true, "R.drawable.food7", "Lòng non của lợn", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(7, "Thịt bò đậu tẻ", "đồ nướng", "150", true, "R.drawable.food8", "Thịt bò, đậu bắp", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(8, "Cá trứng nhúng lẩu", "đồ nhậu", "200", true, "R.drawable.food9", "Cá trứng", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(9, "Vịt quay Vân đình", "đồ nhậu", "150", true, "R.drawable.food10", "Vịt cỏ", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(10, "Bạch tuộc xiên", "đồ nướng", "150", true, "R.drawable.food11", "Bạch tuộc", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(11, "Ngao hấp sả ớt", "đồ nhậu", "150", true, "R.drawable.food12", "Ngao biển", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(12, "Thịt trâu gác bếp", "đồ nhậu", "150", true, "R.drawable.food13", "Thịt trâu", "5%", userId));
+            rdbApp.foodDAO().insertAll(new Food(13, "Tôm Hùm nướng", "đồ nướng", "150", true, "R.drawable.food14", "Tôm hùm biển", "5%", userId));
+
+            //addtable
+            rdbApp.tableDAO().insertAll(new TableDinner(0,"Bàn ăn số 1",6,false,"1,2",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(1,"Bàn ăn số 2",6,false,"",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(2,"Bàn ăn số 3",6,false,"",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(3,"Bàn ăn số 4",6,false,"",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(4,"Bàn ăn số 5",12,false,"5,2",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(5,"Bàn ăn số 6",12,false,"1,2",userId));
+            rdbApp.tableDAO().insertAll(new TableDinner(6,"Bàn ăn số 7",12,false,"1,2",userId));
+
+            //material
+            //1 là hải sản
+            //2 là tươi sống
+            //3 đồ đồng
+
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstData,true,this);
+        }
+    }
+
 
     private void initUI() {
         try {
@@ -152,20 +193,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 try {
                     users = rdbApp.userDAO().getAllUser();
                     if (users.size() > 0) {
-                        int d = 0;
                         for (int i = 0; i < users.size(); i++) {
                             if (users.get(i).getUsername().equals(edtUserLogin.getText().toString().trim()) && users.get(i).getPassword().equals(edtPassLogin.getText().toString().trim())) {
+                                Log.e("sdsds","zo");
                                 MyPreferenceHelper.setInt(MyPreferenceHelper.idUser,users.get(i).getId(),this);
-                                d++;
+                                loadData(users.get(i).getId());
+                                viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+                                viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
+                                viewFlipper.setDisplayedChild(2);
+
+                                return;
                             }
                         }
-                        if (d != 0) {
-                            viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
-                            viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
-                            viewFlipper.setDisplayedChild(2);
-                        } else {
-                            Toast.makeText(this, "Tài khoản hoặc mật khẩu không đúng!", Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(this, "Tài khoản hoặc mật khẩu không đúng!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(this, "Tài khoản này không tồn tại!", Toast.LENGTH_LONG).show();
                     }

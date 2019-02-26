@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
-import com.example.admin.myapplication.model.object.Food;
 import com.example.admin.myapplication.model.object.Material;
 
 import java.util.ArrayList;
@@ -59,15 +58,29 @@ public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewho
             @Override
             public void onClick(View v) {
                 iOnClickSetColor.iClick("click",position);
-//                context.startActivity(new Intent(context,DetailFoodActivity.class).putExtra("id",list.get(position).getId()));
             }
         });
-        Glide.with(context)
-                .asBitmap()
-                .load(list.get(position).getImage())
-                .into(holder.imgFood);
 
-
+        String image = list.get(position).getImage();
+        Log.e("sdsdsd",image);
+        if (image !=null && image != "") {
+            if (image.equals("R.drawable.material1")) {
+                Glide.with(context).asBitmap().load(R.drawable.material1).into(holder.imgFood);
+            } else if (image.equals("R.drawable.material2")) {
+                Glide.with(context).asBitmap().load(R.drawable.material2).into(holder.imgFood);
+            } else if (image.equals("R.drawable.material3")) {
+                Glide.with(context).asBitmap().load(R.drawable.material3).into(holder.imgFood);
+            } else if (image.equals("R.drawable.material4")) {
+                Glide.with(context).asBitmap().load(R.drawable.material4).into(holder.imgFood);
+            } else if (image.equals("R.drawable.material5")) {
+                Glide.with(context).asBitmap().load(R.drawable.material5).into(holder.imgFood);
+            } else if (image.equals("R.drawable.material6")) {
+                Glide.with(context).asBitmap().load(R.drawable.material6).into(holder.imgFood);
+            } else {
+                Log.e("sdsdsd2", image);
+                Glide.with(context).asBitmap().load(image).into(holder.imgFood);
+            }
+        }
     }
 
     @Override

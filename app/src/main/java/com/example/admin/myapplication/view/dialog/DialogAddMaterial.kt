@@ -79,10 +79,13 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
     }
 
     private fun loadImage() {
-        Glide.with(context)
-                .asBitmap()
-                .load(MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context))
-                .into(imgImage)
+        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
+        if(path!=null && path.length>5) {
+            Glide.with(context)
+                    .asBitmap()
+                    .load(path)
+                    .into(imgImage)
+        }
     }
 
 }

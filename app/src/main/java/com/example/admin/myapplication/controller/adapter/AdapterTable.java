@@ -51,9 +51,9 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         holder.txtName.setText(list.get(position).getName());
         holder.txtMember.setText(list.get(position).getMember()+"");
         if (list.get(position).isStatus()) {
-            holder.imgTable.setImageResource(R.drawable.ic_logo_table_true);
+            holder.imgTable.setImageResource(R.drawable.ic_table_true);
         }else {
-            holder.imgTable.setImageResource(R.drawable.ic_logo_table);
+            holder.imgTable.setImageResource(R.drawable.ic_table_false);
         }
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override

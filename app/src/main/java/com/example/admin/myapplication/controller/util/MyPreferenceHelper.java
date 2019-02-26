@@ -15,6 +15,8 @@ public class MyPreferenceHelper {
     public static String SELECT_IMAGE = "SELECT_IMAGE";
     public static String DialogFood = "DialogFood";
     public static String idUser = "idUser";
+    public static String firstData = "firstData";
+    public static String firstMaterial = "firstMaterial";
 
 
     public static int getInt(String key, Context context) {
