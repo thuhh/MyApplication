@@ -55,11 +55,9 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
         if (check=="save"){
             materials = rdbMaterial!!.materialDAO().allApp
             adapterMaterial = AdapterMaterial(this, materials,this)
-            val manager = GridLayoutManager(this, 1)
+            val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
             rcMaterial!!.layoutManager = manager
-            rcMaterial!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
             rcMaterial.adapter = adapterMaterial
-            MyPreferenceHelper.setString(this, MyPreferenceHelper.SELECT_IMAGE,"")
         }
     }
 
@@ -93,8 +91,9 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
                 dialogAddMaterial!!.show()
             }
         }
+
         adapterMaterial = AdapterMaterial(this, materials,this)
-        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
         rcMaterial!!.layoutManager = manager
         rcMaterial.adapter = adapterMaterial
     }

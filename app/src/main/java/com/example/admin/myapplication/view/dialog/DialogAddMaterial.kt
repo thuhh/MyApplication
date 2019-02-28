@@ -10,12 +10,16 @@ import android.view.Window
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
+import com.example.admin.myapplication.controller.util.MessageEvent
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.Material
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.iamge.AlbumActivity
 import kotlinx.android.synthetic.main.dialog_add_material.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
@@ -35,7 +39,7 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
 
             val calendar = Calendar.getInstance()
             rdbFood!!.materialDAO().insertAll(Material(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtSL.text.toString().toInt(),edtMoney.text.toString().trim().toLong(),calendar.get(Calendar.DATE).toString(),edtAddress.text.toString().trim(),
-                    MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, context)))
+                    path,MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()
@@ -46,6 +50,7 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
     private var iClickDialog: IClickDialog? = null
     private var rdbFood : RDBApp? =null
     private var materials: List<Material> ? =null
+    private var path = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,10 +68,6 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
 
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)!=null){
-            loadImage()
-        }
-
     }
 
     fun setClick(iClickDialog: IClickDialog) {
@@ -80,14 +81,31 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
         dismiss()
     }
 
-    private fun loadImage() {
-        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
+    private fun loadImage(path: String) {
         if(path!=null && path.length>5) {
             Glide.with(context)
                     .asBitmap()
                     .load(path)
                     .into(imgImage)
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MessageEvent) {
+        if (event.mMessage == "clickImage"){
+            path = event.image
+            loadImage(event.image)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
 }

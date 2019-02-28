@@ -15,10 +15,7 @@ import android.view.inputmethod.InputMethodManager
 import android.support.v4.content.ContextCompat.getSystemService
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.support.v4.content.ContextCompat.getSystemService
-
-
-
-
+import android.widget.Toast
 
 
 class AcountActivity : AppCompatActivity(), View.OnClickListener {
@@ -28,23 +25,34 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
         } else if (v?.id == R.id.btnChangePass) {
             lnReset.visibility = View.VISIBLE
 
-            newPass = edtNewPass.text.toString().trim()
-            configPass = edtConfig.text.toString().trim()
 
-            for (i in 0 until users!!.size) {
-                if (users!!.get(i).id == curentId) {
-                    curentId = MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, this)
-                    curentPin = users!![i].pinCode
-                    rdbApp!!.userDAO().delete(curentId)
-                    rdbApp!!.userDAO().insertAll(User(curentId, MyPreferenceHelper.getString(MyPreferenceHelper.userName, this), newPass, configPass, curentPin))
-
-                    MyPreferenceHelper.setString(this,MyPreferenceHelper.password,newPass)
-                }
-            }
         } else if (v?.id == R.id.btnReset) {
             //reset data
 
         } else if (v?.id == R.id.btnSave) {
+            newPass = edtNewPass.text.toString().trim()
+            configPass = edtConfig.text.toString().trim()
+
+            if (newPass.isEmpty() && configPass.isEmpty() && newPass == configPass) {
+                for (i in 0 until users!!.size) {
+                    if (users!![i].id == curentId) {
+                        curentId = MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, this)
+                        currentPass = MyPreferenceHelper.getString(MyPreferenceHelper.password, this)
+                        curentPin = users!![i].pinCode
+                        if (currentPass != null && currentPass == edtCurrentPass.text.toString().trim()) {
+                            rdbApp!!.userDAO().delete(curentId)
+                            rdbApp!!.userDAO().insertAll(User(curentId, MyPreferenceHelper.getString(MyPreferenceHelper.userName, this), newPass, configPass, curentPin))
+
+                            MyPreferenceHelper.setString(this, MyPreferenceHelper.password, newPass)
+                        }else{
+                            Toast.makeText(this,"Mật khẩu hiện tại không chính xác",Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }else{
+              Toast.makeText(this,"Bạn phải nhập chính xác mật khẩu mới",Toast.LENGTH_LONG).show()
+            }
+
             lnReset.visibility = View.GONE
 
             val view = this.currentFocus
@@ -59,7 +67,6 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
     var users: List<User>? = null
 
     var currentPass = ""
-    var currentname = ""
     var newPass = ""
     var configPass = ""
     var curentId = 0

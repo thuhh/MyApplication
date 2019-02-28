@@ -14,6 +14,12 @@ import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.iamge.AlbumActivity
 import kotlinx.android.synthetic.main.dialog_add_food.*
+import org.greenrobot.eventbus.EventBus
+import com.example.admin.myapplication.controller.util.MessageEvent
+import org.greenrobot.eventbus.ThreadMode
+import org.greenrobot.eventbus.Subscribe
+
+
 
 class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -29,7 +35,7 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
                 id = foods!!.size
             }
             rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                    true,MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                    true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             resetData()
@@ -50,6 +56,7 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
     private var iClickDialog: IClickDialog? = null
     private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
+    private var path=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,14 +87,31 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         dismiss()
     }
 
-    private fun loadImage() {
-        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
+    private fun loadImage(path: String) {
+//        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
         if(path!=null && path.length>5) {
             Glide.with(context)
                     .asBitmap()
-                    .load(MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context))
+                    .load(path)
                     .into(imgImage)
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MessageEvent) {
+        if (event.mMessage == "clickImage"){
+            path = event.image
+            loadImage(event.image)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
 }

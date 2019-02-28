@@ -9,19 +9,25 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
+import com.example.admin.myapplication.controller.interfaces.ImageClick
 import com.example.admin.myapplication.controller.util.ImageViewForListImage
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.ImageModel
 import com.example.admin.myapplication.view.activiti.food.FoodActivity
+import org.greenrobot.eventbus.EventBus
 import java.util.*
+import com.example.admin.myapplication.controller.util.MessageEvent
+import android.app.Activity
 
-class AdapterAllImage(private val context: Context, private val width: Int) : RecyclerView.Adapter<AdapterAllImage.ImageHolder>() {
+
+
+
+class AdapterAllImage(private val context: Context, private val width: Int, val imageClick: ImageClick) : RecyclerView.Adapter<AdapterAllImage.ImageHolder>() {
     private val listData = ArrayList<ImageModel>()
     private val listSelected = HashMap<String, String>()
     private var canSelect = true
 
     private var listener: OnItemSelected? = null
-
     fun setListener(listener: OnItemSelected): AdapterAllImage {
         this.listener = listener
         return this
@@ -45,15 +51,15 @@ class AdapterAllImage(private val context: Context, private val width: Int) : Re
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
-        val data= listData[position]
-        Glide.with(context).load(data!!.path).into(holder.imageThumb)
-        if (data!!.isSelected) {
+        val data = listData[position]
+        Glide.with(context).load(data.path).into(holder.imageThumb)
+        if (data.isSelected) {
             holder.viewSelected.visibility = View.VISIBLE
         } else {
             holder.viewSelected.visibility = View.INVISIBLE
-            if(MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION,context)!=-1){
-                val data1 = listData[MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION,context)]
-                if (position==MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION,context)) {
+            if (MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION, context) != -1) {
+                val data1 = listData[MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION, context)]
+                if (position == MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION, context)) {
                     if (!data1.isSelected) {
                         holder.viewSelected.visibility = View.VISIBLE
                     }
@@ -63,30 +69,33 @@ class AdapterAllImage(private val context: Context, private val width: Int) : Re
         holder.itemView.setOnClickListener {
             if (this!!.canSelect!!) {
                 if (!data.isSelected) {
-                    for(i in 0 until listData.size){
+                    for (i in 0 until listData.size) {
                         holder.viewSelected.visibility = View.GONE
-                        listData[i].isSelected= false
+                        listData[i].isSelected = false
                         notifyDataSetChanged()
                     }
-                    if (listener != null){
-                        if(MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION,context)!=-1){
-                            val data1 = listData[MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION,context)]
-                            if(data1.isSelected){
+                    if (listener != null) {
+                        if (MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION, context) != -1) {
+                            val data1 = listData[MyPreferenceHelper.getInt(MyPreferenceHelper.SELECT_POSITION, context)]
+                            if (data1.isSelected) {
                                 holder.viewSelected.visibility = View.GONE
                             }
                         }
                     }
-                    listSelected.put(data.path,data.path)
+                    listSelected.put(data.path, data.path)
                     holder.viewSelected.visibility = View.VISIBLE
-                        val intent1 = Intent(context, FoodActivity::class.java)
-                        MyPreferenceHelper.setString(context, MyPreferenceHelper.SELECT_IMAGE,data.path)
-                        MyPreferenceHelper.setInt( MyPreferenceHelper.SELECT_POSITION,position,context)
-                        context.startActivity(intent1)
+                    MyPreferenceHelper.setString(context, MyPreferenceHelper.SELECT_IMAGE, data.path)
+                    MyPreferenceHelper.setInt(MyPreferenceHelper.SELECT_POSITION, position, context)
+                    imageClick.onClickImage(data.path)
+                    EventBus.getDefault().post(MessageEvent("clickImage",data.path))
+                    (context as Activity).finish()
                 } else {
                     if (data.isSelected) {
-                        val intent1 = Intent(context, FoodActivity::class.java)
-                        MyPreferenceHelper.setInt( MyPreferenceHelper.SELECT_POSITION,position,context)
-                        context.startActivity(intent1)
+//                        val intent1 = Intent(context, FoodActivity::class.java)
+                        MyPreferenceHelper.setInt(MyPreferenceHelper.SELECT_POSITION, position, context)
+                        EventBus.getDefault().post(MessageEvent("clickImage",data.path))
+                        (context as Activity).finish()
+//                        context.startActivity(intent1)
                     }
                 }
             } else {

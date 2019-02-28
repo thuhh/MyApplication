@@ -64,10 +64,8 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
             }
         });
         String image = list.get(position).getImage();
-        Log.e("sdsdsd",image);
         if (image !=null && image != ""){
             if (image.equals("R.drawable.food1")) {
-                Log.e("sdsdsd1",image);
                 Glide.with(context).asBitmap().load(R.drawable.food1).into(holder.imgFood);
             }else if (image.equals("R.drawable.food11")) {
                 Glide.with(context).asBitmap().load(R.drawable.food11).into(holder.imgFood);
@@ -96,7 +94,6 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
             }else if (image.equals("R.drawable.food14")) {
                 Glide.with(context).asBitmap().load(R.drawable.food14).into(holder.imgFood);
             }else {
-                Log.e("sdsdsd2",image);
                 Glide.with(context).asBitmap().load(image).into(holder.imgFood);
             }
         }
@@ -111,7 +108,8 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     }
 
     public class Viewholor extends RecyclerView.ViewHolder {
-        ImageView imgFood, imgNew;
+        ImageView imgFood;
+        ImageView imgNew;
         TextView txtName;
         TextView txtMoney;
         ConstraintLayout ctFood;

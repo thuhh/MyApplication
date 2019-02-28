@@ -80,8 +80,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     }
     private fun initListItem() {
         adapterReport = AdapterReport(this, reports, this)
-        val manager = LinearLayoutManager(this)
-        manager.orientation = LinearLayout.VERTICAL
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
         rcReport!!.layoutManager = manager
         rcReport.adapter = adapterReport
     }

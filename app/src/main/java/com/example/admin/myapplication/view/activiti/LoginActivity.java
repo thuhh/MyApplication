@@ -69,22 +69,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void checkRemember() {
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.remember, this) != null && MyPreferenceHelper.getString(MyPreferenceHelper.remember, this).equals("yes")) {
+        if (MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.remember, this)) {
             chkRemember.setChecked(true);
             edtUserLogin.setText(MyPreferenceHelper.getString(MyPreferenceHelper.userName, this));
             edtPassLogin.setText(MyPreferenceHelper.getString(MyPreferenceHelper.password, this));
-            new CountDownTimer(2000, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-
-                }
-
-                public void onFinish() {
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                    finish();
-                }
-            }.start();
-
+            viewFlipper.setDisplayedChild(2);
         } else {
             chkRemember.setChecked(false);
         }
@@ -156,11 +145,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.userName, edtUserLogin.getText().toString());
-                    MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.password, edtPassLogin.getText().toString());
-                    MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.remember, "yes");
+                    MyPreferenceHelper.putBooleanValue( MyPreferenceHelper.remember, true,LoginActivity.this);
                 } else {
-                    MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.remember, "no");
+                    MyPreferenceHelper.putBooleanValue( MyPreferenceHelper.remember, false,LoginActivity.this);
                 }
             }
         });
@@ -176,12 +163,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
+                if (!edtUserLogin.getText().toString().trim().isEmpty() && !edtPassLogin.getText().toString().trim().isEmpty() ) {
                     users = rdbApp.userDAO().getAllUser();
                     if (users.size() > 0) {
                         for (int i = 0; i < users.size(); i++) {
                             if (users.get(i).getUsername().equals(edtUserLogin.getText().toString().trim()) && users.get(i).getPassword().equals(edtPassLogin.getText().toString().trim())) {
-                                Log.e("sdsds","zo");
-                                MyPreferenceHelper.setInt(MyPreferenceHelper.idUser,users.get(i).getId(),this);
+                                MyPreferenceHelper.setInt(MyPreferenceHelper.idUser, users.get(i).getId(), this);
+                                MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.userName, edtUserLogin.getText().toString());
+                                MyPreferenceHelper.setString(LoginActivity.this, MyPreferenceHelper.password, edtPassLogin.getText().toString());
                                 loadData(users.get(i).getId());
                                 viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
                                 viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
@@ -194,6 +183,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         Toast.makeText(this, "Tài khoản này không tồn tại!", Toast.LENGTH_LONG).show();
                     }
+                }else {
+                    Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu đang để trống!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnSignUp:
                 if (users!=null && users.size() > 0) {
@@ -246,12 +238,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void insertUser() {
-        rdbApp.userDAO().insertAll(new User(rdbApp.userDAO().getAllUser().size()+1,edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
-        edtUserLogin.setText(edtUserSignup.getText().toString().trim());
-        edtPassLogin.setText(edtPassSignup.getText().toString().trim());
-        viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
-        viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
-        viewFlipper.setFlipInterval(1);
-        viewFlipper.setDisplayedChild(1);
+        if (!edtUserSignup.getText().toString().trim().isEmpty() && !edtPassSignup.getText().toString().trim().isEmpty() && !edtComfig.getText().toString().trim().isEmpty()&& !edtPinCode.getText().toString().trim().isEmpty() ) {
+            if (edtPassSignup.getText().toString().trim().equals(edtComfig.getText().toString().trim())) {
+                rdbApp.userDAO().insertAll(new User(rdbApp.userDAO().getAllUser().size() + 1, edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
+                edtUserLogin.setText(edtUserSignup.getText().toString().trim());
+                edtPassLogin.setText(edtPassSignup.getText().toString().trim());
+                viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+                viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right));
+                viewFlipper.setFlipInterval(1);
+                viewFlipper.setDisplayedChild(1);
+            }else {
+                Toast.makeText(this, "Mật khẩu xác nhận không đúng!", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this, "Bạn cần điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

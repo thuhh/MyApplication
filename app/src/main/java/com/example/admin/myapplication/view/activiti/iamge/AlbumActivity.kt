@@ -15,6 +15,7 @@ import android.widget.PopupWindow
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterAlbum
 import com.example.admin.myapplication.controller.adapter.AdapterAllImage
+import com.example.admin.myapplication.controller.interfaces.ImageClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.controller.util.Utils.convertDpToPixel
@@ -24,17 +25,19 @@ import kotlinx.android.synthetic.main.activity_album.*
 import java.io.File
 import java.util.ArrayList
 
-class AlbumActivity : AppCompatActivity() {
+class AlbumActivity : AppCompatActivity(), ImageClick {
+    override fun onClickImage(path: String?) {
+        Log.e("sdsdsd","kkkkk")
+    }
 
     internal var showAlbumPopup: PopupWindow? = null
 
     internal var adapterAllImage: AdapterAllImage? = null
 
 
-    internal var listAlbums = ArrayList<AlbumModel>()
+    private var listAlbums = ArrayList<AlbumModel>()
 
     private val listSelected = HashMap<String, String>()
-    private val listItemImage = HashMap<String, String>()
     private var selectImage: Int? = 0;
 
 
@@ -54,7 +57,7 @@ class AlbumActivity : AppCompatActivity() {
         window.windowManager.defaultDisplay.getMetrics(metrics)
         val widthScreen = metrics.widthPixels
         val sizeItem = (widthScreen - 5 * margin) / 4
-        adapterAllImage = AdapterAllImage(this, sizeItem).setListener(object : AdapterAllImage.OnItemSelected {
+        adapterAllImage = AdapterAllImage(this, sizeItem,this).setListener(object : AdapterAllImage.OnItemSelected {
             override fun count(path: String, add: Boolean) {
                 if (add) {
                     if (selectImage == 0) {

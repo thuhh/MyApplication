@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -23,19 +24,14 @@ import kotlinx.android.synthetic.main.activity_food.*
 
 class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
-        Log.e("sdsd","ssss")
+        startActivity(Intent(this, DetailFoodActivity::class.java).putExtra("food",id))
     }
 
 
     override fun onclick(check: String?) {
         if (check=="save"){
             foods = rdbFood!!.foodDAO().allFood
-            adapterFood = AdapterFood(this@FoodActivity, foods,this)
-            val manager = GridLayoutManager(this, 1)
-            rvFood!!.layoutManager = manager
-            rvFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
-            rvFood.adapter = adapterFood
-            MyPreferenceHelper.setString(this, MyPreferenceHelper.SELECT_IMAGE,"")
+            initList()
         }
     }
 
@@ -92,12 +88,16 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
                 dialogAddFood!!.show()
             }
         }
-        adapterFood = AdapterFood(this@FoodActivity, foods,this)
-        val manager = GridLayoutManager(this, 1)
-        rvFood!!.layoutManager = manager
-        rvFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
-        rvFood.adapter = adapterFood
 
+        initList()
+
+    }
+
+    private fun initList() {
+        adapterFood = AdapterFood(this@FoodActivity, foods,this)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
+        rvFood!!.layoutManager = manager
+        rvFood.adapter = adapterFood
     }
 
     private fun initListener() {
