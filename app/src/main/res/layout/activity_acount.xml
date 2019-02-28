@@ -8,85 +8,162 @@
     tools:context=".view.activiti.account.AcountActivity">
 
     <RelativeLayout
-        android:background="#424C61"
         android:id="@+id/ctToolbar"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:background="#424C61"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_45sdp">
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_centerVertical="true"
             android:background="@drawable/background_button_back"
             android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_back"
-            android:id="@+id/btnKhac"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp" />
+            android:src="@drawable/ic_back" />
+
         <TextView
-            android:gravity="center"
-            android:layout_toRightOf="@+id/btnKhac"
-            android:textSize="@dimen/_16sdp"
-            android:textColor="#ffffff"
-            android:text="Account Manager"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:layout_toLeftOf="@+id/btnSearch"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_add"
-            android:id="@+id/btnAdd"
-            android:layout_centerVertical="true"
-            android:background="@drawable/background_button_back"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            tools:ignore="RtlHardcoded" />
-        <ImageView
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_search"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btnSearch"
-            android:layout_centerVertical="true"
-            android:background="@drawable/background_button_back"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            tools:ignore="RtlHardcoded" />
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/btnBack"
+            android:gravity="center"
+            android:text="Account Manager"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_16sdp" />
 
     </RelativeLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_2sdp"
-        app:layout_constraintTop_toBottomOf="@+id/ctToolbar"
-        android:background="@drawable/bg_cir_blue"
-        android:padding="@dimen/_5sdp"
-        android:id="@+id/lnSearch"
-        app:layout_constraintHeight_percent="0.08"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <ImageView
-            android:padding="@dimen/_4sdp"
-            android:src="@drawable/ic_search_bg"
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-        <EditText
-            android:textColor="#ffffff"
-            android:textColorHint="#a9a9a9"
-            android:id="@+id/edtSearch"
-            android:background="#00ffffff"
-            android:hint="Search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnSearch"
-        android:id="@+id/rcAccount"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
 
-    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ctToolbar">
+
+        <Button
+            android:id="@+id/btnChangePass"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:background="@drawable/ct_button_save"
+            android:text="Đổi mật khẩu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="vertical"
+            android:id="@+id/lnReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:background="@drawable/bg_cir_blue"
+            android:id="@+id/lnCurrentPass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_below="@+id/lnUserSignUp"
+            android:layout_marginHorizontal="@dimen/_16sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_password" />
+
+            <EditText
+                android:inputType="textPassword"
+                android:textSize="@dimen/_12sdp"
+                android:fontFamily="@font/rubik_medium"
+                android:id="@+id/edtCurrentPass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="#00ffffff"
+                android:hint="Mật khẩu hiện tại"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:background="@drawable/bg_cir_blue"
+                android:id="@+id/lnNewPass"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_below="@+id/lnUserSignUp"
+                android:layout_marginHorizontal="@dimen/_16sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_password" />
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:id="@+id/edtNewPass"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="#00ffffff"
+                    android:hint="Nhập mật khẩu mới"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:background="@drawable/bg_cir_blue"
+                android:id="@+id/lnConfig"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_below="@+id/lnUserSignUp"
+                android:layout_marginHorizontal="@dimen/_16sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_password" />
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_12sdp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:id="@+id/edtConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="#00ffffff"
+                    android:hint="Xác nhận lại mật khẩu"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btnSave"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:background="@drawable/ct_button_save"
+                android:text="Ok"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:background="@drawable/ct_button_save"
+            android:text="Reset Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

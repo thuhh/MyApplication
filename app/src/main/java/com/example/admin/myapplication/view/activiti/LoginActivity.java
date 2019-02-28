@@ -108,20 +108,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             rdbApp.foodDAO().insertAll(new Food(12, "Thịt trâu gác bếp", "đồ nhậu", "150", true, "R.drawable.food13", "Thịt trâu", "5%", userId));
             rdbApp.foodDAO().insertAll(new Food(13, "Tôm Hùm nướng", "đồ nướng", "150", true, "R.drawable.food14", "Tôm hùm biển", "5%", userId));
 
-            //addtable
-            rdbApp.tableDAO().insertAll(new TableDinner(0,"Bàn ăn số 1",6,false,"1,2",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(1,"Bàn ăn số 2",6,false,"",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(2,"Bàn ăn số 3",6,false,"",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(3,"Bàn ăn số 4",6,false,"",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(4,"Bàn ăn số 5",12,false,"5,2",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(5,"Bàn ăn số 6",12,false,"1,2",userId));
-            rdbApp.tableDAO().insertAll(new TableDinner(6,"Bàn ăn số 7",12,false,"1,2",userId));
-
-            //material
-            //1 là hải sản
-            //2 là tươi sống
-            //3 đồ đồng
-
             MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstData,true,this);
         }
     }
@@ -190,7 +176,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-                try {
                     users = rdbApp.userDAO().getAllUser();
                     if (users.size() > 0) {
                         for (int i = 0; i < users.size(); i++) {
@@ -209,9 +194,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         Toast.makeText(this, "Tài khoản này không tồn tại!", Toast.LENGTH_LONG).show();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 break;
             case R.id.btnSignUp:
                 if (users!=null && users.size() > 0) {
@@ -249,13 +231,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 nextActivity(3, MaterialActivity.class);
                 break;
             case R.id.ctBaoCao:
-                nextActivity(3, ReportActivity.class);
+                nextActivity(4, ReportActivity.class);
                 break;
             case R.id.ctCaiDat:
-                nextActivity(3, SettingActivity.class);
+                nextActivity(5, SettingActivity.class);
                 break;
             case R.id.ctTaiKhoan:
-                nextActivity(3, AcountActivity.class);
+                nextActivity(6, AcountActivity.class);
                 break;
 
             default:

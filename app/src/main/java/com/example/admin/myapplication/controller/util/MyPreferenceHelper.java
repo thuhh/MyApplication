@@ -17,6 +17,7 @@ public class MyPreferenceHelper {
     public static String idUser = "idUser";
     public static String firstData = "firstData";
     public static String firstMaterial = "firstMaterial";
+    public static String firstTable = "firstTable";
 
 
     public static int getInt(String key, Context context) {

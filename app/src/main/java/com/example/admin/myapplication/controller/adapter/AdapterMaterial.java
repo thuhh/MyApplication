@@ -62,7 +62,6 @@ public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewho
         });
 
         String image = list.get(position).getImage();
-        Log.e("sdsdsd",image);
         if (image !=null && image != "") {
             if (image.equals("R.drawable.material1")) {
                 Glide.with(context).asBitmap().load(R.drawable.material1).into(holder.imgFood);
@@ -77,7 +76,6 @@ public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewho
             } else if (image.equals("R.drawable.material6")) {
                 Glide.with(context).asBitmap().load(R.drawable.material6).into(holder.imgFood);
             } else {
-                Log.e("sdsdsd2", image);
                 Glide.with(context).asBitmap().load(image).into(holder.imgFood);
             }
         }
@@ -85,7 +83,10 @@ public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewho
 
     @Override
     public int getItemCount() {
-        return items.size();
+        if (items!=null) {
+            return items.size();
+        }
+        return 0;
     }
 
     public class Viewholor extends RecyclerView.ViewHolder {

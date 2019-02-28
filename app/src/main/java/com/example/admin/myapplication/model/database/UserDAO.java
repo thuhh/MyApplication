@@ -23,9 +23,10 @@ public interface UserDAO {
     void insertAll(User applists);
 
     @Query("DELETE FROM tbuser WHERE username=(:id)")
-    void delete(String id);// xoas theo id
+    void delete(int id);// xoas theo id
 
     @Query("UPDATE tbuser SET username = (:name) AND password=(:pass) AND configPass = (:pass) AND pinCode = (:pin) WHERE username=(:id)")
     void update(int id, String name, String pass, String pin);
+
 
 }

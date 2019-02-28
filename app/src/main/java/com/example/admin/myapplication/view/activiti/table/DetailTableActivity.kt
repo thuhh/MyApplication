@@ -1,11 +1,10 @@
 package com.example.admin.myapplication.view.activiti.table
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import com.example.admin.myapplication.R
@@ -18,7 +17,6 @@ import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.Report
 import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
-import com.example.admin.myapplication.view.dialog.DialogAddTable
 import kotlinx.android.synthetic.main.activity_detail_table.*
 import java.util.*
 
@@ -26,6 +24,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
     override fun iClick(check: String?, id: Int) {
         if (check=="click") {
             ctAddFood.visibility = View.GONE
+            checkVisibale = false
             var list = ""
             if (table!!.listFood != null) {
                 list = table!!.listFood
@@ -66,14 +65,17 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnAddFood) {
             ctAddFood.visibility = View.VISIBLE
+            checkVisibale = true
         } else if (v?.id == R.id.btnThanhtoan) {
-            var calendar : Calendar = Calendar.getInstance();
-            var time = calendar.get(Calendar.HOUR).toString()+":"+calendar.get(Calendar.MINUTE).toString()
+            val calendar : Calendar = Calendar.getInstance();
+            val time = calendar.get(Calendar.HOUR).toString()+":"+calendar.get(Calendar.MINUTE).toString()
             var id = 0
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
             rdbTable!!.reportDAO().insertAll(Report(id, "Report$id",idTable,table!!.listFood,txtSumMoney.text.toString(),time,calendar.get(Calendar.DATE).toString()))
+        }else if (v?.id == R.id.btnBack){
+            finish()
         }
     }
 
@@ -87,11 +89,14 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
     private var table: TableDinner? = null
     private var adapterFoodTable: AdapterFoodTable? = null
     private var adapterFood: AdapterFood? = null
+
+    private var checkVisibale = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_table)
         btnAddFood.setOnClickListener(this)
         btnThanhtoan.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
         try {
             rdbTable = RDBApp.getAppDatabase(this)
             reports = rdbTable!!.reportDAO().allReport
@@ -118,14 +123,14 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
                 }
             }
         }
-        txtTable.text = "Table $idTable"
+        txtTable.text = table!!.name.toString()
 //
         initListFood(foods)
 
 
         adapterFood = AdapterFood(this, allFoods, this)
-        val managerFood = GridLayoutManager(this, 2)
-        rcAddFood!!.layoutManager = managerFood as RecyclerView.LayoutManager?
+        val managerFood = GridLayoutManager(this, 1)
+        rcAddFood!!.layoutManager = managerFood
         rcAddFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rcAddFood.adapter = adapterFood
     }
@@ -137,5 +142,16 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
         rcFood!!.layoutManager = manager
         rcFood.adapter = adapterFoodTable
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (checkVisibale){
+            ctAddFood.visibility = View.GONE
+            checkVisibale = false
+        }else{
+           finish()
+        }
+    }
+
 }
 

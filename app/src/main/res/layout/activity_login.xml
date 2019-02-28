@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.activiti.LoginActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -307,7 +306,6 @@
                 android:layout_below="@+id/txtRes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <android.support.constraint.ConstraintLayout
                     android:background="@drawable/bg_cir_blue"
                     android:id="@+id/ctBanAn"
@@ -320,7 +318,7 @@
 
                     <ImageView
                         android:src="@drawable/ic_table_false"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgBanAn"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -355,7 +353,7 @@
                     android:layout_height="0dp">
                     <ImageView
                         android:src="@drawable/ic_chicken"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgDoAn"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -391,7 +389,7 @@
                     android:layout_height="0dp">
                     <ImageView
                         android:src="@drawable/ic_material_1"
-                        android:scaleType="centerInside"
+                        android:scaleType="fitXY"
                         android:layout_marginTop="10dp"
                         android:id="@+id/imgNgLieu"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -530,10 +528,6 @@
                 </android.support.constraint.ConstraintLayout>
             </android.support.constraint.ConstraintLayout>
         </ViewFlipper>
-
-
-
-
 
     </RelativeLayout>
 </RelativeLayout>

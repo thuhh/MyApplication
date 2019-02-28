@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "TbMaterial")
 public class Material {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
     private int id;
@@ -27,8 +27,10 @@ public class Material {
     private String adrress;
     @ColumnInfo(name = "image")
     private String image;
+    @ColumnInfo(name = "idUser")
+    private int idUser;
 
-    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, String image) {
+    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, String image,int idUser) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -37,6 +39,7 @@ public class Material {
         this.timeBuy = timeBuy;
         this.adrress = adrress;
         this.image = image;
+        this.idUser = idUser;
     }
 
     @NonNull
@@ -102,5 +105,13 @@ public class Material {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 }

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,10 +59,40 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             holder.imgNew.setVisibility(View.GONE);
         }
 
-        Glide.with(context)
-                .asBitmap()
-                .load(list.get(position).getImage())
-                .into(holder.imgFood);
+        String image = list.get(position).getImage();
+        if (image !=null && image != ""){
+            if (image.equals("R.drawable.food1")) {
+                Glide.with(context).asBitmap().load(R.drawable.food1).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food11")) {
+                Glide.with(context).asBitmap().load(R.drawable.food11).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food2")) {
+                Glide.with(context).asBitmap().load(R.drawable.food2).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food3")) {
+                Glide.with(context).asBitmap().load(R.drawable.food3).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food4")) {
+                Glide.with(context).asBitmap().load(R.drawable.food4).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food5")) {
+                Glide.with(context).asBitmap().load(R.drawable.food5).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food6")) {
+                Glide.with(context).asBitmap().load(R.drawable.food6).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food7")) {
+                Glide.with(context).asBitmap().load(R.drawable.food7).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food8")) {
+                Glide.with(context).asBitmap().load(R.drawable.food8).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food9")) {
+                Glide.with(context).asBitmap().load(R.drawable.food9).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food10")) {
+                Glide.with(context).asBitmap().load(R.drawable.food10).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food12")) {
+                Glide.with(context).asBitmap().load(R.drawable.food12).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food13")) {
+                Glide.with(context).asBitmap().load(R.drawable.food13).into(holder.imgFood);
+            }else if (image.equals("R.drawable.food14")) {
+                Glide.with(context).asBitmap().load(R.drawable.food14).into(holder.imgFood);
+            }else {
+                Glide.with(context).asBitmap().load(image).into(holder.imgFood);
+            }
+        }
 
         count = Integer.parseInt(holder.txtCount.getText().toString());
         holder.btnDown.setOnClickListener(new View.OnClickListener() {

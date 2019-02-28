@@ -73,6 +73,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
         setContentView(R.layout.activity_table)
         try {
             rdbTable = RDBApp.getAppDatabase(this)
+            loadTable(MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, this))
             tables = rdbTable!!.tableDAO().allTable
         }catch (e: IllegalStateException){
             e.printStackTrace()
@@ -89,6 +90,19 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
         }
 
         initListItem()
+    }
+
+    fun loadTable(userId : Int){
+        if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstTable, this)) {
+            rdbTable!!.tableDAO().insertAll(TableDinner(0, "Bàn ăn số 1", 6, false, "1,2", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(1, "Bàn ăn số 2", 6, false, "", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(2, "Bàn ăn số 3", 6, false, "", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(3, "Bàn ăn số 4", 6, false, "", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(4, "Bàn ăn số 5", 12, false, "5,2", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(5, "Bàn ăn số 6", 12, false, "1,2", userId))
+            rdbTable!!.tableDAO().insertAll(TableDinner(6, "Bàn ăn số 7", 12, false, "1,2", userId))
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstTable, true, this)
+        }
     }
 
     private fun initListItem() {

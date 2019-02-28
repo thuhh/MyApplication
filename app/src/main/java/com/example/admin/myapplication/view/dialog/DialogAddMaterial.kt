@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import com.bumptech.glide.Glide
@@ -26,6 +27,7 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
         } else if (v?.id == R.id.btnSave) {
             rdbFood = RDBApp.getAppDatabase(context)
             materials = rdbFood!!.materialDAO().allApp
+            Log.e("sdsdsdAll",materials!!.size.toString())
             var id = 0
             if (materials!!.isNotEmpty()) {
                 id = materials!!.size
@@ -33,7 +35,7 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
 
             val calendar = Calendar.getInstance()
             rdbFood!!.materialDAO().insertAll(Material(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtSL.text.toString().toInt(),edtMoney.text.toString().trim().toLong(),calendar.get(Calendar.DATE).toString(),edtAddress.text.toString().trim(),
-                    MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)))
+                    MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()

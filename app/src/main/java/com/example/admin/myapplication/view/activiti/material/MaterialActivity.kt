@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -77,17 +78,9 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
 
         try {
             rdbMaterial = RDBApp.getAppDatabase(this)
-            if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstMaterial, this)) {
-                rdbMaterial!!.materialDAO().insertAll(Material(0, "Bạch tuộc biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material1"))
-                rdbMaterial!!.materialDAO().insertAll(Material(1, "Gà", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material2"))
-                rdbMaterial!!.materialDAO().insertAll(Material(2, "Ếch", "3", 5, 200, "10:30", "Hải phòng", "R.drawable.material3"))
-                rdbMaterial!!.materialDAO().insertAll(Material(3, "Ngao biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material4"))
-                rdbMaterial!!.materialDAO().insertAll(Material(4, "Tôm hùm", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material5"))
-                rdbMaterial!!.materialDAO().insertAll(Material(5, "Thịt trâu gác bếp", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material6"))
-                MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
-            }
+            loadMaterial(MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, this))
             materials = rdbMaterial!!.materialDAO().allApp
-        }catch (e: IllegalStateException){
+        }catch (e: Exception){
             e.printStackTrace()
         }
         dialogAddMaterial = DialogAddMaterial(this)
@@ -101,12 +94,23 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
             }
         }
         adapterMaterial = AdapterMaterial(this, materials,this)
-        val manager = GridLayoutManager(this, 1)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rcMaterial!!.layoutManager = manager
-        rcMaterial!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rcMaterial.adapter = adapterMaterial
     }
 
+    fun loadMaterial(userId : Int){
+        if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstMaterial, this)) {
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
+            rdbMaterial!!.materialDAO().insertAll(Material(0, "Bạch tuộc biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material1",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(1, "Gà", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material2",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(2, "Ếch", "3", 5, 200, "10:30", "Hải phòng", "R.drawable.material3",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(3, "Ngao biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material4",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(4, "Tôm hùm", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material5",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(5, "Thịt trâu gác bếp", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material6",userId))
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
+        }
+    }
     private fun initListener() {
         btnAdd.setOnClickListener(this)
         btnSearch.setOnClickListener(this)

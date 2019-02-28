@@ -14,7 +14,7 @@ import io.reactivex.Flowable;
 public interface MaterialDAO {
 
     @Query("SELECT * FROM TbMaterial WHERE id=:id")
-    Flowable<Material> getmaterialById(int id);
+    Material getmaterialById(int id);
 
     @Query("SELECT * FROM tbmaterial")
     List<Material> getAllApp();
@@ -24,9 +24,5 @@ public interface MaterialDAO {
 
     @Query("DELETE FROM tbmaterial WHERE id=(:id)")
     void delete(String id);// xoas theo id
-
-    @Query("UPDATE tbmaterial SET name=(:name) AND type = (:type) AND amount = (:amount) AND money=(:money) AND timeBuy = (:timeBuy) AND address = (:address) AND image = (:image) WHERE id=(:id)")
-    void update(String id, String name, String type, int amount, long money, String timeBuy, String address, String image);
-
 
 }
