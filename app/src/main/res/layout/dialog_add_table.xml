@@ -101,7 +101,9 @@
             android:layout_height="@dimen/_32sdp"
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/ct_button_save"
-            android:text="SAVE"
+            android:text="@string/save"
+            android:fontFamily="@font/raleway_bold"
+            android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />
     </LinearLayout>

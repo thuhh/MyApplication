@@ -42,7 +42,7 @@
             android:layout_toRightOf="@+id/btnKhac"
             android:textSize="@dimen/_16sdp"
             android:textColor="#ffffff"
-            android:text="Report Manager"
+            android:text="@string/reportManager"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <ImageView
@@ -75,9 +75,8 @@
         android:background="@drawable/bg_cir_blue"
         android:padding="@dimen/_5sdp"
         android:id="@+id/lnSearch"
-        app:layout_constraintHeight_percent="0.08"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="50dp">
         <ImageView
             android:padding="@dimen/_4sdp"
             android:src="@drawable/ic_search_bg"
@@ -85,10 +84,10 @@
             android:layout_height="match_parent" />
         <EditText
             android:textColor="#ffffff"
-            android:textColorHint="#ababab"
+            android:textColorHint="#a9a9a9"
             android:id="@+id/edtSearch"
             android:background="#00ffffff"
-            android:hint="Search"
+            android:hint="@string/search"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

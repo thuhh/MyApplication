@@ -233,7 +233,9 @@
             android:layout_height="@dimen/_32sdp"
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/ct_button_save"
-            android:text="SAVE"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:fontFamily="@font/raleway_medium"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />
     </android.support.constraint.ConstraintLayout>

@@ -28,30 +28,9 @@
             android:layout_toRightOf="@+id/btnBack"
             android:fontFamily="@font/raleway_regular"
             android:gravity="center"
-            android:text="Detail Table"
+            android:text="@string/detailTable"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />
-
-        <ImageView
-            android:layout_toLeftOf="@+id/btnDelete"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_edit"
-            android:id="@+id/btnEdit"
-            android:layout_centerVertical="true"
-            android:background="@drawable/background_button_back"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            tools:ignore="RtlHardcoded" />
-        <ImageView
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_delete"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btnDelete"
-            android:layout_centerVertical="true"
-            android:background="@drawable/background_button_back"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -66,13 +45,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/raleway_regular"
                 android:id="@+id/txtTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="table 1"
                 android:textColor="#ffffff"
-                android:textSize="@dimen/_20sdp" />
+                android:textSize="@dimen/_20sdp"
+                tools:ignore="RtlCompat" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcFood"
@@ -83,14 +64,15 @@
             </android.support.v7.widget.RecyclerView>
 
             <Button
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:layout_gravity="center"
                 android:textAllCaps="false"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_70sdp"
                 android:background="@drawable/bg_cir_blue"
                 android:id="@+id/btnAddFood"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_30sdp"
-                android:text="Add Food" />
+                android:text="@string/addFood" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,12 +80,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:fontFamily="@font/raleway_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tổng tiền: "
+                    android:text="@string/sum"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_20sdp"
+                    tools:ignore="RtlCompat" />
 
                 <TextView
                     android:fontFamily="@font/raleway_regular"

@@ -27,10 +27,17 @@ public class Material {
     private String adrress;
     @ColumnInfo(name = "image")
     private String image;
+    @ColumnInfo(name = "unit")
+    private String unit;
+    @ColumnInfo(name = "phone")
+    private String phone;
+    @ColumnInfo(name = "supName")
+    private String supName;
     @ColumnInfo(name = "idUser")
     private int idUser;
 
-    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, String image,int idUser) {
+
+    public Material(@NonNull int id, String name, String type, int amount, long money, String timeBuy, String adrress, String image, String unit, String phone, String supName, int idUser) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -39,6 +46,9 @@ public class Material {
         this.timeBuy = timeBuy;
         this.adrress = adrress;
         this.image = image;
+        this.unit = unit;
+        this.phone = phone;
+        this.supName = supName;
         this.idUser = idUser;
     }
 
@@ -113,5 +123,29 @@ public class Material {
 
     public void setIdUser(int idUser) {
         this.idUser = idUser;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSupName() {
+        return supName;
+    }
+
+    public void setSupName(String supName) {
+        this.supName = supName;
     }
 }

@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2e374b"
     tools:context=".view.activiti.food.DetailFoodActivity">
-    <!--<ImageView-->
-    <!--android:id="@+id/imgBg"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:scaleType="centerCrop"-->
-    <!--android:src="@drawable/bg5" />-->
-    <!--<RelativeLayout-->
-    <!--android:id="@+id/rlBg"-->
-    <!--android:background="@drawable/ct_bg_login"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-    <!--</RelativeLayout>-->
 
     <RelativeLayout
         android:id="@+id/ctToolbar"
@@ -40,7 +28,7 @@
             android:layout_toRightOf="@+id/btnBack"
             android:fontFamily="@font/raleway_regular"
             android:gravity="center"
-            android:text="Detail Food"
+            android:text="@string/detailFood"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />
 
@@ -77,9 +65,10 @@
         app:siSquare="true"
         android:src="@drawable/food1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintWidth_percent="0.85"
-        app:layout_constraintHeight_percent="0.55"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHeight_percent="0.5"
         app:siBorderColor="#fff"
+        android:layout_marginBottom="@dimen/_5sdp"
         app:siBorderWidth="2dp" />
 
     <TextView
@@ -98,7 +87,7 @@
         android:id="@+id/lnMoney"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/txtName">
 
@@ -122,8 +111,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_regular"
-                android:text="Price"
+                android:fontFamily="@font/rubik_italic"
+                android:text="@string/price"
                 android:textAlignment="center"
                 android:textColor="#a8ffffff"
                 android:textSize="@dimen/_16sdp" />
@@ -155,8 +144,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_regular"
-                android:text="Sale"
+                android:fontFamily="@font/rubik_italic"
+                android:text="@string/sale"
                 android:textAlignment="center"
                 android:textColor="#a8ffffff"
                 android:textSize="@dimen/_16sdp" />
@@ -221,8 +210,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_regular"
-                android:text="Rate"
+                android:fontFamily="@font/rubik_italic"
+                android:text="@string/rate"
                 android:textAlignment="center"
                 android:textColor="#a8ffffff"
                 android:textSize="@dimen/_16sdp" />
@@ -230,6 +219,7 @@
     </LinearLayout>
 
     <TextView
+        android:textAlignment="center"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/raleway_regular"
@@ -242,6 +232,7 @@
         app:layout_constraintTop_toBottomOf="@id/lnMoney" />
 
     <TextView
+        android:textAlignment="center"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/raleway_regular"
@@ -252,4 +243,16 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/_16sdp"
         app:layout_constraintTop_toBottomOf="@id/txtMaterial" />
+    <TextView
+        android:textAlignment="center"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/rubik_italic"
+        android:id="@+id/txtDescrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@id/txtType" />
 </android.support.constraint.ConstraintLayout>

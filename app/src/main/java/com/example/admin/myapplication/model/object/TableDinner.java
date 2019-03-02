@@ -23,7 +23,6 @@ public class TableDinner {
     @ColumnInfo(name = "iduser")
     private int iduser;
 
-
     public TableDinner(@NonNull int id, String name, int member, boolean status, String listFood, int iduser) {
         this.id = id;
         this.name = name;

@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/btnBack"
             android:gravity="center"
-            android:text="Account Manager"
+            android:text="@string/accountManager"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />
 

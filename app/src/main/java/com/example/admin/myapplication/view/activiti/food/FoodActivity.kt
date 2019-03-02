@@ -28,7 +28,6 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         startActivity(Intent(this, DetailFoodActivity::class.java).putExtra("foodId",id))
     }
 
-
     override fun onclick(check: String?) {
         if (check=="save"){
             foods = rdbFood!!.foodDAO().allFood

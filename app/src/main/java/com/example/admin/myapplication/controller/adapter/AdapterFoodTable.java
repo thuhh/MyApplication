@@ -20,21 +20,22 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.IOnClick;
+import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.Viewholor> {
-    private IOnClick iOnClickSetColor;
+    private ItemTableClick iClick;
     private List<Food> list;
     private List<Food> filter;
     private List<Food> items;
     private Context context;
     int count;
 
-    public AdapterFoodTable(IOnClick iOnClickSetColor, List<Food> list, Context context) {
-        this.iOnClickSetColor = iOnClickSetColor;
+    public AdapterFoodTable(ItemTableClick iClick, List<Food> list, Context context) {
+        this.iClick = iClick;
         this.list = list;
         this.items = list;
         this.context = context;
@@ -101,6 +102,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
                 if (count > 1) {
                     count--;
                     holder.txtCount.setText(count+"");
+                    iClick.iClick("down",list.get(position).getId());
                 } else {
                     Toast.makeText(context, "Số lượng phải lớn hơn 1", Toast.LENGTH_SHORT).show();
                 }
@@ -111,14 +113,16 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             public void onClick(View v) {
                 count++;
                 holder.txtCount.setText(count+"");
+                iClick.iClick("plus",list.get(position).getId());
             }
         });
         holder.imgCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("delete");
+                iClick.iClick("delete",list.get(position).getId());
             }
         });
+
     }
 
     @Override

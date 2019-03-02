@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.adapter.AdapterFoodTable
@@ -21,7 +22,7 @@ import com.example.admin.myapplication.view.activiti.report.ReportActivity
 import kotlinx.android.synthetic.main.activity_detail_table.*
 import java.util.*
 
-class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick, ItemTableClick {
+class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
         if (check=="click") {
             ctAddFood.visibility = View.GONE
@@ -54,13 +55,15 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
             initListFood(foods)
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable,table?.name,table?.member!!,true,table?.listFood, table?.iduser!!))
-
         }
 
-    }
-
-    override fun iClick(check: String?) {
-
+        else if (check == "delete"){
+            Toast.makeText(this, "Hủy món ăn $id",Toast.LENGTH_LONG).show()
+        }else if (check == "down"){
+            Toast.makeText(this, "Thêm món ăn $id",Toast.LENGTH_LONG).show()
+        }else if (check == "plus"){
+            Toast.makeText(this, "Trừ món ăn $id",Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onClick(v: View?) {

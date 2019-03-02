@@ -101,12 +101,12 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
     fun loadMaterial(userId : Int){
         if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstMaterial, this)) {
             MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
-            rdbMaterial!!.materialDAO().insertAll(Material(0, "Bạch tuộc biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material1",userId))
-            rdbMaterial!!.materialDAO().insertAll(Material(1, "Gà", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material2",userId))
-            rdbMaterial!!.materialDAO().insertAll(Material(2, "Ếch", "3", 5, 200, "10:30", "Hải phòng", "R.drawable.material3",userId))
-            rdbMaterial!!.materialDAO().insertAll(Material(3, "Ngao biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material4",userId))
-            rdbMaterial!!.materialDAO().insertAll(Material(4, "Tôm hùm", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material5",userId))
-            rdbMaterial!!.materialDAO().insertAll(Material(5, "Thịt trâu gác bếp", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material6",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(0, "Bạch tuộc biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material1","Kg","0345505538","anh Thắng",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(1, "Gà", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material2","Kg","0345505538","anh Thắng",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(2, "Ếch", "3", 5, 200, "10:30", "Hải phòng", "R.drawable.material3","Kg","0345505538","anh Thắng",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(3, "Ngao biển", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material4","Kg","0345505538","anh Thắng",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(4, "Tôm hùm", "1", 5, 200, "10:30", "Hải phòng", "R.drawable.material5","Kg","0345505538","anh Thắng",userId))
+            rdbMaterial!!.materialDAO().insertAll(Material(5, "Thịt trâu gác bếp", "2", 5, 200, "10:30", "Hải phòng", "R.drawable.material6","Kg","0345505538","anh Thắng",userId))
             MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstMaterial, true, this)
         }
     }

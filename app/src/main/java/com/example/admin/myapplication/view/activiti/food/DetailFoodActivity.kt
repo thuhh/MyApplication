@@ -6,20 +6,37 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
+import com.example.admin.myapplication.controller.interfaces.IClickDialog
+import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.database.RDBApp
+import com.example.admin.myapplication.view.dialog.DialogAddFood
 import kotlinx.android.synthetic.main.activity_detail_food.*
 
-class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
+class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog {
+    override fun onclick(check: String?) {
+        if (check=="edit"){
+            foods = rdbFood!!.foodDAO().allFood
+            initData()
+        }
+    }
+
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnBack){
             finish()
+        }else if (v?.id == R.id.btnEdit){
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.checkEdit,true,this)
+            MyPreferenceHelper.setInt(MyPreferenceHelper.clickItem,id,this)
+            dialogAddFood!!.show()
+        }else if (v?.id == R.id.btnDelete){
+
         }
     }
 
     private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
     private var id = 0
+    private var dialogAddFood : DialogAddFood?= null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_food)
@@ -33,6 +50,17 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
             e.printStackTrace()
         }
 
+        dialogAddFood = DialogAddFood(this)
+        dialogAddFood!!.setClick(this)
+
+       initData()
+
+        btnBack.setOnClickListener(this)
+        btnEdit.setOnClickListener(this)
+        btnDelete.setOnClickListener(this)
+    }
+
+    private fun initData() {
         for (i in 0 until foods!!.size){
             if (foods!![i].id==id){
                 txtName.text = foods!![i].name
@@ -78,7 +106,5 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-
-        btnBack.setOnClickListener(this)
     }
 }

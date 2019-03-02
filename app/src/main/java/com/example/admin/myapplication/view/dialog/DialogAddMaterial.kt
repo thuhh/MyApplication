@@ -39,7 +39,7 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
 
             val calendar = Calendar.getInstance()
             rdbFood!!.materialDAO().insertAll(Material(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtSL.text.toString().toInt(),edtMoney.text.toString().trim().toLong(),calendar.get(Calendar.DATE).toString(),edtAddress.text.toString().trim(),
-                    path,MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, context)))
+                    path,edtUnit.text.toString(),edtPhone.text.toString().trim(),edtSupName.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             dismiss()

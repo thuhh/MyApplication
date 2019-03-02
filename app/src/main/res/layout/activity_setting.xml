@@ -27,7 +27,7 @@
             android:layout_toRightOf="@+id/btnBack"
             android:textSize="@dimen/_16sdp"
             android:textColor="#ffffff"
-            android:text="Settings"
+            android:text="@string/setting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -232,7 +232,7 @@
                     <TextView
                         android:fontFamily="@font/raleway_regular"
                         android:textSize="@dimen/_16sdp"
-                        android:text="Help &amp; Support"
+                        android:text="@string/help"
                         android:textColor="#fff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -262,7 +262,7 @@
                     <TextView
                         android:fontFamily="@font/raleway_regular"
                         android:textSize="@dimen/_16sdp"
-                        android:text="Rating &amp; Review"
+                        android:text="@string/rating"
                         android:textColor="#fff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

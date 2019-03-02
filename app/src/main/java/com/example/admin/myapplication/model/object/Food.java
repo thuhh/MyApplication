@@ -25,10 +25,14 @@ public class Food {
     private String material;
     @ColumnInfo(name = "sale")
     private String sale;
+    @ColumnInfo(name = "rate")
+    private int rate;
+    @ColumnInfo(name = "descrip")
+    private String descrip;
     @ColumnInfo(name = "userid")
     private int userId;
 
-    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image, String material, String sale, int userId) {
+    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image, String material, String sale, int rate, String descrip, int userId) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -37,6 +41,8 @@ public class Food {
         this.image = image;
         this.material = material;
         this.sale = sale;
+        this.rate = rate;
+        this.descrip = descrip;
         this.userId = userId;
     }
 
@@ -103,6 +109,22 @@ public class Food {
 
     public void setSale(String sale) {
         this.sale = sale;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
     }
 
     public int getUserId() {

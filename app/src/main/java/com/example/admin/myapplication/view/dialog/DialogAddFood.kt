@@ -24,7 +24,6 @@ import org.greenrobot.eventbus.Subscribe
 class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.imgImage) {
-//            iClickDialog!!.onclick("sub12free")
             var i = Intent(context, AlbumActivity::class.java)
             context.startActivity(i)
         } else if (v?.id == R.id.btnSave) {
@@ -34,10 +33,20 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
             if (foods!!.isNotEmpty()) {
                 id = foods!!.size
             }
-            rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                    true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
-            iClickDialog!!.onclick("save")
+            if (MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.checkEdit,context)){
+                MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.checkEdit,false,context)
+                id = MyPreferenceHelper.getInt(MyPreferenceHelper.clickItem,context)
+                rdbFood!!.foodDAO().delete(id)
+                rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
+                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                iClickDialog!!.onclick("edit")
+            }else {
+                rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
+                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                iClickDialog!!.onclick("save")
+            }
             resetData()
             dismiss()
         }

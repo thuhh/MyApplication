@@ -76,7 +76,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
-                        android:hint="user name"
+                        android:hint="@string/userName"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
 
@@ -106,7 +106,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
-                        android:hint="password"
+                        android:hint="@string/password"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <LinearLayout
@@ -135,7 +135,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
-                        android:hint="Comfirm password"
+                        android:hint="@string/passConfig"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <LinearLayout
@@ -164,7 +164,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
-                        android:hint="PIN code"
+                        android:hint="@string/pincode"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
                 <Button
@@ -180,7 +180,7 @@
                     android:layout_below="@+id/lnPin"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_36sdp"
-                    android:text="Sign up" />
+                    android:text="@string/signUp" />
 
 
             </RelativeLayout>
@@ -213,7 +213,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
-                        android:hint="user name"
+                        android:hint="@string/userName"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
 
@@ -246,7 +246,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_26sdp"
                         android:background="#00ffffff"
-                        android:hint="password"
+                        android:hint="@string/password"
                         tools:ignore="RtlCompat" />
                     <ImageView
 
@@ -267,7 +267,7 @@
                     android:id="@+id/chkRemember"
                     android:textColor="#fff"
                     android:textSize="@dimen/_12sdp"
-                    android:text="Remember me"
+                    android:text="@string/remember"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:ignore="RtlCompat" />
@@ -282,7 +282,7 @@
                     android:layout_below="@+id/chkRemember"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_36sdp"
-                    android:text="Login" />
+                    android:text="@string/login" />
                 <TextView
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="@dimen/_16sdp"
@@ -292,7 +292,7 @@
                     android:layout_below="@+id/lnPass"
                     android:textColor="#fff"
                     android:textSize="@dimen/_12sdp"
-                    android:text="Forget password ?"
+                    android:text="@string/forget"
                     android:id="@+id/txtForget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,7 +305,7 @@
                     android:layout_below="@+id/btnLogin"
                     android:textSize="@dimen/_14sdp"
                     android:textColor="#fff"
-                    android:text="Sign up new account"
+                    android:text="@string/register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </RelativeLayout>

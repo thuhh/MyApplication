@@ -288,7 +288,7 @@
             android:layout_height="@dimen/_36sdp"
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/ct_button_save"
-            android:text="Save"
+            android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="@dimen/_16sdp" />

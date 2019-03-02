@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Restaurant Manager</string>
     <string name="music">Âm nhạc</string>
-    <string name="share">Share</string>
-    <string name="language">Language</string>
-    <string name="theme">Themes</string>
+    <string name="share">Chia sẻ</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="theme">Giao diện</string>
     <string name="changePass">Đổi mật khẩu</string>
     <string name="resetData">Làm mới dữ liệu</string>
     <string name="logout">Đăng xuất</string>
@@ -12,4 +12,30 @@
     <string name="resetFood">đồ ăn</string>
     <string name="resetMaterial">nguyên liệu</string>
     <string name="resetReport">thống kê</string>
+    <string name="userName">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="passConfig">Xác nhận mật khẩu</string>
+    <string name="pincode">Mã Pin</string>
+    <string name="signUp">Đăng ký</string>
+    <string name="remember">Nhớ mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="forget">Quên mật khẩu?</string>
+    <string name="register">Đăng nhập với tài khoản mới</string>
+    <string name="foodManager">Quản lý món ăn</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="accountManager">Quản lý tài khoản</string>
+    <string name="detailFood">Chi tiết món ăn</string>
+    <string name="price">Giá</string>
+    <string name="sale">giảm giá</string>
+    <string name="rate">đánh giá</string>
+    <string name="detailTable">Chi tiết bàn ăn</string>
+    <string name="addFood">Thêm món ăn</string>
+    <string name="sum">Tổng tiền:</string>
+    <string name="materialManager">Quản lý nguyên liệu</string>
+    <string name="reportManager">Quản lý thống kê</string>
+    <string name="setting">Cài đặt</string>
+    <string name="help">Hướng dẫn</string>
+    <string name="rating">Đánh giá ứng dụng</string>
+    <string name="tableManager">Quản lý bàn ăn</string>
+    <string name="save">Lưu dữ liệu</string>
 </resources>
