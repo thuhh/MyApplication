@@ -17,6 +17,7 @@ import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.Report
 import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
+import com.example.admin.myapplication.view.activiti.report.ReportActivity
 import kotlinx.android.synthetic.main.activity_detail_table.*
 import java.util.*
 
@@ -74,6 +75,11 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, IOnClick,
                 id = reports!!.size
             }
             rdbTable!!.reportDAO().insertAll(Report(id, "Report$id",idTable,table!!.listFood,txtSumMoney.text.toString(),time,calendar.get(Calendar.DATE).toString()))
+
+            rdbTable!!.tableDAO().delete(idTable)
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable,table!!.name,table!!.member,false,"",table!!.iduser))
+            startActivity(Intent(this,ReportActivity::class.java))
+            finish()
         }else if (v?.id == R.id.btnBack){
             finish()
         }

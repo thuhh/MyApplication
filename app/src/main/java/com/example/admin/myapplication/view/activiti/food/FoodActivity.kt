@@ -21,10 +21,11 @@ import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
 import com.example.admin.myapplication.view.dialog.DialogAddFood
 import kotlinx.android.synthetic.main.activity_food.*
+import java.util.*
 
 class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
-        startActivity(Intent(this, DetailFoodActivity::class.java).putExtra("food",id))
+        startActivity(Intent(this, DetailFoodActivity::class.java).putExtra("foodId",id))
     }
 
 
@@ -94,8 +95,9 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     }
 
     private fun initList() {
+        Collections.reverse(foods)
         adapterFood = AdapterFood(this@FoodActivity, foods,this)
-        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rvFood!!.layoutManager = manager
         rvFood.adapter = adapterFood
     }

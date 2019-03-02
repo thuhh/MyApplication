@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.example.admin.myapplication.R
+import com.example.admin.myapplication.R.id.btnSearch
 import com.example.admin.myapplication.controller.adapter.AdapterReport
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
@@ -18,6 +19,7 @@ import com.example.admin.myapplication.model.`object`.Report
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
 import kotlinx.android.synthetic.main.activity_report.*
+import java.util.*
 
 class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener {
     override fun onClick(v: View?) {
@@ -61,9 +63,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         try {
             rdbTable = RDBApp.getAppDatabase(this)
             reports = rdbTable!!.reportDAO().allReport
-            if (reports!!.isNotEmpty()){
-                Log.e("sdsd","s")
-            }
+
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
@@ -79,8 +79,9 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         btnSearch.setOnClickListener(this)
     }
     private fun initListItem() {
+        Collections.reverse(reports)
         adapterReport = AdapterReport(this, reports, this)
-        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rcReport!!.layoutManager = manager
         rcReport.adapter = adapterReport
     }

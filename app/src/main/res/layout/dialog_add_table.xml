@@ -19,7 +19,6 @@
         app:layout_constraintWidth_percent="0.8">
 
         <ImageView
-            android:background="@drawable/bg_cir_blue"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_gravity="center"
             android:id="@+id/imgImage"

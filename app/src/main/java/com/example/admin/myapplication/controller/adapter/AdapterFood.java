@@ -51,7 +51,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMoney.setText(list.get(position).getMoney());
+        holder.txtMoney.setText(list.get(position).getMoney()+"K");
         if (list.get(position).isNewFood()) {
             holder.imgNew.setVisibility(View.VISIBLE);
         }else {
@@ -60,7 +60,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("click",position);
+                iOnClickSetColor.iClick("click",list.get(position).getId());
             }
         });
         String image = list.get(position).getImage();

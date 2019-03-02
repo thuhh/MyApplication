@@ -1,5 +1,6 @@
 package com.example.admin.myapplication.view.activiti;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -202,6 +204,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     insertUser();
                 }
+
+                //hide soft keyboard
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                View view = getCurrentFocus();
+                if (view == null) {
+                    view = new View(this);
+                }
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 break;
             case R.id.txtForget:
                 txtSignup.setTextColor(Color.BLUE);
@@ -238,9 +250,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void insertUser() {
+        int id = 0;
+        if (users!= null) {
+            id = users.size();
+        }
         if (!edtUserSignup.getText().toString().trim().isEmpty() && !edtPassSignup.getText().toString().trim().isEmpty() && !edtComfig.getText().toString().trim().isEmpty()&& !edtPinCode.getText().toString().trim().isEmpty() ) {
             if (edtPassSignup.getText().toString().trim().equals(edtComfig.getText().toString().trim())) {
-                rdbApp.userDAO().insertAll(new User(rdbApp.userDAO().getAllUser().size() + 1, edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
+                rdbApp.userDAO().insertAll(new User(id, edtUserSignup.getText().toString().trim(), edtPassSignup.getText().toString().trim(), edtComfig.getText().toString().trim(), edtPinCode.getText().toString().trim()));
                 edtUserLogin.setText(edtUserSignup.getText().toString().trim());
                 edtPassLogin.setText(edtPassSignup.getText().toString().trim());
                 viewFlipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));

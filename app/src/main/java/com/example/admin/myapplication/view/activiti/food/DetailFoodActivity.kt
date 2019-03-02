@@ -2,6 +2,7 @@ package com.example.admin.myapplication.view.activiti.food
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
@@ -11,25 +12,19 @@ import kotlinx.android.synthetic.main.activity_detail_food.*
 
 class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
-        if (v?.id==R.id.flEdit){
-
-        }else if (v?.id==R.id.flDelete){
-
-        }else if (v?.id==R.id.btnBack){
-
-        }else if (v?.id==R.id.txtBuy){
-
+        if (v?.id == R.id.btnBack){
+            finish()
         }
     }
 
-    private var rdbFood : RDBApp? =null;
+    private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
-    private var id = 0;
+    private var id = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_food)
         if (intent!=null){
-            id = intent.getIntExtra("id",0)
+            id = intent.getIntExtra("foodId",0)
         }
         try {
             rdbFood = RDBApp.getAppDatabase(this)
@@ -39,20 +34,51 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         for (i in 0 until foods!!.size){
-            if (foods!!.get(i).id==id){
-                txtName.setText(foods!!.get(i).name)
-                txtType.setText(foods!!.get(i).type)
-                txtMoney.setText(foods!!.get(i).money)
+            if (foods!![i].id==id){
+                txtName.text = foods!![i].name
+                txtType.text =  "-loại: " +foods!![i].type
+                txtMaterial.text = "-Nguyên liệu chính: " + foods!![i].material
+                txtMoney.text = foods!![i].money+"K"
+                txtSale.text = foods!![i].sale
 
-                Glide.with(this)
-                        .asBitmap()
-                        .load(foods!!.get(i).getImage())
-                        .into(imgFood)
+                val image = foods!![i].image
+                Log.e("sdsdsd",image+"//")
+                if (image != null && image !== "") {
+                    if (image == "R.drawable.food1") {
+                        Glide.with(this).asBitmap().load(R.drawable.food1).into(imgFood)
+                    } else if (image == "R.drawable.food11") {
+                        Glide.with(this).asBitmap().load(R.drawable.food11).into(imgFood)
+                    } else if (image == "R.drawable.food2") {
+                        Glide.with(this).asBitmap().load(R.drawable.food2).into(imgFood)
+                    } else if (image == "R.drawable.food3") {
+                        Glide.with(this).asBitmap().load(R.drawable.food3).into(imgFood)
+                    } else if (image == "R.drawable.food4") {
+                        Glide.with(this).asBitmap().load(R.drawable.food4).into(imgFood)
+                    } else if (image == "R.drawable.food5") {
+                        Glide.with(this).asBitmap().load(R.drawable.food5).into(imgFood)
+                    } else if (image == "R.drawable.food6") {
+                        Glide.with(this).asBitmap().load(R.drawable.food6).into(imgFood)
+                    } else if (image == "R.drawable.food7") {
+                        Glide.with(this).asBitmap().load(R.drawable.food7).into(imgFood)
+                    } else if (image == "R.drawable.food8") {
+                        Glide.with(this).asBitmap().load(R.drawable.food8).into(imgFood)
+                    } else if (image == "R.drawable.food9") {
+                        Glide.with(this).asBitmap().load(R.drawable.food9).into(imgFood)
+                    } else if (image == "R.drawable.food10") {
+                        Glide.with(this).asBitmap().load(R.drawable.food10).into(imgFood)
+                    } else if (image == "R.drawable.food12") {
+                        Glide.with(this).asBitmap().load(R.drawable.food12).into(imgFood)
+                    } else if (image == "R.drawable.food13") {
+                        Glide.with(this).asBitmap().load(R.drawable.food13).into(imgFood)
+                    } else if (image == "R.drawable.food14") {
+                        Glide.with(this).asBitmap().load(R.drawable.food14).into(imgFood)
+                    } else {
+                        Glide.with(this).asBitmap().load(image).into(imgFood)
+                    }
+                }
             }
         }
 
-        flEdit.setOnClickListener(this)
-        flDelete.setOnClickListener(this)
-
+        btnBack.setOnClickListener(this)
     }
 }

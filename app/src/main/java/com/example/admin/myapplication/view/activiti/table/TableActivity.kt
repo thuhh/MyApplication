@@ -21,6 +21,7 @@ import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
 import com.example.admin.myapplication.view.dialog.DialogAddTable
 import kotlinx.android.synthetic.main.activity_table.*
+import java.util.*
 
 class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
@@ -106,6 +107,7 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
     }
 
     private fun initListItem() {
+        Collections.reverse(tables)
         adapterTable = AdapterTable(this@TableActivity, tables,this)
         val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         rvTable!!.layoutManager = manager

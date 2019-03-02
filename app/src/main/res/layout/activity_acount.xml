@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="#2e374b"
     tools:context=".view.activiti.account.AcountActivity">
 
     <RelativeLayout
         android:id="@+id/ctToolbar"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:background="#424C61"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,133 +38,293 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ctToolbar">
-
-        <Button
-            android:id="@+id/btnChangePass"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:background="@drawable/ct_button_save"
-            android:text="Đổi mật khẩu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
         <LinearLayout
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_5sdp"
             android:orientation="vertical"
-            android:id="@+id/lnReset"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-            android:layout_marginTop="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_6sdp"
-            android:background="@drawable/bg_cir_blue"
-            android:id="@+id/lnCurrentPass"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_below="@+id/lnUserSignUp"
-            android:layout_marginHorizontal="@dimen/_16sdp">
-
-            <ImageView
-                android:layout_width="@dimen/_16sdp"
-                android:layout_height="@dimen/_16sdp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_password" />
-
-            <EditText
-                android:inputType="textPassword"
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/rubik_medium"
-                android:id="@+id/edtCurrentPass"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/btnChangePass"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_36sdp"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:background="#00ffffff"
-                android:hint="Mật khẩu hiện tại"
-                tools:ignore="RtlCompat" />
-        </LinearLayout>
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_change_pass"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/changePass"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/background_button_back"
+                        android:id="@+id/imgDownPass"
+                        android:src="@drawable/ic_down"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp" />
+                </FrameLayout>
+
+            </RelativeLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:background="@drawable/bg_cir_blue"
-                android:id="@+id/lnNewPass"
+                android:orientation="vertical"
+                android:id="@+id/lnReset"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_below="@+id/lnUserSignUp"
-                android:layout_marginHorizontal="@dimen/_16sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="@dimen/_16sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_password" />
-
-                <EditText
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/rubik_medium"
-                    android:id="@+id/edtNewPass"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
+                    android:id="@+id/lnCurrentPass"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_36sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:background="#00ffffff"
-                    android:hint="Nhập mật khẩu mới"
-                    tools:ignore="RtlCompat" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="@dimen/_5sdp"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:background="@drawable/bg_cir_blue"
-                android:id="@+id/lnConfig"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_below="@+id/lnUserSignUp"
-                android:layout_marginHorizontal="@dimen/_16sdp">
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/lnUserSignUp"
+                    android:layout_marginHorizontal="@dimen/_16sdp">
 
-                <ImageView
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="@dimen/_16sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_password" />
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_password" />
 
-                <EditText
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/_12sdp"
-                    android:fontFamily="@font/rubik_medium"
-                    android:id="@+id/edtConfig"
+                    <EditText
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:id="@+id/edtCurrentPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="#00ffffff"
+                        android:hint="Mật khẩu hiện tại"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
+                    android:id="@+id/lnNewPass"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_36sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/lnUserSignUp"
+                    android:layout_marginHorizontal="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_pass_new" />
+
+                    <EditText
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:id="@+id/edtNewPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="#00ffffff"
+                        android:hint="Nhập mật khẩu mới"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/bg_cir_blue"
+                    android:id="@+id/lnConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_below="@+id/lnUserSignUp"
+                    android:layout_marginHorizontal="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_pass_new" />
+
+                    <EditText
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:id="@+id/edtConfig"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="#00ffffff"
+                        android:hint="Xác nhận lại mật khẩu"
+                        tools:ignore="RtlCompat" />
+                </LinearLayout>
+                <Button
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:background="#00ffffff"
-                    android:hint="Xác nhận lại mật khẩu"
-                    tools:ignore="RtlCompat" />
+                    android:id="@+id/btnSave"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:background="@drawable/ct_button_save"
+                    android:text="Ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp" />
             </LinearLayout>
-            <Button
-                android:layout_gravity="center"
-                android:id="@+id/btnSave"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:paddingHorizontal="@dimen/_20sdp"
-                android:background="@drawable/ct_button_save"
-                android:text="Ok"
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/btnReset"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_reset_data"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/resetData"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/background_button_back"
+                        android:id="@+id/imgDownMusic"
+                        android:src="@drawable/ic_down"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp" />
+                </FrameLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:id="@+id/lnresetData"
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp" />
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_regular"
+                    android:text="@string/allData"
+                    android:textColor="#d7ffffff"
+                    android:textSize="@dimen/_14sdp" />
+                <RadioButton
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/radTable"
+                    android:text="@string/resetTable"
+                    android:textColor="#d7ffffff"
+                    android:fontFamily="@font/raleway_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/radFood"
+                    android:text="@string/resetFood"
+                    android:textColor="#d7ffffff"
+                    android:fontFamily="@font/raleway_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/radMaterial"
+                    android:text="@string/resetMaterial"
+                    android:textColor="#d7ffffff"
+                    android:fontFamily="@font/raleway_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:id="@+id/radReport"
+                    android:text="@string/resetReport"
+                    android:textColor="#d7ffffff"
+                    android:fontFamily="@font/raleway_regular"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlTheme"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_log_out"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/logout"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
         </LinearLayout>
-        <Button
-            android:id="@+id/btnReset"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:background="@drawable/ct_button_save"
-            android:text="Reset Data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

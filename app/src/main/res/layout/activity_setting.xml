@@ -18,13 +18,13 @@
             android:background="@drawable/background_button_back"
             android:padding="@dimen/_10sdp"
             android:src="@drawable/ic_back"
-            android:id="@+id/btnKhac"
+            android:id="@+id/btnBack"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp" />
         <TextView
             android:fontFamily="@font/raleway_regular"
             android:gravity="center"
-            android:layout_toRightOf="@+id/btnKhac"
+            android:layout_toRightOf="@+id/btnBack"
             android:textSize="@dimen/_16sdp"
             android:textColor="#ffffff"
             android:text="Settings"
@@ -33,247 +33,242 @@
 
 
     </RelativeLayout>
-    <RelativeLayout
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp">
-
-        <RelativeLayout
-            android:id="@+id/rlMusic"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_cir_blue"
-            android:gravity="center_vertical"
-            tools:ignore="UnusedAttribute">
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/tlLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_language"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/language"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/background_button_back"
+                        android:id="@+id/imgDownLanguage"
+                        android:src="@drawable/ic_down"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp" />
+                </FrameLayout>
 
-            <TextView
-                android:fontFamily="@font/raleway_regular"
-                android:textSize="@dimen/_16sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="50dp"
-                android:gravity="center"
-                android:text="Âm Nhạc"
-                android:textColor="#ffffff"
-                tools:ignore="RtlCompat" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlMusic"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_music"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/music"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/background_button_back"
+                        android:id="@+id/imgDownMusic"
+                        android:src="@drawable/ic_down"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp" />
+                </FrameLayout>
 
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/imgMusic"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_narrow"
-                tools:ignore="RtlCompat" />
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlTheme"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <android.support.v7.widget.AppCompatImageView
+                    android:src="@drawable/ic_theme"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/theme"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <FrameLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:layout_alignParentRight="true">
+                    <ImageView
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/background_button_back"
+                        android:id="@+id/imgDownTheme"
+                        android:src="@drawable/ic_down"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp" />
+                </FrameLayout>
 
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlShare"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:src="@drawable/ic_share"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/share"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlHelp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:src="@drawable/ic_help"
+                    android:padding="5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginLeft="20dp" />
+                <LinearLayout
+                    android:layout_marginStart="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="72dp">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="Help &amp; Support"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:background="@drawable/ct_share"
+                android:id="@+id/rlRate"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <ImageView
+                    android:src="@drawable/ic_like"
+                    android:padding="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    tools:ignore="RtlHardcoded" />
+                <LinearLayout
+                    android:layout_marginLeft="72dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlHardcoded">
+                    <TextView
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="Rating &amp; Review"
+                        android:textColor="#fff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/logoMusic"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="16dp"
-            tools:ignore="RtlCompat">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_cir_purple"
-                android:padding="10dp"
-                android:src="@drawable/ic_music" />
-        </android.support.v7.widget.CardView>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp">
-
-        <RelativeLayout
-            android:id="@+id/rlNgonNgu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_cir_blue"
-            android:gravity="center_vertical"
-            tools:ignore="UnusedAttribute">
-
-            <TextView
-                android:fontFamily="@font/raleway_regular"
-                android:textSize="@dimen/_16sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="50dp"
-                android:gravity=""
-                android:text="Ngôn Ngữ"
-                android:textColor="#ffffff"
-                tools:ignore="RtlCompat" />
-
-
-            <ImageView
-                android:id="@+id/imgNgonngu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_narrow"
-                tools:ignore="RtlCompat" />
-
-
-        </RelativeLayout>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/logoNgonNgu"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="16dp"
-            tools:ignore="RtlCompat">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_cir_yellow"
-                android:padding="10dp"
-                android:src="@drawable/ic_language" />
-        </android.support.v7.widget.CardView>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp">
-
-        <RelativeLayout
-            android:id="@+id/rlShare"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_cir_blue"
-            android:gravity="center_vertical"
-            tools:ignore="UnusedAttribute">
-
-            <TextView
-                android:textSize="@dimen/_16sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="50dp"
-                android:gravity="center_vertical"
-                android:text="Chia sẻ"
-                android:textColor="#ffffff"
-                tools:ignore="RtlCompat" />
-
-
-            <ImageView
-                android:id="@+id/imgShare"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_narrow"
-                tools:ignore="RtlCompat" />
-        </RelativeLayout>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/logoShare"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="16dp"
-            tools:ignore="RtlCompat">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_cir_blue_dark"
-                android:padding="10dp"
-                android:src="@drawable/ic_share" />
-        </android.support.v7.widget.CardView>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp">
-
-        <RelativeLayout
-            android:id="@+id/rlNoti"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_cir_blue"
-            android:gravity="center_vertical"
-            tools:ignore="UnusedAttribute">
-
-            <TextView
-                android:fontFamily="@font/raleway_regular"
-                android:textSize="@dimen/_16sdp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="50dp"
-                android:gravity="center_vertical"
-                android:text="Thông báo"
-                android:textColor="#ffffff"
-                tools:ignore="RtlCompat" />
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/swtNoti"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                tools:ignore="RtlCompat" />
-        </RelativeLayout>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/logoNoti"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="16dp"
-            tools:ignore="RtlCompat">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_cir_red"
-                android:padding="10dp"
-                android:src="@drawable/ic_notifi" />
-        </android.support.v7.widget.CardView>
-
-
-    </RelativeLayout>
 </LinearLayout>

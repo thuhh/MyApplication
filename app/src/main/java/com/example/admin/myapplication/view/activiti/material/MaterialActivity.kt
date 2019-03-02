@@ -20,6 +20,7 @@ import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
 import com.example.admin.myapplication.view.dialog.DialogAddMaterial
 import kotlinx.android.synthetic.main.activity_material.*
+import java.util.*
 
 class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View.OnClickListener {
     override fun onClick(v: View?) {
@@ -55,7 +56,7 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
         if (check=="save"){
             materials = rdbMaterial!!.materialDAO().allApp
             adapterMaterial = AdapterMaterial(this, materials,this)
-            val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
+            val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
             rcMaterial!!.layoutManager = manager
             rcMaterial.adapter = adapterMaterial
         }
@@ -86,12 +87,11 @@ class MaterialActivity : AppCompatActivity(), ItemTableClick, IClickDialog, View
 
         initListener()
 
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this)!=null){
-            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this).equals("yes")){
-                dialogAddMaterial!!.show()
-            }
-        }
+        initData()
+    }
 
+    private fun initData() {
+        Collections.reverse(materials)
         adapterMaterial = AdapterMaterial(this, materials,this)
         val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,true)
         rcMaterial!!.layoutManager = manager

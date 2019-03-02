@@ -7,40 +7,56 @@
     android:background="#2e374b"
     tools:context=".view.activiti.table.DetailTableActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/ctTop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#424C61"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <RelativeLayout
+        android:id="@+id/ctToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="#424C61">
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_button_back"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_back" />
 
         <TextView
-            android:fontFamily="@font/raleway_regular"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/btnBack"
+            android:fontFamily="@font/raleway_regular"
+            android:gravity="center"
             android:text="Detail Table"
             android:textColor="#ffffff"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btnBack"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+            android:textSize="@dimen/_16sdp" />
+
+        <ImageView
+            android:layout_toLeftOf="@+id/btnDelete"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_edit"
+            android:id="@+id/btnEdit"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_button_back"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            tools:ignore="RtlHardcoded" />
+        <ImageView
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_delete"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnDelete"
+            android:layout_centerVertical="true"
+            android:background="@drawable/background_button_back"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
-        app:layout_constraintTop_toBottomOf="@+id/ctTop"
+        app:layout_constraintTop_toBottomOf="@+id/ctToolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
@@ -67,6 +83,7 @@
             </android.support.v7.widget.RecyclerView>
 
             <Button
+                android:textAllCaps="false"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_marginHorizontal="@dimen/_70sdp"
                 android:background="@drawable/bg_cir_blue"
@@ -99,12 +116,18 @@
             </LinearLayout>
 
             <Button
+                android:layout_gravity="center"
+                android:fontFamily="@font/raleway_medium"
+                android:drawablePadding="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:drawableLeft="@drawable/ic_calculator"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_18sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:background="@drawable/ct_button_save"
                 android:layout_marginBottom="@dimen/_50sdp"
                 android:id="@+id/btnThanhtoan"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thanh toán" />
 

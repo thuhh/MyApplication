@@ -57,7 +57,7 @@ public class AdapterMaterial extends RecyclerView.Adapter<AdapterMaterial.Viewho
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("click",position);
+                iOnClickSetColor.iClick("click",list.get(position).getId());
             }
         });
 

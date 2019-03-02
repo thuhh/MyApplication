@@ -17,7 +17,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/_10sdp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_logo_crab"
+            android:src="@drawable/ic_image"
             android:id="@+id/imgFood"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_width="@dimen/_80sdp"

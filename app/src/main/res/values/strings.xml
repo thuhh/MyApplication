@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Restaurant Manager</string>
+    <string name="music">Âm nhạc</string>
+    <string name="share">Share</string>
+    <string name="language">Language</string>
+    <string name="theme">Themes</string>
+    <string name="changePass">Đổi mật khẩu</string>
+    <string name="resetData">Làm mới dữ liệu</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="allData">Tất cả dữ liệu</string>
+    <string name="resetTable">bàn ăn</string>
+    <string name="resetFood">đồ ăn</string>
+    <string name="resetMaterial">nguyên liệu</string>
+    <string name="resetReport">thống kê</string>
 </resources>
