@@ -28,7 +28,7 @@ class DialogAddTable(internal var context: Context) : Dialog(context, R.style.Di
             if (tables!!.isNotEmpty()) {
                 id = tables!!.size
             }
-            rdbTable!!.tableDAO().insertAll(TableDinner(id,edtName.text.toString().trim(),member,radStatus.isChecked,"",MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+            rdbTable!!.tableDAO().insertAll(TableDinner(id,edtName.text.toString().trim(),member,radStatus.isChecked,"","",MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
             MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
             iClickDialog!!.onclick("save")
             edtName.setText("")

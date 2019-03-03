@@ -6,12 +6,13 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.admin.myapplication.model.object.Food;
+import com.example.admin.myapplication.model.object.FoodTable;
 import com.example.admin.myapplication.model.object.Material;
 import com.example.admin.myapplication.model.object.Report;
 import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.model.object.User;
 
-@Database(entities = {User.class,Food.class,Material.class,TableDinner.class,Report.class},version = RDBApp.DB_VERSION)
+@Database(entities = {User.class,Food.class,Material.class,TableDinner.class,Report.class, FoodTable.class},version = RDBApp.DB_VERSION)
 public abstract class RDBApp extends RoomDatabase {
     public static final int DB_VERSION = 1;
 
@@ -20,6 +21,7 @@ public abstract class RDBApp extends RoomDatabase {
     public abstract MaterialDAO materialDAO();
     public abstract TableDAO tableDAO();
     public abstract ReportDAO reportDAO();
+    public abstract FoodTableDAO foodTableDAO();
 
 
     private static RDBApp mInstance;
@@ -27,7 +29,7 @@ public abstract class RDBApp extends RoomDatabase {
     public static RDBApp getAppDatabase(Context context) {
 
         if (mInstance == null) {
-            mInstance = Room.databaseBuilder(context.getApplicationContext(), RDBApp.class, "qlnh.db")
+            mInstance = Room.databaseBuilder(context.getApplicationContext(), RDBApp.class, "bem.db")
                     .allowMainThreadQueries()
                     .build();
         }

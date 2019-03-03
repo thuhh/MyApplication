@@ -11,10 +11,10 @@ import android.widget.Toast
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.adapter.AdapterFoodTable
-import com.example.admin.myapplication.controller.interfaces.IOnClick
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
 import com.example.admin.myapplication.model.`object`.Food
+import com.example.admin.myapplication.model.`object`.FoodTable
 import com.example.admin.myapplication.model.`object`.Report
 import com.example.admin.myapplication.model.`object`.TableDinner
 import com.example.admin.myapplication.model.database.RDBApp
@@ -24,7 +24,7 @@ import java.util.*
 
 class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTableClick {
     override fun iClick(check: String?, id: Int) {
-        if (check=="click") {
+        if (check == "click") {
             ctAddFood.visibility = View.GONE
             checkVisibale = false
             var list = ""
@@ -38,13 +38,20 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             }
 
             val listFood = table!!.listFood.split(",")
-            val foods: MutableList<Food> = mutableListOf<Food>()
+            val foodTables: MutableList<FoodTable> = mutableListOf<FoodTable>()
             if (listFood!!.isNotEmpty()) {
                 for (i in 0 until listFood!!.size) {
-                    var idFood = listFood!![i].toInt()
-                    var food: Food
-                    food = allFoods!![idFood]
-                    foods.add(food)
+                    val idFood = listFood!![i].toInt()
+                    var idFoodTable = 0
+                    if (allFoodTables!!.isNotEmpty()) {
+                        idFoodTable = allFoodTables!!.size
+                    }
+
+                    val food = allFoods!![idFood]
+                    val foodTable = FoodTable(idFoodTable,food.name,food.type,food.money,food.isNewFood,food.image,food.material,food.sale,food.rate,1,food.descrip,food.userId)
+                    initFoods.add(foodTable)
+
+                    foodTables.add(foodTable)
                 }
             }
             //set lại tiền
@@ -52,17 +59,53 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             val moneyFood = allFoods!![id].money.toString().toInt()
             txtSumMoney.text = (money + moneyFood).toString()
 
-            initListFood(foods)
+            initListFood(foodTables)
             rdbTable?.tableDAO()!!.delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable,table?.name,table?.member!!,true,table?.listFood, table?.iduser!!))
-        }
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood,table?.listCount, table?.iduser!!))
+        } else if (check == "delete") {
+            Toast.makeText(this, "Hủy món ăn $id", Toast.LENGTH_LONG).show()
+            val listFood = table!!.listFood.split(",")
 
-        else if (check == "delete"){
-            Toast.makeText(this, "Hủy món ăn $id",Toast.LENGTH_LONG).show()
-        }else if (check == "down"){
-            Toast.makeText(this, "Thêm món ăn $id",Toast.LENGTH_LONG).show()
-        }else if (check == "plus"){
-            Toast.makeText(this, "Trừ món ăn $id",Toast.LENGTH_LONG).show()
+            val foodTables: MutableList<FoodTable> = mutableListOf<FoodTable>()
+            for (i in 0 until listFood.size) {
+                val idFood = listFood[i].toInt()
+                var idFoodTable = 0
+                if (allFoodTables!!.isNotEmpty()) {
+                    idFoodTable = allFoodTables!!.size
+                }
+
+                val food = allFoods!![idFood]
+                val foodTable = FoodTable(idFoodTable,food.name,food.type,food.money,food.isNewFood,food.image,food.material,food.sale,food.rate,1,food.descrip,food.userId)
+                initFoods.add(foodTable)
+
+                foodTables.add(foodTable)
+            }
+
+            val list = ""
+            for (i in 0 until listFood.size) {
+                if (id == listFood[i].toInt()) {
+                    foodTables.removeAt(i)
+                } else {
+                    if (list != "") {
+                        table!!.listFood = list + "," + allFoods!![id].id.toString()
+                    } else {
+                        table!!.listFood = allFoods!![id].id.toString()
+                    }
+                }
+            }
+            //set lại tiền
+            val money = txtSumMoney.text.toString().toInt()
+            val moneyFood = allFoods!![id].money.toString().toInt()
+            txtSumMoney.text = (money - moneyFood).toString()
+
+            initListFood(foodTables)
+            rdbTable?.tableDAO()!!.delete(idTable)
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood,table?.listCount, table?.iduser!!))
+
+        } else if (check == "down") {
+            Toast.makeText(this, "Thêm món ăn $id", Toast.LENGTH_LONG).show()
+        } else if (check == "plus") {
+            Toast.makeText(this, "Trừ món ăn $id", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -71,19 +114,18 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             ctAddFood.visibility = View.VISIBLE
             checkVisibale = true
         } else if (v?.id == R.id.btnThanhtoan) {
-            val calendar : Calendar = Calendar.getInstance();
-            val time = calendar.get(Calendar.HOUR).toString()+":"+calendar.get(Calendar.MINUTE).toString()
+            val calendar: Calendar = Calendar.getInstance();
+            val time = calendar.get(Calendar.HOUR).toString() + ":" + calendar.get(Calendar.MINUTE).toString()
             var id = 0
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
-            rdbTable!!.reportDAO().insertAll(Report(id, "Report$id",idTable,table!!.listFood,txtSumMoney.text.toString(),time,calendar.get(Calendar.DATE).toString()))
-
+            rdbTable!!.reportDAO().insertAll(Report(id, "Report$id", idTable, table!!.listFood,table!!.listCount, txtSumMoney.text.toString(), time, calendar.get(Calendar.DATE).toString()))
             rdbTable!!.tableDAO().delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable,table!!.name,table!!.member,false,"",table!!.iduser))
-            startActivity(Intent(this,ReportActivity::class.java))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, false, "","", table!!.iduser))
+            startActivity(Intent(this, ReportActivity::class.java))
             finish()
-        }else if (v?.id == R.id.btnBack){
+        } else if (v?.id == R.id.btnBack) {
             finish()
         }
     }
@@ -93,7 +135,10 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
     private var reports: List<Report>? = null
     private var tables: List<TableDinner>? = null
     private var allFoods: List<Food>? = null
-    private var foods: MutableList<Food> = mutableListOf<Food>()
+    private var allFoodTables: List<FoodTable>? = null
+
+
+    private var initFoods: MutableList<FoodTable> = mutableListOf<FoodTable>()
     private var listFood: List<String>? = null
     private var table: TableDinner? = null
     private var adapterFoodTable: AdapterFoodTable? = null
@@ -111,20 +156,28 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             reports = rdbTable!!.reportDAO().allReport
             tables = rdbTable!!.tableDAO().allTable
             allFoods = rdbTable!!.foodDAO().allFood
+            allFoodTables = rdbTable!!.foodTableDAO().allFood
         } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
 
         idTable = intent.getIntExtra("tableId", 0)
         table = tables!![idTable]
-        if (table!!.listFood.toString().trim()!="") {
+        if (table!!.listFood.toString().trim() != "") {
             listFood = table!!.listFood.split(",")
             if (listFood!!.isNotEmpty()) {
                 for (i in 0 until listFood!!.size) {
                     var idFood = listFood!![i].toInt()
                     var food: Food
+                    var foodTable: FoodTable
+
+                    var id = 0
+                    if (allFoodTables!!.isNotEmpty()) {
+                        id = allFoodTables!!.size
+                    }
                     food = allFoods!![idFood]
-                    foods.add(food)
+                    foodTable = FoodTable(id,food.name,food.type,food.money,food.isNewFood,food.image,food.material,food.sale,food.rate,1,food.descrip,food.userId)
+                    initFoods.add(foodTable)
 
                     val money = txtSumMoney.text.toString().toInt()
                     val moneyFood = food.money.toString().toInt()
@@ -134,7 +187,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         }
         txtTable.text = table!!.name.toString()
 //
-        initListFood(foods)
+        initListFood(initFoods)
 
 
         adapterFood = AdapterFood(this, allFoods, this)
@@ -144,7 +197,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         rcAddFood.adapter = adapterFood
     }
 
-    private fun initListFood( foods: MutableList<Food>) {
+    private fun initListFood(foods: MutableList<FoodTable>) {
         adapterFoodTable = AdapterFoodTable(this, foods, this)
         val manager = LinearLayoutManager(this)
         manager.orientation = LinearLayout.VERTICAL
@@ -154,11 +207,11 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if (checkVisibale){
+        if (checkVisibale) {
             ctAddFood.visibility = View.GONE
             checkVisibale = false
-        }else{
-           finish()
+        } else {
+            finish()
         }
     }
 

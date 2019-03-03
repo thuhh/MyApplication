@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,22 +18,21 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
-import com.example.admin.myapplication.controller.interfaces.IOnClick;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
-import com.example.admin.myapplication.model.object.Food;
+import com.example.admin.myapplication.model.object.FoodTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.Viewholor> {
     private ItemTableClick iClick;
-    private List<Food> list;
-    private List<Food> filter;
-    private List<Food> items;
+    private List<FoodTable> list;
+    private List<FoodTable> filter;
+    private List<FoodTable> items;
     private Context context;
     int count;
 
-    public AdapterFoodTable(ItemTableClick iClick, List<Food> list, Context context) {
+    public AdapterFoodTable(ItemTableClick iClick, List<FoodTable> list, Context context) {
         this.iClick = iClick;
         this.list = list;
         this.items = list;
@@ -54,6 +52,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
     public void onBindViewHolder(@NonNull final Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
         holder.txtMoney.setText(list.get(position).getMoney());
+        holder.txtCount.setText(String.valueOf(list.get(position).getCount()));
         if (list.get(position).isNewFood()) {
             holder.imgNew.setVisibility(View.VISIBLE);
         } else {
@@ -158,12 +157,12 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<Food> results = new ArrayList<>();
+                final List<FoodTable> results = new ArrayList<>();
                 if (filter == null)
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final Food g : filter) {
+                        for (final FoodTable g : filter) {
                             if (g.getName().toLowerCase().contains(constraint.toString()) ||
                                     g.getType().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);
@@ -178,7 +177,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                items = (List<Food>) results.values;
+                items = (List<FoodTable>) results.values;
                 notifyDataSetChanged();
             }
         };
