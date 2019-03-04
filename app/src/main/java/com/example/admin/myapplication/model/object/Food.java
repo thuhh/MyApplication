@@ -27,12 +27,14 @@ public class Food {
     private String sale;
     @ColumnInfo(name = "rate")
     private int rate;
+    @ColumnInfo(name = "count")
+    private int count;
     @ColumnInfo(name = "descrip")
     private String descrip;
     @ColumnInfo(name = "userid")
     private int userId;
 
-    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image, String material, String sale, int rate, String descrip, int userId) {
+    public Food(@NonNull int id, String name, String type, String money, boolean newFood, String image, String material, String sale, int rate, int count, String descrip, int userId) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -42,6 +44,7 @@ public class Food {
         this.material = material;
         this.sale = sale;
         this.rate = rate;
+        this.count = count;
         this.descrip = descrip;
         this.userId = userId;
     }
@@ -133,5 +136,31 @@ public class Food {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", money='" + money + '\'' +
+                ", newFood=" + newFood +
+                ", image='" + image + '\'' +
+                ", material='" + material + '\'' +
+                ", sale='" + sale + '\'' +
+                ", rate=" + rate +
+                ", count=" + count +
+                ", descrip='" + descrip + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }

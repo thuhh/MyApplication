@@ -40,11 +40,11 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
                 id = MyPreferenceHelper.getInt(MyPreferenceHelper.clickItem,context)
                 rdbFood!!.foodDAO().delete(id)
                 rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,0,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
                 iClickDialog!!.onclick("edit")
             }else {
                 rdbFood!!.foodDAO().insertAll(Food(id,edtName.text.toString().trim(),edtType.text.toString().trim(),edtMoney.text.toString().trim(),
-                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
+                        true,path,edtMaterial.text.toString().trim(),edtMaterial.text.toString().trim(),5,0,edtDescribe.text.toString(),MyPreferenceHelper.getInt(MyPreferenceHelper.idUser,context)))
                 iClickDialog!!.onclick("save")
             }
             resetData()

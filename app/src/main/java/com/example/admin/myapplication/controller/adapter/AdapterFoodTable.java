@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
+import com.example.admin.myapplication.model.object.Food;
 import com.example.admin.myapplication.model.object.FoodTable;
 
 import java.util.ArrayList;
@@ -26,13 +27,13 @@ import java.util.List;
 
 public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.Viewholor> {
     private ItemTableClick iClick;
-    private List<FoodTable> list;
-    private List<FoodTable> filter;
-    private List<FoodTable> items;
+    private List<Food> list;
+    private List<Food> filter;
+    private List<Food> items;
     private Context context;
     int count;
 
-    public AdapterFoodTable(ItemTableClick iClick, List<FoodTable> list, Context context) {
+    public AdapterFoodTable(ItemTableClick iClick, List<Food> list, Context context) {
         this.iClick = iClick;
         this.list = list;
         this.items = list;
@@ -157,12 +158,12 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults oReturn = new FilterResults();
-                final List<FoodTable> results = new ArrayList<>();
+                final List<Food> results = new ArrayList<>();
                 if (filter == null)
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final FoodTable g : filter) {
+                        for (final Food g : filter) {
                             if (g.getName().toLowerCase().contains(constraint.toString()) ||
                                     g.getType().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);
@@ -177,7 +178,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             @SuppressWarnings("unchecked")
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                items = (List<FoodTable>) results.values;
+                items = (List<Food>) results.values;
                 notifyDataSetChanged();
             }
         };

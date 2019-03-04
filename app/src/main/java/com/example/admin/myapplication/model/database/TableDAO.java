@@ -29,4 +29,6 @@ public interface TableDAO {
     @Query("UPDATE tbtable SET name=(:name) AND member = (:member) AND status = (:status) AND listFood = :listFood AND iduser = (:iduser) WHERE id=(:id)")
     void update(int id, String name, int member, boolean status,String listFood, int iduser);
 
+    @Query("UPDATE tbtable SET listCount = (:listCount) WHERE id=(:id)")
+    void updateCount(int id, String listCount);
 }
