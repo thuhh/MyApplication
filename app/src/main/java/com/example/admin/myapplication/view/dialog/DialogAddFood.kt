@@ -19,8 +19,6 @@ import com.example.admin.myapplication.controller.util.MessageEvent
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
 
-
-
 class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.imgImage) {
@@ -124,3 +122,4 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         EventBus.getDefault().unregister(this)
     }
 }
+

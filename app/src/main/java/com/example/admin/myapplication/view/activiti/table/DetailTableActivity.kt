@@ -32,7 +32,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         if (check == "click") {
             ctAddFood.visibility = View.GONE
             checkVisibale = false
-            var count = 0;
+            var count = 0
             if (table!!.listFood != "") {
                 val listFood = table!!.listFood.split(",")
                 val listCount = table!!.listCount.split(",")
@@ -53,7 +53,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                             } else {
                                 if (i == k) {
                                     builder.append(listCount!![k].toInt() + 1)
-                                    listCount!![k].toInt() + 1
                                     count = listCount!![k].toInt() + 1
                                 } else {
                                     builder.append(listCount[k])
@@ -66,7 +65,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                         food.count = count
                         initFoods.add(food)
                     } else {
-
                         var food = allFoods!![idFood]
                         food.count = listCount[i].toInt()
                         initFoods.add(food)
@@ -95,51 +93,135 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
 
         } else if (check == "delete") {
-            Toast.makeText(this, "Hủy món ăn $id", Toast.LENGTH_LONG).show()
             var listF = ""
             var listC = ""
+            var money = 0
             if (table!!.listFood != "") {
                 val listFood = table!!.listFood.split(",")
                 val listCount = table!!.listCount.split(",")
-                Log.e("sdsd999", listFood.size.toString() + "//" + listCount.size)
                 var d = 0
                 for (i in 0 until listFood.size) {
                     val idFood = listFood[i].toInt()
                     if (idFood != id) {
                         if (d == 0) {
-                            Log.e("sdsd1", "222")
                             listF = listFood[i].toString()
                             listC = listCount[i].toString()
                             d++
                         } else {
-                            Log.e("sdsdsdsd", "3")
                             listF = listF + "," + listFood[i]
                             listC = listC + "," + listCount[i]
                         }
                         var food = allFoods!![idFood]
                         food.count = listCount[i].toInt()
+                        money += food.money.toInt()
                         initFoods.add(food)
-                        Log.e("sdsdsdsd", listC + "??" + listF + "??" + food.name + "??" + initFoods.size)
                     }
                 }
             }
 
             //set lại tiền
-            val money = txtSumMoney.text.toString().toInt()
-            val moneyFood = allFoods!![id].money.toString().toInt()
-            txtSumMoney.text = (money - moneyFood).toString()
+            txtSumMoney.text = money.toString()
 
             initListFood(initFoods)
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, listF, listC, table?.iduser!!))
             tables = rdbTable!!.tableDAO().allTable
             table = tables!![idTable]
-            Log.e("sdsd999", table!!.listCount.toString() + "//" + table!!.listFood.toString())
 
-        } else if (check == "down") {
-            Toast.makeText(this, "Thêm món ăn $id", Toast.LENGTH_LONG).show()
         } else if (check == "plus") {
+            Toast.makeText(this, "Thêm món ăn $id", Toast.LENGTH_LONG).show()
+            val listFood = table!!.listFood.split(",")
+            val listCount = table!!.listCount.split(",")
+            var count = 0
+            for (i in 0 until listFood.size) {
+                val idFood = listFood[i].toInt()
+                if (idFood == id) {
+                    val builder = StringBuilder()
+                    for (k in 0 until listCount.size) {
+                        if (k < listCount.size - 1) {
+                            if (i == k) {
+                                builder.append(listCount[k].toInt() + 1)
+                                count = listCount[k].toInt() + 1
+                            } else {
+                                builder.append(listCount[k])
+                            }
+                            builder.append(",")
+                        } else {
+                            if (i == k) {
+                                builder.append(listCount[k].toInt() + 1)
+                                count = listCount[k].toInt() + 1
+                            } else {
+                                builder.append(listCount[k])
+                            }
+                        }
+                    }
+                    table!!.listCount = builder.toString()
+                    var food = allFoods!![idFood]
+                    food.count = count
+                    initFoods.add(food)
+                } else {
+                    var food = allFoods!![idFood]
+                    food.count = listCount[i].toInt()
+                    initFoods.add(food)
+                }
+            }
+
+            initListFood(initFoods)
+            //set lại tiền
+            val money = txtSumMoney.text.toString().toInt()
+            val moneyFood = allFoods!![id].money.toString().toInt()
+            txtSumMoney.text = (money + moneyFood).toString()
+            rdbTable?.tableDAO()!!.delete(idTable)
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
+            tables = rdbTable!!.tableDAO().allTable
+            table = tables!![idTable]
+        } else if (check == "down") {
             Toast.makeText(this, "Trừ món ăn $id", Toast.LENGTH_LONG).show()
+            val listFood = table!!.listFood.split(",")
+            val listCount = table!!.listCount.split(",")
+            var count = 0
+            for (i in 0 until listFood.size) {
+                val idFood = listFood[i].toInt()
+                if (idFood == id) {
+                    val builder = StringBuilder()
+                    for (k in 0 until listCount.size) {
+                        if (k < listCount.size - 1) {
+                            if (i == k) {
+                                builder.append(listCount!![k].toInt() - 1)
+                                count = listCount!![k].toInt() - 1
+                            } else {
+                                builder.append(listCount[k])
+                            }
+                            builder.append(",")
+                        } else {
+                            if (i == k) {
+                                builder.append(listCount!![k].toInt() -1)
+                                count = listCount!![k].toInt() - 1
+                            } else {
+                                builder.append(listCount[k])
+                            }
+                        }
+                    }
+                    table!!.listCount = builder.toString()
+                    var food = allFoods!![idFood]
+                    food.count = count
+                    initFoods.add(food)
+                } else {
+                    var food = allFoods!![idFood]
+                    food.count = listCount[i].toInt()
+                    initFoods.add(food)
+                }
+            }
+
+            initListFood(initFoods)
+            //set lại tiền
+            val money = txtSumMoney.text.toString().toInt()
+            val moneyFood = allFoods!![id].money.toString().toInt()
+            txtSumMoney.text = (money - moneyFood).toString()
+            rdbTable?.tableDAO()!!.delete(idTable)
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
+            tables = rdbTable!!.tableDAO().allTable
+            table = tables!![idTable]
         }
     }
 
@@ -205,7 +287,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                     food.count = listCount!![i].toInt()
                     initFoods.add(food)
                     val money = txtSumMoney.text.toString().toInt()
-                    val moneyFood = food.money.toString().toInt()
+                    val moneyFood = food.money.toString().toInt() * listCount!![i].toInt()
                     txtSumMoney.text = (money + moneyFood).toString()
                 }
             }

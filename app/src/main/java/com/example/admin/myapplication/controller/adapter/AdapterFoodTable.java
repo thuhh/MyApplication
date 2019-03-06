@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
     private List<Food> filter;
     private List<Food> items;
     private Context context;
-    int count;
+    int count=0;
 
     public AdapterFoodTable(ItemTableClick iClick, List<Food> list, Context context) {
         this.iClick = iClick;
@@ -54,6 +55,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
         holder.txtName.setText(list.get(position).getName());
         holder.txtMoney.setText(list.get(position).getMoney());
         holder.txtCount.setText(String.valueOf(list.get(position).getCount()));
+        count = list.get(position).getCount();
         if (list.get(position).isNewFood()) {
             holder.imgNew.setVisibility(View.VISIBLE);
         } else {
@@ -95,11 +97,12 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             }
         }
 
-        count = Integer.parseInt(holder.txtCount.getText().toString());
+
+
         holder.btnDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count > 1) {
+                if (list.get(position).getCount() > 1) {
                     count--;
                     holder.txtCount.setText(count+"");
                     iClick.iClick("down",list.get(position).getId());
