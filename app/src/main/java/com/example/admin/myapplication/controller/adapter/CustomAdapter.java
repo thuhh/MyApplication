@@ -23,12 +23,6 @@ public class CustomAdapter extends FragmentPagerAdapter {
                 return arrayList.get(0);
             case 1:
                 return arrayList.get(1);
-            case 2:
-                return arrayList.get(2);
-            case 3:
-                return arrayList.get(3);
-            case 4:
-                return arrayList.get(4);
             default:
                 return arrayList.get(0);
 

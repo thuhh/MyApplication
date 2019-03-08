@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
@@ -295,11 +296,9 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         txtTable.text = table!!.name.toString()
 //
         initListFood(initFoods)
-
-
         adapterFood = AdapterFood(this, allFoods, this)
         val managerFood = GridLayoutManager(this, 1)
-        rcAddFood!!.layoutManager = managerFood
+        rcAddFood!!.layoutManager = managerFood as RecyclerView.LayoutManager?
         rcAddFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
         rcAddFood.adapter = adapterFood
     }
