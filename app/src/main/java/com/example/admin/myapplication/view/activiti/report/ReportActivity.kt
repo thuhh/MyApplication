@@ -24,6 +24,9 @@ import com.example.admin.myapplication.view.fragment.ChartMonth
 import com.example.admin.myapplication.view.fragment.ListReport
 import kotlinx.android.synthetic.main.activity_report.*
 import java.util.*
+import android.view.MotionEvent
+import com.example.admin.myapplication.model.chart.ScrollBar
+
 
 class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener {
     override fun onClick(v: View?) {
@@ -44,16 +47,43 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     var chartMonth: ChartMonth? = null
     var listReport: ListReport? = null
 
+    private var verticalList: MutableList<Float>? = null
+    private var horizontalList: MutableList<String>? = null
+    private var barChart: ScrollBar? = null
+    private var random: Random? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         initListener()
 
-        chartMonth = ChartMonth.newInstance()
-        listReport = ListReport.newInstance()
+//        chartMonth = ChartMonth.newInstance()
+//        listReport = ListReport.newInstance()
+//
+//        var array: List<Fragment?> = listOf(listReport, chartMonth)
+//        viewpager!!.adapter = CustomAdapter(supportFragmentManager, array)
+//        viewpager.offscreenPageLimit = 2
+//        viewpager.currentItem = 2
+//        viewpager.setOnTouchListener({ v, event -> true })
 
-        var array: List<Fragment?> = listOf(listReport, chartMonth)
-        viewpager!!.adapter = CustomAdapter(supportFragmentManager, array)
+        barChart = findViewById(R.id.chartMonth)
+
+        verticalList = ArrayList<Float>()
+        horizontalList = ArrayList<String>()
+
+
+        for (i in 0..30) {
+            horizontalList!!.add("" + i)
+        }
+
+        random = Random()
+        while (verticalList!!.size < 31) {
+            val randomInt = random!!.nextInt(1000)
+            verticalList!!.add(randomInt.toFloat())
+        }
+
+        barChart!!.setHorizontalList(horizontalList)
+        barChart!!.setVerticalList(verticalList)
     }
 
     private fun initListener() {

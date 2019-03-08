@@ -1,20 +1,12 @@
 package com.example.admin.myapplication.view.fragment;
 
-
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.SweepGradient;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.model.chart.ScrollBar;
@@ -94,12 +86,12 @@ public class ChartMonth extends Fragment {
         horizontalList = new ArrayList<>();
 
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 31; i++) {
             horizontalList.add("" + i);
         }
 
         random = new Random();
-        while (verticalList.size() < 6) {
+        while (verticalList.size() < 31) {
             int randomInt = random.nextInt(1000);
             verticalList.add((float) randomInt);
         }

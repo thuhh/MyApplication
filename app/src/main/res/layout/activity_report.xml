@@ -57,4 +57,9 @@
         android:layout_height="0dp">
 
     </android.support.v4.view.ViewPager>
+    <com.example.admin.myapplication.model.chart.ScrollBar
+        android:id="@+id/chartMonth"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_350sdp" />
 </android.support.constraint.ConstraintLayout>
