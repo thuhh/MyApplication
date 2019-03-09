@@ -32,11 +32,7 @@ class ListReport : Fragment(), View.OnClickListener, ItemTableClick {
 
     }
 
-    private var rdbTable : RDBApp? =null
-    private var reports: List<Report> ? =null
-    private var adapterReport: AdapterReport? = null
 
-    var rcReport: RecyclerView ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,15 +48,7 @@ class ListReport : Fragment(), View.OnClickListener, ItemTableClick {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list_report, container, false)
-        try {
-            rdbTable = RDBApp.getAppDatabase(context)
-            reports = rdbTable!!.reportDAO().allReport
 
-        }catch (e: IllegalStateException){
-            e.printStackTrace()
-        }
-        rcReport = view.findViewById(R.id.rcReport)
-        initListItem()
         return view
     }
 
@@ -68,26 +56,9 @@ class ListReport : Fragment(), View.OnClickListener, ItemTableClick {
         super.onDestroyView()
     }
 
-    private fun search(){
-        edtSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                adapterReport!!.filter.filter(charSequence)
-            }
-            override fun afterTextChanged(editable: Editable) {
 
-            }
-        })
-    }
 
-    private fun initListItem() {
-        Collections.reverse(reports)
-        adapterReport = AdapterReport(this, reports, context)
-        val manager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        rcReport!!.layoutManager = manager
-        rcReport!!.adapter = adapterReport
-    }
 
     companion object {
 
