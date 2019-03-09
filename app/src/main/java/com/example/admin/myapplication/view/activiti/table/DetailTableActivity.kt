@@ -237,7 +237,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
-            rdbTable!!.reportDAO().insertAll(Report(id, "Report$id", idTable, table!!.listFood, table!!.listCount, txtSumMoney.text.toString(), time, calendar.get(Calendar.DATE).toString()))
+            rdbTable!!.reportDAO().insertAll(Report(id, "Report$id", idTable, table!!.listFood, table!!.listCount, txtSumMoney.text.toString(), time, calendar.get(Calendar.DAY_OF_MONTH).toString(),calendar.get(Calendar.MONTH).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, false, "", "", table!!.iduser))
             startActivity(Intent(this, ReportActivity::class.java))

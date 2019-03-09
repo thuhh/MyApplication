@@ -34,9 +34,9 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         if (v?.id == R.id.btnList) {
             chartMonth.visibility = View.GONE
             btnList.visibility = View.GONE
+            lnDate.visibility = View.GONE
             btnChart.visibility = View.VISIBLE
             btnSearch.visibility = View.VISIBLE
-            lnSearch.visibility = View.VISIBLE
             rcReport.visibility = View.VISIBLE
         } else if (v?.id == R.id.btnBack) {
             startActivity(Intent(this, LoginActivity::class.java).putExtra("menu", 1))
@@ -47,10 +47,17 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         }else if (v?.id == R.id.btnChart) {
             chartMonth.visibility = View.VISIBLE
             btnList.visibility = View.VISIBLE
+            lnDate.visibility = View.VISIBLE
             btnChart.visibility = View.GONE
             btnSearch.visibility = View.GONE
             lnSearch.visibility = View.GONE
             rcReport.visibility = View.GONE
+        }
+        else if (v?.id == R.id.btnNext) {
+
+        }
+        else if (v?.id == R.id.btnPre) {
+
         }
     }
 
@@ -93,7 +100,6 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
             horizontalList!!.add("" + i)
             var k = 0f
             for (j in 0 until reports!!.size) {
-                Log.e("sdsdsd", reports!![j].date + "//" + i)
                 if (reports!![j].date == i.toString()) {
                     k += (reports!![j].money).toFloat()
                 }
@@ -118,6 +124,8 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         btnList.setOnClickListener(this)
         btnBack.setOnClickListener(this)
         btnChart.setOnClickListener(this)
+        btnPre.setOnClickListener(this)
+        btnNext.setOnClickListener(this)
     }
 
     private fun initListItem() {
@@ -129,6 +137,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     }
 
     private fun search() {
+        lnSearch.visibility = View.VISIBLE
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 

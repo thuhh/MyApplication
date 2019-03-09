@@ -25,8 +25,12 @@ public class Report {
     private String time;
     @ColumnInfo(name = "date")
     private String date;
+    @ColumnInfo(name = "month")
+    private String month;
+    @ColumnInfo(name = "year")
+    private String year;
 
-    public Report(@NonNull int id, String name, int idTAble, String listFood, String listCount, String money, String time, String date) {
+    public Report(@NonNull int id, String name, int idTAble, String listFood, String listCount, String money, String time, String date, String month, String year) {
         this.id = id;
         this.name = name;
         this.idTAble = idTAble;
@@ -35,6 +39,8 @@ public class Report {
         this.money = money;
         this.time = time;
         this.date = date;
+        this.month = month;
+        this.year = year;
     }
 
     @NonNull
@@ -100,5 +106,21 @@ public class Report {
 
     public void setListCount(String listCount) {
         this.listCount = listCount;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }
