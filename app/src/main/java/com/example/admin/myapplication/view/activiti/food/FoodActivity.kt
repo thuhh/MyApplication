@@ -55,7 +55,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                adapterFood!!.filter.filter(charSequence)
+                myAdapter!!.filter.filter(charSequence)
 
             }
 
@@ -68,6 +68,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
     private var adapterFood: AdapterFood? = null
+    var myAdapter: MyAdapter ?= null
     private var dialogAddFood : DialogAddFood ?= null
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,10 +101,11 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
 
         val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rvFood!!.layoutManager = manager
-        rvFood.adapter = adapterFood
+
+//        rvFood.adapter = adapterFood
 
         //test
-        var myAdapter = MyAdapter(R.layout.item_food_swipemenu, foods)
+        myAdapter = MyAdapter(R.layout.item_food_swipemenu, foods,this,this)
         rvFood.adapter = myAdapter
     }
 
