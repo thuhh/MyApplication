@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
+import com.example.admin.myapplication.controller.adapter.MyAdapter
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
@@ -96,9 +97,14 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     private fun initList() {
         Collections.reverse(foods)
         adapterFood = AdapterFood(this@FoodActivity, foods,this)
+
         val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rvFood!!.layoutManager = manager
         rvFood.adapter = adapterFood
+
+        //test
+        var myAdapter = MyAdapter(R.layout.item_food_swipemenu, foods)
+        rvFood.adapter = myAdapter
     }
 
     private fun initListener() {
