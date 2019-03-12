@@ -63,15 +63,15 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
         else if (v?.id == R.id.btnCancleData) {
             //reset data
             data = false
-            lnresetData.visibility = View.VISIBLE
-            imgDownData.setImageResource(R.drawable.ic_up)
+            lnresetData.visibility = View.GONE
+            imgDownData.setImageResource(R.drawable.ic_down)
 
         }
         else if (v?.id == R.id.btnCancle) {
             //reset data
             pass = false
-            lnresetData.visibility = View.VISIBLE
-            imgDownData.setImageResource(R.drawable.ic_up)
+            lnReset.visibility = View.GONE
+            imgDownPass.setImageResource(R.drawable.ic_down)
 
         }
         else if (v?.id == R.id.btnSave) {
