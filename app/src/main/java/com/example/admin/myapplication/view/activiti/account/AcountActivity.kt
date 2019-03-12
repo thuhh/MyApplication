@@ -56,7 +56,7 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
         else if (v?.id == R.id.btnSaveData) {
             //reset data
             data = false
-            lnresetData.visibility = View.VISIBLE
+            lnresetData.visibility = View.GONE
             imgDownData.setImageResource(R.drawable.ic_up)
 
         }
@@ -75,6 +75,7 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
 
         }
         else if (v?.id == R.id.btnSave) {
+            imgDownPass.setImageResource(R.drawable.ic_down)
             pass = false
             newPass = edtNewPass.text.toString().trim()
             configPass = edtConfig.text.toString().trim()
