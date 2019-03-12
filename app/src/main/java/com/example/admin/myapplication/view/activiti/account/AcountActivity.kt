@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_acount.*
 
 
 class AcountActivity : AppCompatActivity(), View.OnClickListener {
+
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnBack) {
             onBackPressed()
@@ -59,6 +60,9 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
             lnresetData.visibility = View.GONE
             imgDownData.setImageResource(R.drawable.ic_up)
 
+            if (radMaterial.isChecked){
+                rdbApp!!.materialDAO().nukeTable()
+            }
         }
         else if (v?.id == R.id.btnCancleData) {
             //reset data
@@ -105,6 +109,46 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
+        }else if (v?.id == R.id.radAll){
+            radFood.isChecked = true
+            radMaterial.isChecked = true
+            radTable.isChecked = true
+            radReport.isChecked = true
+
+            if (!radAll.isChecked){
+                radFood.isChecked = false
+                radMaterial.isChecked = false
+                radTable.isChecked = false
+                radReport.isChecked = false
+            }
+        }else if (v?.id == R.id.radFood){
+            if (!radFood.isChecked){
+                radAll.isChecked = false
+            }
+            if (radFood.isChecked && radMaterial.isChecked && radReport.isChecked && radTable.isChecked )
+                radAll.isChecked = true
+        }else if (v?.id == R.id.radMaterial){
+
+            if (!radMaterial.isChecked){
+                radAll.isChecked = false
+            }
+
+            if (radFood.isChecked && radMaterial.isChecked && radReport.isChecked && radTable.isChecked )
+                radAll.isChecked = true
+        }else if (v?.id == R.id.radTable){
+
+            if (!radTable.isChecked){
+                radAll.isChecked = false
+            }
+            if (radFood.isChecked && radMaterial.isChecked && radReport.isChecked && radTable.isChecked )
+                radAll.isChecked = true
+        }else if (v?.id == R.id.radReport){
+
+            if (!radReport.isChecked){
+                radAll.isChecked = false
+            }
+            if (radFood.isChecked && radMaterial.isChecked && radReport.isChecked && radTable.isChecked )
+                radAll.isChecked = true
         }
     }
 
@@ -139,5 +183,10 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
         btnCancle.setOnClickListener(this)
         btnSaveData.setOnClickListener(this)
         btnCancleData.setOnClickListener(this)
+        radAll.setOnClickListener(this)
+        radFood.setOnClickListener(this)
+        radMaterial.setOnClickListener(this)
+        radReport.setOnClickListener(this)
+        radTable.setOnClickListener(this)
     }
 }

@@ -258,13 +258,14 @@
 
             </RelativeLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginLeft="@dimen/_45sdp"
                 android:id="@+id/lnresetData"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/radAll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -272,7 +273,7 @@
                     android:text="@string/allData"
                     android:textColor="#d7ffffff"
                     android:textSize="@dimen/_14sdp" />
-                <RadioButton
+                <CheckBox
                     android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/radTable"
                     android:text="@string/resetTable"
@@ -281,7 +282,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <RadioButton
+                <CheckBox
                     android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/radFood"
                     android:text="@string/resetFood"
@@ -290,7 +291,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <RadioButton
+                <CheckBox
                     android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/radMaterial"
                     android:text="@string/resetMaterial"
@@ -299,7 +300,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <RadioButton
+                <CheckBox
                     android:layout_marginTop="@dimen/_2sdp"
                     android:id="@+id/radReport"
                     android:text="@string/resetReport"

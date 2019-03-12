@@ -8,8 +8,6 @@ import com.example.admin.myapplication.model.object.Material;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
-
 @Dao
 public interface MaterialDAO {
 
@@ -25,4 +23,6 @@ public interface MaterialDAO {
     @Query("DELETE FROM tbmaterial WHERE id=(:id)")
     void delete(String id);// xoas theo id
 
+    @Query("DELETE FROM tbmaterial")
+    public void nukeTable();
 }
