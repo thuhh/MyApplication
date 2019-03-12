@@ -92,6 +92,7 @@
 
             </RelativeLayout>
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="vertical"
                 android:id="@+id/lnReset"
@@ -184,15 +185,31 @@
                         android:hint="Xác nhận lại mật khẩu"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
-                <Button
-                    android:layout_gravity="center"
-                    android:id="@+id/btnSave"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_20sdp"
-                    android:background="@drawable/ct_button_save"
-                    android:text="Ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_30sdp" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/btnSave"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:background="@drawable/ct_button_save"
+                        android:text="Ok"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp" />
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/btnCancle"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:background="@drawable/ct_button_cancle"
+                        android:text="Cancle"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp" />
+                </LinearLayout>
+
             </LinearLayout>
             <RelativeLayout
                 android:background="@drawable/ct_share"
@@ -233,7 +250,7 @@
                     <ImageView
                         android:padding="@dimen/_10sdp"
                         android:background="@drawable/background_button_back"
-                        android:id="@+id/imgDownMusic"
+                        android:id="@+id/imgDownData"
                         android:src="@drawable/ic_down"
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp" />
@@ -291,6 +308,31 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/btnSaveData"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:background="@drawable/ct_button_save"
+                        android:text="Ok"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp" />
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/btnCancleData"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:background="@drawable/ct_button_cancle"
+                        android:text="Cancle"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp" />
+                </LinearLayout>
             </LinearLayout>
             <RelativeLayout
                 android:background="@drawable/ct_share"

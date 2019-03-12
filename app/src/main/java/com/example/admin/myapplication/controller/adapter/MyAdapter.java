@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -48,6 +47,7 @@ public class MyAdapter extends BaseQuickAdapter<Food, BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "delete", Toast.LENGTH_SHORT).show();
+                itemCLick.iClick("delete",item.getId());
                 easySwipeMenuLayout.resetStatus();
             }
         });
@@ -55,6 +55,7 @@ public class MyAdapter extends BaseQuickAdapter<Food, BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "edit", Toast.LENGTH_SHORT).show();
+                itemCLick.iClick("edit",item.getId());
                 easySwipeMenuLayout.resetStatus();
             }
         });
@@ -62,6 +63,7 @@ public class MyAdapter extends BaseQuickAdapter<Food, BaseViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "like", Toast.LENGTH_SHORT).show();
+                itemCLick.iClick("like",item.getId());
                 easySwipeMenuLayout.resetStatus();
             }
         });

@@ -1,32 +1,22 @@
 package com.example.admin.myapplication.view.activiti.report
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.Toast
 import com.example.admin.myapplication.R
-import com.example.admin.myapplication.R.id.btnSearch
 import com.example.admin.myapplication.controller.adapter.AdapterReport
-import com.example.admin.myapplication.controller.adapter.CustomAdapter
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
-import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Report
+import com.example.admin.myapplication.model.chart.ScrollBar
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
-import com.example.admin.myapplication.view.fragment.ChartMonth
-import com.example.admin.myapplication.view.fragment.ListReport
 import kotlinx.android.synthetic.main.activity_report.*
 import java.util.*
-import android.view.MotionEvent
-import com.example.admin.myapplication.model.chart.ScrollBar
 
 
 class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener {
@@ -41,10 +31,9 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         } else if (v?.id == R.id.btnBack) {
             startActivity(Intent(this, LoginActivity::class.java).putExtra("menu", 1))
             finish()
-        }
-        else if (v?.id == R.id.btnSearch) {
-           search()
-        }else if (v?.id == R.id.btnChart) {
+        } else if (v?.id == R.id.btnSearch) {
+            search()
+        } else if (v?.id == R.id.btnChart) {
             chartMonth.visibility = View.VISIBLE
             btnList.visibility = View.VISIBLE
             lnDate.visibility = View.VISIBLE
@@ -52,13 +41,59 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
             btnSearch.visibility = View.GONE
             lnSearch.visibility = View.GONE
             rcReport.visibility = View.GONE
-        }
-        else if (v?.id == R.id.btnNext) {
+        } else if (v?.id == R.id.btnNext) {
+            month++
+            if (month == 13) {
+                year++
+                month = 1
+            }
+            getData(month,year)
 
-        }
-        else if (v?.id == R.id.btnPre) {
+        } else if (v?.id == R.id.btnPre) {
 
+            month--
+            if (month == 0) {
+                year--
+                month = 12
+            }
+            getData(month,year)
+
+            txtMonth.text = month.toString() + "/" + year.toString()
         }
+    }
+
+    private fun getData(month: Int, year: Int) {
+
+        txtMonth.text = month.toString() + "/" + year.toString()
+        verticalList = ArrayList<Float>()
+        horizontalList = ArrayList<String>()
+
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+            max = 31
+        } else if (month == 2) {
+            if (year % 4000 == 0) {
+                max = 29
+            } else {
+                max = 28
+            }
+        }else{
+            max = 30
+        }
+
+        for (i in 1..max) {
+            horizontalList!!.add("" + i)
+            var k = 0f
+            for (j in 0 until reports!!.size) {
+                if (reports!![j].date == i.toString() && reports!![j].month == month.toString() && reports!![j].year == year.toString())  {
+                    k += (reports!![j].money).toFloat()
+                }
+            }
+            verticalList!!.add(k)
+        }
+
+        barChart!!.setHorizontalList(horizontalList)
+        barChart!!.setVerticalList(verticalList)
+
     }
 
     override fun iClick(check: String?, id: Int) {
@@ -75,11 +110,14 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     private var adapterReport: AdapterReport? = null
 
     var calendar: Calendar? = null
-
+    var month = 4
+    var year = 2019
+    var max = 30
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
-        calendar = Calendar.getInstance()
+
+
         try {
             rdbTable = RDBApp.getAppDatabase(this)
             reports = rdbTable!!.reportDAO().allReport
@@ -89,35 +127,13 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         }
         initListItem()
         initListener()
-
-
         barChart = findViewById(R.id.chartMonth)
 
-        verticalList = ArrayList<Float>()
-        horizontalList = ArrayList<String>()
-
-        for (i in 1..31) {
-            horizontalList!!.add("" + i)
-            var k = 0f
-            for (j in 0 until reports!!.size) {
-                if (reports!![j].date == i.toString()) {
-                    k += (reports!![j].money).toFloat()
-                }
-            }
-            verticalList!!.add(k)
-        }
-
-
-        random = Random()
-        while (verticalList!!.size < 31) {
-            val randomInt = random!!.nextInt(1000)
-            verticalList!!.add(randomInt.toFloat())
-
-        }
-
-
-        barChart!!.setHorizontalList(horizontalList)
-        barChart!!.setVerticalList(verticalList)
+        //get data
+        calendar = Calendar.getInstance()
+        month = calendar!!.get(Calendar.MONTH)+1
+        year = calendar!!.get(Calendar.YEAR)
+        getData(month,year)
     }
 
     private fun initListener() {

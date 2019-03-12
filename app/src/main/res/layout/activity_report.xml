@@ -27,7 +27,7 @@
         <TextView
             android:fontFamily="@font/raleway_regular"
             android:gravity="center"
-            android:layout_toRightOf="@+id/btnKhac"
+            android:layout_toRightOf="@+id/btnBack"
             android:textSize="@dimen/_16sdp"
             android:textColor="#ffffff"
             android:text="@string/reportManager"

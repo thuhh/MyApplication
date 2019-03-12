@@ -7,7 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.StrikethroughSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
 import com.example.admin.myapplication.model.object.Food;
-import com.example.admin.myapplication.model.object.FoodTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,18 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
     @Override
     public void onBindViewHolder(@NonNull final Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMoney.setText(list.get(position).getMoney());
+        int old = Integer.parseInt(list.get(position).getMoney());
+        int sale = Integer.parseInt(list.get(position).getSale());
+        int money = old - old*sale/100;
+        holder.txtMoney.setText(money+"K");
+        //custom gacjh ngang
+        String text = old+"K";
+        SpannableString ss = new SpannableString(text);
+        StrikethroughSpan strikethroughSpan = new StrikethroughSpan();
+        ss.setSpan(strikethroughSpan,0,ss.length()-1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        holder.txtMoneyold.setText(ss);
+
         holder.txtCount.setText(String.valueOf(list.get(position).getCount()));
         count = list.get(position).getCount();
         if (list.get(position).isNewFood()) {
@@ -137,6 +149,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
         ImageView imgFood, imgNew, imgCancel;
         TextView txtName;
         TextView txtMoney;
+        TextView txtMoneyold;
         TextView txtCount;
         ConstraintLayout ctFood;
         Button btnDown, btnUp;
@@ -149,6 +162,7 @@ public class AdapterFoodTable extends RecyclerView.Adapter<AdapterFoodTable.View
             txtName = itemView.findViewById(R.id.txtName);
             ctFood = itemView.findViewById(R.id.ctFood);
             txtMoney = itemView.findViewById(R.id.txtMoney);
+            txtMoneyold = itemView.findViewById(R.id.txtMoneyOld);
             txtCount = itemView.findViewById(R.id.txtCount);
             btnDown = itemView.findViewById(R.id.btnDown);
             btnUp = itemView.findViewById(R.id.btnUp);

@@ -3,11 +3,9 @@ package com.example.admin.myapplication.view.activiti;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.CountDownTimer;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -22,12 +20,10 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.admin.myapplication.R;
+import com.example.admin.myapplication.controller.util.MyPreferenceHelper;
 import com.example.admin.myapplication.model.database.RDBApp;
 import com.example.admin.myapplication.model.object.Food;
-import com.example.admin.myapplication.model.object.Material;
-import com.example.admin.myapplication.model.object.TableDinner;
 import com.example.admin.myapplication.model.object.User;
-import com.example.admin.myapplication.controller.util.MyPreferenceHelper;
 import com.example.admin.myapplication.view.activiti.account.AcountActivity;
 import com.example.admin.myapplication.view.activiti.food.FoodActivity;
 import com.example.admin.myapplication.view.activiti.material.MaterialActivity;
@@ -84,20 +80,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     void loadData(int userId){
         if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstData,this)) {
             //add food
-            rdbApp.foodDAO().insertAll(new Food(0, "Bạch tuộc xào lăn", "đồ nhậu", "150", true, "R.drawable.food1", "Bạch tuộc", "15%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(1, "Trứng gà non xào nóng", "đồ nhậu", "150", true, "R.drawable.food2", "Trứng gà non", "25%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(2, "Ếch đồng xào sả ớt", "đồ nhậu", "150", true, "R.drawable.food3", "Ếch đồng", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(3, "Gà rang tẩm bột", "đồ nhậu", "150", true, "R.drawable.food4", "Thịt gà", "35%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(4, "Cá đồng kho tàu", "đồ nhậu", "150", true, "R.drawable.food5", "Cá đồng", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(5, "Chân gà rim mật ong", "đồ nhậu", "150", true, "R.drawable.food6", "Chân gà, mật ong", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(6, "Lòng non luộc tới", "đồ nhậu", "150", true, "R.drawable.food7", "Lòng non của lợn", "25%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(7, "Thịt bò đậu tẻ", "đồ nướng", "150", true, "R.drawable.food8", "Thịt bò, đậu bắp", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(8, "Cá trứng nhúng lẩu", "đồ nhậu", "200", true, "R.drawable.food9", "Cá trứng", "15%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(9, "Vịt quay Vân đình", "đồ nhậu", "150", true, "R.drawable.food10", "Vịt cỏ", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(10, "Bạch tuộc xiên", "đồ nướng", "150", true, "R.drawable.food11", "Bạch tuộc", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(11, "Ngao hấp sả ớt", "đồ nhậu", "150", true, "R.drawable.food12", "Ngao biển", "15%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(12, "Thịt trâu gác bếp", "đồ nhậu", "150", true, "R.drawable.food13", "Thịt trâu", "25%",5,0,"món ăn ngon và bổ dưỡng", userId));
-            rdbApp.foodDAO().insertAll(new Food(13, "Tôm Hùm nướng", "đồ nướng", "150", true, "R.drawable.food14", "Tôm hùm biển", "5%",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(0, "Bạch tuộc xào lăn", "đồ nhậu", "150", true, "R.drawable.food1", "Bạch tuộc", "15",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(1, "Trứng gà non xào nóng", "đồ nhậu", "150", true, "R.drawable.food2", "Trứng gà non", "25",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(2, "Ếch đồng xào sả ớt", "đồ nhậu", "150", true, "R.drawable.food3", "Ếch đồng", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(3, "Gà rang tẩm bột", "đồ nhậu", "150", true, "R.drawable.food4", "Thịt gà", "35",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(4, "Cá đồng kho tàu", "đồ nhậu", "150", true, "R.drawable.food5", "Cá đồng", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(5, "Chân gà rim mật ong", "đồ nhậu", "150", true, "R.drawable.food6", "Chân gà, mật ong", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(6, "Lòng non luộc tới", "đồ nhậu", "150", true, "R.drawable.food7", "Lòng non của lợn", "25",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(7, "Thịt bò đậu tẻ", "đồ nướng", "150", true, "R.drawable.food8", "Thịt bò, đậu bắp", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(8, "Cá trứng nhúng lẩu", "đồ nhậu", "200", true, "R.drawable.food9", "Cá trứng", "15",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(9, "Vịt quay Vân đình", "đồ nhậu", "150", true, "R.drawable.food10", "Vịt cỏ", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(10, "Bạch tuộc xiên", "đồ nướng", "150", true, "R.drawable.food11", "Bạch tuộc", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(11, "Ngao hấp sả ớt", "đồ nhậu", "150", true, "R.drawable.food12", "Ngao biển", "15",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(12, "Thịt trâu gác bếp", "đồ nhậu", "150", true, "R.drawable.food13", "Thịt trâu", "25",5,0,"món ăn ngon và bổ dưỡng", userId));
+            rdbApp.foodDAO().insertAll(new Food(13, "Tôm Hùm nướng", "đồ nướng", "150", true, "R.drawable.food14", "Tôm hùm biển", "5",5,0,"món ăn ngon và bổ dưỡng", userId));
 
             MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstData,true,this);
         }

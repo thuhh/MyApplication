@@ -1,12 +1,11 @@
 package com.example.admin.myapplication.view.activiti.table
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -22,7 +21,6 @@ import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.report.ReportActivity
 import kotlinx.android.synthetic.main.activity_detail_table.*
 import java.util.*
-import android.text.TextUtils
 
 
 class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTableClick {
@@ -88,7 +86,10 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             initListFood(initFoods)
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
-            val moneyFood = allFoods!![id].money.toString().toInt()
+//            val moneyFood = allFoods!![id].money.toString().toInt()
+            val old = allFoods!![id].money.toString().toInt()
+            val sale = allFoods!![id].sale.toString().toInt()
+            val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
@@ -114,7 +115,10 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                         }
                         var food = allFoods!![idFood]
                         food.count = listCount[i].toInt()
-                        money += food.money.toInt()
+                        val old = food.money.toInt()
+                        val sale = food.sale.toInt()
+                        val moneyFood = old - old * sale / 100
+                        money += moneyFood
                         initFoods.add(food)
                     }
                 }
@@ -170,7 +174,10 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             initListFood(initFoods)
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
-            val moneyFood = allFoods!![id].money.toString().toInt()
+//            val moneyFood = allFoods!![id].money.toString().toInt()
+            val old = allFoods!![id].money.toString().toInt()
+            val sale = allFoods!![id].sale.toString().toInt()
+            val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
@@ -217,7 +224,10 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             initListFood(initFoods)
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
-            val moneyFood = allFoods!![id].money.toString().toInt()
+            val old = allFoods!![id].money.toString().toInt()
+            val sale = allFoods!![id].sale.toString().toInt()
+            val moneyFood = old - old * sale / 100
+//            val moneyFood = allFoods!![id].money.toString().toInt()
             txtSumMoney.text = (money - moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
@@ -237,7 +247,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
-            rdbTable!!.reportDAO().insertAll(Report(id, "Report$id", idTable, table!!.listFood, table!!.listCount, txtSumMoney.text.toString(), time, calendar.get(Calendar.DAY_OF_MONTH).toString(),calendar.get(Calendar.MONTH).toString(),calendar.get(Calendar.YEAR).toString()))
+            rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, false, "", "", table!!.iduser))
             startActivity(Intent(this, ReportActivity::class.java))
@@ -288,7 +298,9 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                     food.count = listCount!![i].toInt()
                     initFoods.add(food)
                     val money = txtSumMoney.text.toString().toInt()
-                    val moneyFood = food.money.toString().toInt() * listCount!![i].toInt()
+                    val old = allFoods!![i].money.toString().toInt()
+                    val sale = allFoods!![i].sale.toString().toInt()
+                    val moneyFood = (old - old * sale / 100)* listCount!![i].toInt()
                     txtSumMoney.text = (money + moneyFood).toString()
                 }
             }

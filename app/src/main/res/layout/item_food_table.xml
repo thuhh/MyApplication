@@ -16,15 +16,17 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="match_parent">
-        <ImageView
+        <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+            app:siShape="@drawable/shape_rounded_rectangle"
+            app:siSquare="true"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/_10sdp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_image"
             android:id="@+id/imgFood"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp" />
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -42,16 +44,33 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/_14sdp" />
 
-            <TextView
-                android:id="@+id/txtMoney"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_weight="0.5"
-                android:fontFamily="@font/raleway_medium"
-                android:gravity="center"
-                android:text="200k/đĩa"
-                android:textColor="#ffffff"
-                android:textSize="@dimen/_12sdp" />
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <TextView
+                    android:id="@+id/txtMoneyOld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/raleway_medium"
+                    android:gravity="center"
+                    android:text="200k"
+                    android:textColor="#F80000"
+                    android:textSize="@dimen/_12sdp" />
+                <TextView
+                    android:id="@+id/txtMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:fontFamily="@font/raleway_medium"
+                    android:gravity="center"
+                    android:text="200k"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -69,11 +88,12 @@
         android:layout_height="wrap_content"
         tools:ignore="RtlCompat">
         <Button
+            android:padding="@dimen/_1sdp"
             android:background="@drawable/ic_plus"
             android:layout_gravity="center_horizontal"
             android:id="@+id/btnUp"
-            android:layout_width="@dimen/_16sdp"
-            android:layout_height="@dimen/_16sdp" />
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp" />
 
         <TextView
             android:layout_gravity="center_horizontal"
@@ -101,7 +121,7 @@
         android:layout_width="@dimen/_32sdp"
         android:layout_height="@dimen/_32sdp" />
     <ImageView
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_margin="@dimen/_2sdp"
         android:src="@drawable/ic_cancle"
         android:id="@+id/imgCancel"
         app:layout_constraintTop_toTopOf="parent"

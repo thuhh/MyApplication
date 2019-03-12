@@ -155,7 +155,7 @@
                         android:src="@drawable/ic_pincode" />
 
                     <EditText
-                        android:inputType="textPassword"
+                        android:inputType="numberPassword"
                         android:textSize="@dimen/_12sdp"
                         android:fontFamily="@font/rubik_medium"
                         android:id="@+id/edtPin"

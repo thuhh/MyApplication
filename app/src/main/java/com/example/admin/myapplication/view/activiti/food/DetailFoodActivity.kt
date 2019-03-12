@@ -1,8 +1,7 @@
 package com.example.admin.myapplication.view.activiti.food
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
@@ -15,45 +14,46 @@ import kotlinx.android.synthetic.main.activity_detail_food.*
 
 class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog {
     override fun onclick(check: String?) {
-        if (check=="edit"){
+        if (check == "edit") {
             foods = rdbFood!!.foodDAO().allFood
             initData()
         }
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.btnBack){
+        if (v?.id == R.id.btnBack) {
             finish()
-        }else if (v?.id == R.id.btnEdit){
-            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.checkEdit,true,this)
-            MyPreferenceHelper.setInt(MyPreferenceHelper.clickItem,id,this)
+        } else if (v?.id == R.id.btnEdit) {
+            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.checkEdit, true, this)
+            MyPreferenceHelper.setInt(MyPreferenceHelper.clickItem, id, this)
             dialogAddFood!!.show()
-        }else if (v?.id == R.id.btnDelete){
-
+        } else if (v?.id == R.id.btnDelete) {
+            rdbFood!!.foodDAO().delete(id)
+            finish()
         }
     }
 
-    private var rdbFood : RDBApp? =null
-    private var foods: List<Food> ? =null
+    private var rdbFood: RDBApp? = null
+    private var foods: List<Food>? = null
     private var id = 0
-    private var dialogAddFood : DialogAddFood?= null
+    private var dialogAddFood: DialogAddFood? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_food)
-        if (intent!=null){
-            id = intent.getIntExtra("foodId",0)
+        if (intent != null) {
+            id = intent.getIntExtra("foodId", 0)
         }
         try {
             rdbFood = RDBApp.getAppDatabase(this)
             foods = rdbFood!!.foodDAO().allFood
-        }catch (e: IllegalStateException){
+        } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
 
         dialogAddFood = DialogAddFood(this)
         dialogAddFood!!.setClick(this)
 
-       initData()
+        initData()
 
         btnBack.setOnClickListener(this)
         btnEdit.setOnClickListener(this)
@@ -61,16 +61,15 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDial
     }
 
     private fun initData() {
-        for (i in 0 until foods!!.size){
-            if (foods!![i].id==id){
+        for (i in 0 until foods!!.size) {
+            if (foods!![i].id == id) {
                 txtName.text = foods!![i].name
-                txtType.text =  "-loại: " +foods!![i].type
+                txtType.text = "-loại: " + foods!![i].type
                 txtMaterial.text = "-Nguyên liệu chính: " + foods!![i].material
-                txtMoney.text = foods!![i].money+"K"
+                txtMoney.text = foods!![i].money + "K"
                 txtSale.text = foods!![i].sale
 
                 val image = foods!![i].image
-                Log.e("sdsdsd",image+"//")
                 if (image != null && image !== "") {
                     if (image == "R.drawable.food1") {
                         Glide.with(this).asBitmap().load(R.drawable.food1).into(imgFood)

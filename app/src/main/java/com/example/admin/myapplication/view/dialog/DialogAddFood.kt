@@ -9,15 +9,15 @@ import android.view.Window
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
+import com.example.admin.myapplication.controller.util.MessageEvent
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.iamge.AlbumActivity
 import kotlinx.android.synthetic.main.dialog_add_food.*
 import org.greenrobot.eventbus.EventBus
-import com.example.admin.myapplication.controller.util.MessageEvent
-import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DialogAddFood(internal var context: Context) : Dialog(context, R.style.DialogCustomTheme), View.OnClickListener {
     override fun onClick(v: View?) {
@@ -57,6 +57,7 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         edtMoney.setText("")
         edtMaterial.setText("")
         edtSale.setText("")
+        edtDescribe.setText("")
     }
 
 
@@ -81,6 +82,56 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
         imgImage.setOnClickListener(this)
         btnSave.setOnClickListener(this)
 
+        if (MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.checkEdit,context)){
+            var id = MyPreferenceHelper.getInt(MyPreferenceHelper.clickItem,context)
+            var food = foods!![id]
+            for (i in 0 until foods!!.size){
+                if (foods!![i].id == id)
+                    food == foods!![i]
+            }
+
+            edtName.setText(food.name.toString())
+            edtType.setText(food.type.toString())
+            edtMoney.setText(food.money.toString())
+            edtMaterial.setText(food.material.toString())
+            edtSale.setText(food.sale.toString())
+            edtDescribe.setText(food.descrip.toString())
+
+            path = food.getImage()
+            if (path != null && path !== "") {
+                if (path == "R.drawable.food1") {
+                    Glide.with(context).asBitmap().load(R.drawable.food1).into(imgImage)
+                } else if (path == "R.drawable.food11") {
+                    Glide.with(context).asBitmap().load(R.drawable.food11).into(imgImage)
+                } else if (path == "R.drawable.food2") {
+                    Glide.with(context).asBitmap().load(R.drawable.food2).into(imgImage)
+                } else if (path == "R.drawable.food3") {
+                    Glide.with(context).asBitmap().load(R.drawable.food3).into(imgImage)
+                } else if (path == "R.drawable.food4") {
+                    Glide.with(context).asBitmap().load(R.drawable.food4).into(imgImage)
+                } else if (path == "R.drawable.food5") {
+                    Glide.with(context).asBitmap().load(R.drawable.food5).into(imgImage)
+                } else if (path == "R.drawable.food6") {
+                    Glide.with(context).asBitmap().load(R.drawable.food6).into(imgImage)
+                } else if (path == "R.drawable.food7") {
+                    Glide.with(context).asBitmap().load(R.drawable.food7).into(imgImage)
+                } else if (path == "R.drawable.food8") {
+                    Glide.with(context).asBitmap().load(R.drawable.food8).into(imgImage)
+                } else if (path == "R.drawable.food9") {
+                    Glide.with(context).asBitmap().load(R.drawable.food9).into(imgImage)
+                } else if (path == "R.drawable.food10") {
+                    Glide.with(context).asBitmap().load(R.drawable.food10).into(imgImage)
+                } else if (path == "R.drawable.food12") {
+                    Glide.with(context).asBitmap().load(R.drawable.food12).into(imgImage)
+                } else if (path == "R.drawable.food13") {
+                    Glide.with(context).asBitmap().load(R.drawable.food13).into(imgImage)
+                } else if (path == "R.drawable.food14") {
+                    Glide.with(context).asBitmap().load(R.drawable.food14).into(imgImage)
+                } else {
+                    Glide.with(context).asBitmap().load(path).into(imgImage)
+                }
+            }
+        }
     }
 
     fun setClick(iClickDialog: IClickDialog) {
@@ -90,12 +141,10 @@ class DialogAddFood(internal var context: Context) : Dialog(context, R.style.Dia
     override fun onBackPressed() {
         super.onBackPressed()
         MyPreferenceHelper.setString(context,MyPreferenceHelper.DialogFood,"no")
-        iClickDialog!!.onclick("sub12free")
         dismiss()
     }
 
     private fun loadImage(path: String) {
-//        val path = MyPreferenceHelper.getString(MyPreferenceHelper.SELECT_IMAGE, context)
         if(path!=null && path.length>5) {
             Glide.with(context)
                     .asBitmap()
