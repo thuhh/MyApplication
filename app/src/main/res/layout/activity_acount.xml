@@ -92,7 +92,6 @@
 
             </RelativeLayout>
             <LinearLayout
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="vertical"
                 android:id="@+id/lnReset"
@@ -242,7 +241,6 @@
 
             </RelativeLayout>
             <LinearLayout
-                android:visibility="gone"
                 android:layout_marginLeft="@dimen/_45sdp"
                 android:id="@+id/lnresetData"
                 android:orientation="vertical"

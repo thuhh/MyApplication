@@ -117,23 +117,22 @@
                 </LinearLayout>
                 <FrameLayout
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="24dp"
+                    android:layout_marginRight="16dp"
                     android:layout_alignParentRight="true">
-                    <ImageView
+                    <android.support.v7.widget.SwitchCompat
                         android:padding="@dimen/_10sdp"
                         android:background="@drawable/background_button_back"
-                        android:id="@+id/imgDownMusic"
+                        android:id="@+id/swtMusic"
                         android:src="@drawable/ic_down"
-                        android:layout_width="@dimen/_35sdp"
+                        android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_35sdp" />
                 </FrameLayout>
 
             </RelativeLayout>
-
             <RelativeLayout
                 android:background="@drawable/ct_share"
                 android:id="@+id/rlTheme"
@@ -180,6 +179,32 @@
                 </FrameLayout>
 
             </RelativeLayout>
+            <LinearLayout
+                android:layout_marginLeft="@dimen/_45sdp"
+                android:id="@+id/lnTheme"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:textSize="@dimen/_13sdp"
+                    android:text="  Sang"
+                    android:id="@+id/chkSang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:textSize="@dimen/_13sdp"
+                    android:text="  Toi"
+                    android:id="@+id/chkToi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:textSize="@dimen/_13sdp"
+                    android:text="  Sinh Dong"
+                    android:id="@+id/chkSinhDong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
             <RelativeLayout
                 android:background="@drawable/ct_share"
                 android:id="@+id/rlShare"
@@ -238,7 +263,6 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </RelativeLayout>
-
             <RelativeLayout
                 android:background="@drawable/ct_share"
                 android:id="@+id/rlRate"
