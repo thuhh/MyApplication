@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.6.1'
     implementation 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 }
 repositories {
     mavenCentral()

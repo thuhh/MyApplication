@@ -3,9 +3,11 @@ package com.example.admin.myapplication.view.activiti;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +32,17 @@ import com.example.admin.myapplication.view.activiti.material.MaterialActivity;
 import com.example.admin.myapplication.view.activiti.report.ReportActivity;
 import com.example.admin.myapplication.view.activiti.table.TableActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ConstraintLayout ctBanAn, ctFood, ctMaterial, ctReport, ctUser, ctSetting;
 
-
+    StringBuilder dulieu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +76,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (getIntent().getIntExtra("menu", -1) > -1) {
                 viewFlipper.setDisplayedChild(2);
             }
+        }
+
+        //get du lieu
+        String url = "http://192.168.1.105/sphone/getuser.php";
+        DownloadJSON downloadJSON = new DownloadJSON();
+        downloadJSON.execute(url);
+
+    }
+
+    public class DownloadJSON extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                URL url = new URL("http://192.168.1.105/sphone/getuser.php");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream inputStream = connection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String line="";
+                dulieu = new StringBuilder();
+                while ((line = bufferedReader.readLine()) !=null){
+                    dulieu.append(line);
+                }
+
+                JSONArray jsonarray = null;
+                try {
+                    jsonarray = new JSONArray(dulieu.toString());
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        JSONObject jsonobject = jsonarray.getJSONObject(i);
+                        String name = jsonobject.getString("user_name");
+                        Log.e("sdsdsdsd","name "+i+":" +name);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.e("sdsdsd",dulieu.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return dulieu.toString();
         }
     }
 
