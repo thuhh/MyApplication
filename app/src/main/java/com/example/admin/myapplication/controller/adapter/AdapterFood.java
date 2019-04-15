@@ -16,13 +16,22 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
+import com.example.admin.myapplication.controller.util.MySingleton;
+import com.example.admin.myapplication.controller.util.Utils;
 import com.example.admin.myapplication.model.object.Food;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     private ItemTableClick iOnClickSetColor;
@@ -60,6 +69,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("sdsd","sss"+list.get(position).getId());
                 iOnClickSetColor.iClick("click",list.get(position).getId());
             }
         });

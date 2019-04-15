@@ -40,11 +40,11 @@ public class MySingleton {
     }
 
     public <T>void addTorequestque(Request<T> request){
-        Log.e("sdsd","111");
+        Log.e("sdsd","111"+request.toString());
         requestQueue.add(request);
     }
-//
-//    StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.1.105/sphone/postdata.php", new Response.Listener<String>() {
+
+//    StringRequest stringRequest = new StringRequest(Request.Method.POST, Utils.url + "postdata.php", new Response.Listener<String>() {
 //        @Override
 //        public void onResponse(String response) {
 //
@@ -64,8 +64,9 @@ public class MySingleton {
 //
 //            return params;
 //        }
+//
 //    };
 //
-//        MySingleton.getInstance(this).addTorequestque(stringRequest);
+//  MySingleton.getInstance(this).addTorequestque(stringRequest);
 
 }

@@ -1,6 +1,7 @@
 package com.example.admin.myapplication.view.activiti.report
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -11,11 +12,21 @@ import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterReport
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
+import com.example.admin.myapplication.controller.util.Utils
 import com.example.admin.myapplication.model.`object`.Report
+import com.example.admin.myapplication.model.`object`.Suppliers
 import com.example.admin.myapplication.model.chart.ScrollBar
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.activiti.LoginActivity
 import kotlinx.android.synthetic.main.activity_report.*
+import org.json.JSONArray
+import org.json.JSONException
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.*
 
 
@@ -104,7 +115,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     private var horizontalList: MutableList<String>? = null
     private var barChart: ScrollBar? = null
     private var random: Random? = null
-
+    internal var dulieu: StringBuilder? = null
     private var rdbTable: RDBApp? = null
     private var reports: List<Report>? = null
     private var adapterReport: AdapterReport? = null
@@ -165,5 +176,54 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
 
             }
         })
+    }
+
+    inner class DownloadJSON : AsyncTask<String, Void, String>() {
+
+        override fun doInBackground(vararg strings: String): String {
+            try {
+                val url = URL(Utils.url  + "getReport.php")
+                val connection = url.openConnection() as HttpURLConnection
+                connection.connect()
+
+                val inputStream = connection.inputStream
+                val inputStreamReader = InputStreamReader(inputStream)
+
+                val bufferedReader = BufferedReader(inputStreamReader)
+                dulieu = StringBuilder()
+                val text:List<String> = bufferedReader.readLines()
+                for(line in text){
+                    dulieu!!.append(line)
+                }
+
+                var jsonarray: JSONArray? = null
+                try {
+                    jsonarray = JSONArray(dulieu.toString())
+                    for (i in 0 until jsonarray!!.length()) {
+                        val jsonobject = jsonarray.getJSONObject(i)
+                        val id = jsonobject.getInt("supplier_id")
+                        val price = jsonobject.getInt("report_price")
+                        val member = jsonobject.getInt("report_member")
+                        val table = jsonobject.getInt("report_table")
+                        val listFood = jsonobject.getString("report_list")
+                        val listCount = jsonobject.getString("list_count")
+                        val time = jsonobject.getString("create_at")
+
+                        rdbTable!!.reportDAO().insertAll(Report(id, "table$id",table,listFood,member,listCount, price.toString(),time,time,time,time))
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            } catch (e: MalformedURLException) {
+                e.printStackTrace()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+            return dulieu.toString()
+        }
     }
 }

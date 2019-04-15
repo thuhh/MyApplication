@@ -11,6 +11,9 @@ import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 
 public class Utils {
+
+    public static String url = "http://192.168.1.171/HoHuuThu/";
+
     public static float convertDpToPixel(float dp, Context context) {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();

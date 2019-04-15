@@ -6,14 +6,22 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.android.volley.AuthFailureError
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.StringRequest
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.adapter.AdapterFoodTable
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
+import com.example.admin.myapplication.controller.util.MySingleton
+import com.example.admin.myapplication.controller.util.Utils
 import com.example.admin.myapplication.model.`object`.Food
 import com.example.admin.myapplication.model.`object`.Report
 import com.example.admin.myapplication.model.`object`.TableDinner
@@ -27,7 +35,14 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
     override fun iClick(check: String?, id: Int) {
         tables = rdbTable!!.tableDAO().allTable
         initFoods = mutableListOf<Food>()
-        table = tables!![idTable]
+
+        for (k in 0 until tables!!.size) {
+            if (tables!![k].id == idTable){
+                table = tables!![k]
+            }
+        }
+
+
         if (check == "click") {
             ctAddFood.visibility = View.GONE
             checkVisibale = false
@@ -60,35 +75,59 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                         }
                         d++
                         table!!.listCount = builder.toString()
-                        var food = allFoods!![idFood]
-                        food.count = count
-                        initFoods.add(food)
+                        for (k in 0 until allFoods!!.size) {
+                            if (allFoods!![k].id == idFood){
+                                var food = allFoods!![k]
+                                food.count = count
+                                initFoods.add(food)
+                            }
+                        }
                     } else {
-                        var food = allFoods!![idFood]
-                        food.count = listCount[i].toInt()
-                        initFoods.add(food)
+                        for (k in 0 until allFoods!!.size) {
+                            if (allFoods!![k].id == idFood){
+                                var food = allFoods!![k]
+                                food.count = listCount[i].toInt()
+                                initFoods.add(food)
+                            }
+                        }
+
                     }
                 }
                 if (d == 0) {
-                    table!!.listFood = table!!.listFood + "," + allFoods!![id].id.toString()
+                    table!!.listFood = table!!.listFood + "," + id.toString()
                     table!!.listCount = table!!.listCount + "," + 1
-                    var food = allFoods!![id]
-                    food.count = 1
-                    initFoods.add(food)
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == id){
+                            var food = allFoods!![k]
+                            food.count = 1
+                            initFoods.add(food)
+                        }
+                    }
                 }
             } else {
-                table!!.listFood = allFoods!![id].id.toString()
+                table!!.listFood = id.toString()
                 table!!.listCount = "1"
-                val food = allFoods!![id]
-                initFoods.add(food)
+                for (k in 0 until allFoods!!.size) {
+                    if (allFoods!![k].id == id){
+                        val food = allFoods!![k]
+                        initFoods.add(food)
+                    }
+                }
+
             }
 
             initListFood(initFoods)
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
-//            val moneyFood = allFoods!![id].money.toString().toInt()
-            val old = allFoods!![id].money.toString().toInt()
-            val sale = allFoods!![id].sale.toString().toInt()
+            var old = 0
+            var sale = 0
+            for (k in 0 until allFoods!!.size) {
+                if (allFoods!![k].id == id){
+                    val food = allFoods!![k]
+                    old = food.money.toString().toInt()
+                    sale = food.sale.toString().toInt()
+                }
+            }
             val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
@@ -161,13 +200,22 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                         }
                     }
                     table!!.listCount = builder.toString()
-                    var food = allFoods!![idFood]
-                    food.count = count
-                    initFoods.add(food)
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == idFood){
+                            var food = allFoods!![k]
+                            food.count = count
+                            initFoods.add(food)
+                        }
+                    }
+
                 } else {
-                    var food = allFoods!![idFood]
-                    food.count = listCount[i].toInt()
-                    initFoods.add(food)
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == idFood){
+                            var food = allFoods!![k]
+                            food.count = listCount[i].toInt()
+                            initFoods.add(food)
+                        }
+                    }
                 }
             }
 
@@ -175,8 +223,16 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
 //            val moneyFood = allFoods!![id].money.toString().toInt()
-            val old = allFoods!![id].money.toString().toInt()
-            val sale = allFoods!![id].sale.toString().toInt()
+            var old = 0
+            var sale = 0
+            for (k in 0 until allFoods!!.size) {
+                if (allFoods!![k].id == id){
+                    val food = allFoods!![k]
+                    old = food.money.toString().toInt()
+                    sale = food.sale.toString().toInt()
+                }
+            }
+
             val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
@@ -211,21 +267,37 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                         }
                     }
                     table!!.listCount = builder.toString()
-                    var food = allFoods!![idFood]
-                    food.count = count
-                    initFoods.add(food)
+
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == idFood){
+                            var food = allFoods!![k]
+                            food.count = count
+                            initFoods.add(food)
+                        }
+                    }
                 } else {
-                    var food = allFoods!![idFood]
-                    food.count = listCount[i].toInt()
-                    initFoods.add(food)
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == idFood){
+                            var food = allFoods!![k]
+                            food.count = listCount[i].toInt()
+                            initFoods.add(food)
+                        }
+                    }
                 }
             }
 
             initListFood(initFoods)
             //set lại tiền
             val money = txtSumMoney.text.toString().toInt()
-            val old = allFoods!![id].money.toString().toInt()
-            val sale = allFoods!![id].sale.toString().toInt()
+            var old = 0
+            var sale = 0
+            for (k in 0 until allFoods!!.size) {
+                if (allFoods!![k].id == id){
+                    val food = allFoods!![k]
+                    old = food.money.toString().toInt()
+                    sale = food.sale.toString().toInt()
+                }
+            }
             val moneyFood = old - old * sale / 100
 //            val moneyFood = allFoods!![id].money.toString().toInt()
             txtSumMoney.text = (money - moneyFood).toString()
@@ -247,9 +319,31 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
-            rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
+            rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, table!!.member,table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, false, "", "", table!!.iduser))
+
+            //post data
+            var stringRequest: StringRequest = object : StringRequest(Request.Method.POST,  Utils.url + "postReport.php", Response.Listener { }, Response.ErrorListener { error -> error.printStackTrace() }) {
+                @Throws(AuthFailureError::class)
+                override fun getParams(): Map<String, String> {
+                    val params = HashMap<String, String>()
+                    params["price"] = txtSumMoney.text.toString()
+                    params["listFood"] = table!!.listFood
+                    params["listCount"] = table!!.listCount
+                    params["tableId"] = idTable.toString()
+                    params["member"] = table!!.member.toString()
+                    params["date"] = calendar.get(Calendar.DAY_OF_MONTH).toString()
+                    params["month"] = (calendar.get(Calendar.MONTH)+1).toString()
+                    params["year"] = calendar.get(Calendar.YEAR).toString()
+
+                    Log.e("sdsdsd",table!!.listFood+"//"+table!!.listCount)
+                    return params
+                }
+            }
+
+            MySingleton.getInstance(this).addTorequestque(stringRequest)
+
             startActivity(Intent(this, ReportActivity::class.java))
             finish()
         } else if (v?.id == R.id.btnBack) {
@@ -287,7 +381,12 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         }
 
         idTable = intent.getIntExtra("tableId", 0)
-        table = tables!![idTable]
+        for (k in 0 until tables!!.size){
+            if (idTable == tables!![k].id){
+                table = tables!![k]
+            }
+        }
+
         if (table!!.listFood.toString().trim() != "") {
             listFood = table!!.listFood.split(",")
             listCount = table!!.listCount.split(",")

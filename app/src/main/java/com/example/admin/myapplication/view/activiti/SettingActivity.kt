@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_setting.*
 class SettingActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnBack){
-            finish();
+            finish()
         }
     }
 

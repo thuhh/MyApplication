@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +31,7 @@
         <activity android:name=".view.activiti.report.ReportActivity" />
         <activity android:name=".view.activiti.SettingActivity" />
         <activity android:name=".view.activiti.account.AcountActivity" />
-        <activity android:name=".view.activiti.table.DetailTableActivity"></activity>
+        <activity android:name=".view.activiti.table.DetailTableActivity" />
     </application>
 
 </manifest>
