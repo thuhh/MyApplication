@@ -80,39 +80,20 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
     private var adapterTable: AdapterTable? = null
     private var dialogAddTable: DialogAddTable? = null
 
-    internal var dulieu: StringBuilder? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table)
-        try {
-            rdbTable = RDBApp.getAppDatabase(this)
-            loadTable(MyPreferenceHelper.getInt(MyPreferenceHelper.idUser, this))
-            tables = rdbTable!!.tableDAO().allTable
-        } catch (e: IllegalStateException) {
-            e.printStackTrace()
-        }
-        dialogAddTable = DialogAddTable(this)
-        dialogAddTable!!.setClick(this)
+//        try {
+//            rdbTable = RDBApp.getAppDatabase(this)
+//            tables = rdbTable!!.tableDAO().allTable
+//        } catch (e: IllegalStateException) {
+//            e.printStackTrace()
+//        }
+//        dialogAddTable = DialogAddTable(this)
+//        dialogAddTable!!.setClick(this)
 
         initListener()
 
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood, this) != null) {
-            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood, this) == "yes") {
-                dialogAddTable!!.show()
-            }
-        }
-
-        initListItem()
-    }
-
-    fun loadTable(userId: Int) {
-        if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstTable, this)) {
-            //get du lieu
-            val url = Utils.url + "getTable.php"
-            val downloadJSON = DownloadJSON()
-            downloadJSON.execute(url)
-            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstTable, true, this)
-        }
 
     }
 
@@ -130,52 +111,16 @@ class TableActivity : AppCompatActivity(), IClickDialog, View.OnClickListener, I
         btnKhac.setOnClickListener(this)
     }
 
-    inner class DownloadJSON : AsyncTask<String, Void, String>() {
-
-        override fun doInBackground(vararg strings: String): String {
-            try {
-                val url = URL(Utils.url + "getTable.php")
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-
-                val inputStream = connection.inputStream
-                val inputStreamReader = InputStreamReader(inputStream)
-
-                val bufferedReader = BufferedReader(inputStreamReader)
-                dulieu = StringBuilder()
-                val text: List<String> = bufferedReader.readLines()
-                for (line in text) {
-                    dulieu!!.append(line)
-                }
-
-                var jsonarray: JSONArray? = null
-                try {
-                    jsonarray = JSONArray(dulieu.toString())
-                    for (i in 0 until jsonarray!!.length()) {
-                        val jsonobject = jsonarray.getJSONObject(i)
-                        val name = jsonobject.getString("table_name")
-                        val id = jsonobject.getInt("table_id")
-                        val member = jsonobject.getInt("table_member")
-                        rdbTable!!.tableDAO().insertAll(TableDinner(id, name, member, false, "", "", 1))
-                    }
-                    tables = rdbTable!!.tableDAO().allTable
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
-            return dulieu.toString()
+    override fun onResume() {
+        super.onResume()
+        try {
+            rdbTable = RDBApp.getAppDatabase(this)
+            tables = rdbTable!!.tableDAO().allTable
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            initListItem()
-        }
+        initListItem()
     }
+
 }
 

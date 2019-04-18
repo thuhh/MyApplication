@@ -18,6 +18,7 @@ public class MyPreferenceHelper {
     public static String firstData = "firstData";
     public static String firstMaterial = "firstMaterial";
     public static String firstTable = "firstTable";
+    public static String firstUser = "firstUser";
     public static String checkEdit = "checkEdit";
     public static String clickItem = "clickItem";
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_height="@dimen/_80sdp"
+    android:background="@drawable/bg_cir_blue"
+    android:id="@+id/ctFood"
+    android:layout_gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_cir_blue"
+        android:orientation="horizontal">
+
+    <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+        app:siShape="@drawable/shape_rounded_rectangle"
+        android:scaleType="centerCrop"
+        android:id="@+id/imgFood"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/_10sdp"
+        app:siSquare="true"
+        android:src="@drawable/ic_image" />
+
+    <TextView
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:background="#20ffffff" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:fontFamily="@font/raleway_medium"
+            android:gravity="center"
+            android:text="Gà hầm thuốc bắc"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:id="@+id/txtMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:fontFamily="@font/raleway_medium"
+            android:gravity="center"
+            android:text="200k/đĩa"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_12sdp" />
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgNew"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:src="@drawable/ic_new"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintWidth_percent="0.1"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+</android.support.constraint.ConstraintLayout>

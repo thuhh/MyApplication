@@ -2,13 +2,11 @@ package com.example.admin.myapplication.controller.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,24 +14,15 @@ import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick;
-import com.example.admin.myapplication.controller.util.MySingleton;
-import com.example.admin.myapplication.controller.util.Utils;
 import com.example.admin.myapplication.model.object.Food;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
+public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.Viewholor> {
     private ItemTableClick iOnClickSetColor;
     private List<Food> list;
     private List<Food> filter;
@@ -41,7 +30,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     private Context context;
 
 
-    public AdapterFood(ItemTableClick iOnClickSetColor, List<Food> list, Context context) {
+    public AdapterFoodClick(ItemTableClick iOnClickSetColor, List<Food> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
         this.list = list;
         this.items = list;
@@ -51,7 +40,7 @@ public class AdapterFood extends RecyclerView.Adapter<AdapterFood.Viewholor> {
     @NonNull
     @Override
     public Viewholor onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_click, parent, false);
         return new Viewholor(view);
     }
 

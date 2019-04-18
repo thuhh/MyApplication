@@ -26,9 +26,6 @@ public interface TableDAO {
     @Query("DELETE FROM tbtable WHERE id=(:id)")
     void delete(int id);// xoas theo id
 
-    @Query("UPDATE tbtable SET name=(:name) AND member = (:member) AND status = (:status) AND listFood = :listFood AND iduser = (:iduser) WHERE id=(:id)")
-    void update(int id, String name, int member, boolean status,String listFood, int iduser);
-
-    @Query("UPDATE tbtable SET listCount = (:listCount) WHERE id=(:id)")
-    void updateCount(int id, String listCount);
+    @Query("UPDATE tbtable SET member = (:listCount) WHERE id=(:id)")
+    void updateMember(int id, int listCount);
 }

@@ -17,6 +17,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
+import com.example.admin.myapplication.controller.adapter.AdapterFoodClick
 import com.example.admin.myapplication.controller.adapter.AdapterFoodTable
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
 import com.example.admin.myapplication.controller.util.GridSpacingItemDecoration
@@ -110,6 +111,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                 for (k in 0 until allFoods!!.size) {
                     if (allFoods!![k].id == id){
                         val food = allFoods!![k]
+                        food.count = 1
                         initFoods.add(food)
                     }
                 }
@@ -131,7 +133,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, edtKh.text.toString().toInt(),true, table?.listFood, table?.listCount, table?.iduser!!))
 
         } else if (check == "delete") {
             var listF = ""
@@ -143,22 +145,28 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                 var d = 0
                 for (i in 0 until listFood.size) {
                     val idFood = listFood[i].toInt()
+                    Log.e("sdsdsd",idFood.toString()+".."+id)
                     if (idFood != id) {
                         if (d == 0) {
-                            listF = listFood[i].toString()
-                            listC = listCount[i].toString()
+                            listF = listFood[i]
+                            listC = listCount[i]
                             d++
                         } else {
                             listF = listF + "," + listFood[i]
                             listC = listC + "," + listCount[i]
                         }
-                        var food = allFoods!![idFood]
-                        food.count = listCount[i].toInt()
-                        val old = food.money.toInt()
-                        val sale = food.sale.toInt()
-                        val moneyFood = old - old * sale / 100
-                        money += moneyFood
-                        initFoods.add(food)
+
+                        for (k in 0 until allFoods!!.size) {
+                            if (allFoods!![k].id == idFood){
+                                var food = allFoods!![k]
+                                food.count = listCount[i].toInt()
+                                val old = food.money.toInt()
+                                val sale = food.sale.toInt()
+                                val moneyFood = old - old * sale / 100
+                                money += moneyFood
+                                initFoods.add(food)
+                            }
+                        }
                     }
                 }
             }
@@ -168,9 +176,13 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
 
             initListFood(initFoods)
             rdbTable?.tableDAO()!!.delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, listF, listC, table?.iduser!!))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, edtKh.text.toString().toInt(),true, listF, listC, table?.iduser!!))
             tables = rdbTable!!.tableDAO().allTable
-            table = tables!![idTable]
+            for (k in 0 until tables!!.size) {
+                if (tables!![k].id == idTable){
+                    table = tables!![k]
+                }
+            }
 
         } else if (check == "plus") {
             Toast.makeText(this, "Thêm món ăn $id", Toast.LENGTH_LONG).show()
@@ -236,9 +248,13 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             val moneyFood = old - old * sale / 100
             txtSumMoney.text = (money + moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, edtKh.text.toString().toInt(),true, table?.listFood, table?.listCount, table?.iduser!!))
             tables = rdbTable!!.tableDAO().allTable
-            table = tables!![idTable]
+            for (k in 0 until tables!!.size) {
+                if (tables!![k].id == idTable){
+                    table = tables!![k]
+                }
+            }
         } else if (check == "down") {
             Toast.makeText(this, "Trừ món ăn $id", Toast.LENGTH_LONG).show()
             val listFood = table!!.listFood.split(",")
@@ -302,9 +318,13 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
 //            val moneyFood = allFoods!![id].money.toString().toInt()
             txtSumMoney.text = (money - moneyFood).toString()
             rdbTable?.tableDAO()!!.delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, true, table?.listFood, table?.listCount, table?.iduser!!))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table?.name, table?.member!!, edtKh.text.toString().toInt(),true, table?.listFood, table?.listCount, table?.iduser!!))
             tables = rdbTable!!.tableDAO().allTable
-            table = tables!![idTable]
+            for (k in 0 until tables!!.size) {
+                if (tables!![k].id == idTable){
+                    table = tables!![k]
+                }
+            }
         }
     }
 
@@ -319,9 +339,9 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size
             }
-            rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, table!!.member,table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
+            rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, edtKh.text.toString().toInt(),table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
-            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, false, "", "", table!!.iduser))
+            rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, edtKh.text.toString().toInt(),false, "", "", table!!.iduser))
 
             //post data
             var stringRequest: StringRequest = object : StringRequest(Request.Method.POST,  Utils.url + "postReport.php", Response.Listener { }, Response.ErrorListener { error -> error.printStackTrace() }) {
@@ -337,7 +357,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                     params["month"] = (calendar.get(Calendar.MONTH)+1).toString()
                     params["year"] = calendar.get(Calendar.YEAR).toString()
 
-                    Log.e("sdsdsd",table!!.listFood+"//"+table!!.listCount)
                     return params
                 }
             }
@@ -362,7 +381,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
     private var listCount: List<String>? = null
     private var table: TableDinner? = null
     private var adapterFoodTable: AdapterFoodTable? = null
-    private var adapterFood: AdapterFood? = null
+    private var adapterFood: AdapterFoodClick? = null
 
     private var checkVisibale = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -384,6 +403,11 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         for (k in 0 until tables!!.size){
             if (idTable == tables!![k].id){
                 table = tables!![k]
+                if (table!!.member!=null) {
+                    edtKh.setText(table!!.member.toString())
+                }else{
+                    edtKh.setText(0)
+                }
             }
         }
 
@@ -393,21 +417,26 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             if (listFood!!.isNotEmpty()) {
                 for (i in 0 until listFood!!.size) {
                     val idFood = listFood!![i].toInt()
-                    val food = allFoods!![idFood]
-                    food.count = listCount!![i].toInt()
-                    initFoods.add(food)
-                    val money = txtSumMoney.text.toString().toInt()
-                    val old = allFoods!![i].money.toString().toInt()
-                    val sale = allFoods!![i].sale.toString().toInt()
-                    val moneyFood = (old - old * sale / 100)* listCount!![i].toInt()
-                    txtSumMoney.text = (money + moneyFood).toString()
+                    for (k in 0 until allFoods!!.size) {
+                        if (allFoods!![k].id == idFood){
+                            val food = allFoods!![k]
+                            food.count = listCount!![i].toInt()
+                            initFoods.add(food)
+                            val money = txtSumMoney.text.toString().toInt()
+                            val old = food.money.toString().toInt()
+                            val sale = food.sale.toString().toInt()
+                            val moneyFood = (old - old * sale / 100)* listCount!![i].toInt()
+                            txtSumMoney.text = (money + moneyFood).toString()
+                        }
+                    }
                 }
             }
         }
+
         txtTable.text = table!!.name.toString()
 //
         initListFood(initFoods)
-        adapterFood = AdapterFood(this, allFoods, this)
+        adapterFood = AdapterFoodClick(this, allFoods, this)
         val managerFood = GridLayoutManager(this, 1)
         rcAddFood!!.layoutManager = managerFood as RecyclerView.LayoutManager?
         rcAddFood!!.addItemDecoration(GridSpacingItemDecoration(4, 5, true))
@@ -429,6 +458,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             checkVisibale = false
         } else {
             finish()
+            rdbTable!!.tableDAO().updateMember(idTable, edtKh.text.toString().toInt())
         }
     }
 

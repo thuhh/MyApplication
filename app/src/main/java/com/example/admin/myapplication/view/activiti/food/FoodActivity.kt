@@ -74,7 +74,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                myAdapter!!.filter.filter(charSequence)
+                adapterFood!!.filter.filter(charSequence)
             }
 
             override fun afterTextChanged(editable: Editable) {
@@ -86,55 +86,52 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
     private var adapterFood: AdapterFood? = null
-    var myAdapter: MyAdapter ?= null
     private var dialogAddFood : DialogAddFood ?= null
 
-    internal var dulieu: StringBuilder? = null
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
-        if (!MyPreferenceHelper.getBooleanValue(MyPreferenceHelper.firstData, this)) {
-            //get du lieu
-            val url = Utils.url + "getFood.php"
-            val downloadJSON = DownloadJSON()
-            downloadJSON.execute(url)
-            MyPreferenceHelper.putBooleanValue(MyPreferenceHelper.firstData, true, this)
-        }
         dialogAddFood = DialogAddFood(this)
         dialogAddFood!!.setClick(this)
-        initListener()
-    }
-
-    override fun onResume() {
-        super.onResume()
         try {
             rdbFood = RDBApp.getAppDatabase(this)
             foods = rdbFood!!.foodDAO().allFood
         }catch (e: IllegalStateException){
             e.printStackTrace()
         }
-
-        if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this)!=null){
-            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this) == "yes"){
-                dialogAddFood!!.show()
-            }
-        }
+        initListener()
         initList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        try {
+//            rdbFood = RDBApp.getAppDatabase(this)
+//            foods = rdbFood!!.foodDAO().allFood
+//        }catch (e: IllegalStateException){
+//            e.printStackTrace()
+//        }
+//
+//        if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this)!=null){
+//            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this) == "yes"){
+//                dialogAddFood!!.show()
+//            }
+//        }
+//        initList()
     }
 
     private fun initList() {
         Collections.reverse(foods)
         adapterFood = AdapterFood(this@FoodActivity, foods,this)
 
-        val manager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        val manager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        val manager2 = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rvFood!!.layoutManager = manager
+        rvMany!!.layoutManager = manager2
 
-//        rvFood.adapter = adapterFood
-
-        //test
-        myAdapter = MyAdapter(R.layout.item_food_swipemenu, foods,this,this)
-        rvFood.adapter = myAdapter
+        rvFood.adapter = adapterFood
+        rvMany.adapter = adapterFood
     }
 
     private fun initListener() {
@@ -148,61 +145,4 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         MyPreferenceHelper.setString(this,MyPreferenceHelper.DialogFood,"no")
     }
 
-    inner class DownloadJSON : AsyncTask<String, Void, String>() {
-
-        override fun doInBackground(vararg strings: String): String {
-            try {
-                val url = URL(Utils.url + "getFood.php")
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-
-                val inputStream = connection.inputStream
-                val inputStreamReader = InputStreamReader(inputStream)
-
-                val bufferedReader = BufferedReader(inputStreamReader)
-                dulieu = StringBuilder()
-                val text:List<String> = bufferedReader.readLines()
-                for(line in text){
-                    dulieu!!.append(line)
-                }
-
-                var jsonarray: JSONArray? = null
-                try {
-                    jsonarray = JSONArray(dulieu.toString())
-                    for (i in 0 until jsonarray!!.length()) {
-                        val jsonobject = jsonarray.getJSONObject(i)
-                        val name = jsonobject.getString("food_name")
-                        val id = jsonobject.getInt("food_id")
-                        val image = Utils.url + jsonobject.getString("food_image")
-                        val foodNew = jsonobject.getInt("food_new")
-                        val price = jsonobject.getInt("food_price")
-                        val sale = jsonobject.getInt("food_sale")
-                        val rate = jsonobject.getInt("food_rate")
-                        val des = jsonobject.getString("food_des")
-                        val materials = jsonobject.getInt("food_material")
-                        val food_type = jsonobject.getInt("food_type")
-                        val type = jsonobject.getInt("type")
-
-                        rdbFood!!.foodDAO().insertAll(Food(id,name,food_type.toString(),price.toString(),true,image,materials.toString(),sale.toString(),rate,0,des,type.toString(),1))
-                    }
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
-            return dulieu.toString()
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            foods = rdbFood!!.foodDAO().allFood
-            initList()
-        }
-    }
 }

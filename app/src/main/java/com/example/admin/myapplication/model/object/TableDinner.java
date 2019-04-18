@@ -14,6 +14,8 @@ public class TableDinner {
     private int id;
     @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "memberMax")
+    private int memberMax;
     @ColumnInfo(name = "member")
     private int member;
     @ColumnInfo(name = "status")
@@ -25,9 +27,10 @@ public class TableDinner {
     @ColumnInfo(name = "iduser")
     private int iduser;
 
-    public TableDinner(@NonNull int id, String name, int member, boolean status, String listFood, String listCount, int iduser) {
+    public TableDinner(@NonNull int id, String name, int memberMax,int member, boolean status, String listFood, String listCount, int iduser) {
         this.id = id;
         this.name = name;
+        this.memberMax = memberMax;
         this.member = member;
         this.status = status;
         this.listFood = listFood;
@@ -90,5 +93,13 @@ public class TableDinner {
 
     public void setListCount(String listCount) {
         this.listCount = listCount;
+    }
+
+    public int getMemberMax() {
+        return memberMax;
+    }
+
+    public void setMemberMax(int memberMax) {
+        this.memberMax = memberMax;
     }
 }

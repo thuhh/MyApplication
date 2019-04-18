@@ -90,7 +90,7 @@ class AcountActivity : AppCompatActivity(), View.OnClickListener {
                         curentPin = users!![i].pinCode
                         if (currentPass != null && currentPass == edtCurrentPass.text.toString().trim()) {
                             rdbApp!!.userDAO().delete(curentId)
-                            rdbApp!!.userDAO().insertAll(User(curentId, MyPreferenceHelper.getString(MyPreferenceHelper.userName, this), newPass, configPass, curentPin))
+                            rdbApp!!.userDAO().insertAll(User(curentId, MyPreferenceHelper.getString(MyPreferenceHelper.userName, this), newPass, configPass, curentPin,1))
                             MyPreferenceHelper.setString(this, MyPreferenceHelper.password, newPass)
                             Toast.makeText(this,"Success",Toast.LENGTH_LONG).show()
                         }else{

@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     android:background="#2e374b"
     tools:context=".view.activiti.material.MaterialActivity">
-    <!--<ImageView-->
-        <!--android:id="@+id/imgBg"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="centerCrop"-->
-        <!--android:src="@drawable/bg5" />-->
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/rlBg"-->
-        <!--android:background="@drawable/ct_bg_login"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-    <!--</RelativeLayout>-->
     <RelativeLayout
         android:background="#424C61"
         android:id="@+id/ctToolbar"
@@ -44,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <ImageView
+            android:visibility="gone"
             android:layout_toLeftOf="@+id/btnSearch"
             android:padding="@dimen/_10sdp"
             android:src="@drawable/ic_add"
@@ -89,12 +78,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ctToolbar"
+        android:background="@drawable/bg_cir_blue"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/lnTab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="@dimen/_5sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnSearch"
+        app:layout_constraintTop_toBottomOf="@+id/lnTab"
         android:id="@+id/rcMaterial"
         android:layout_width="match_parent"
         android:layout_height="0dp">

@@ -50,7 +50,9 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
         holder.txtName.setText(list.get(position).getName());
-        holder.txtMember.setText(list.get(position).getMember()+"");
+        holder.txtMember.setText(list.get(position).getMemberMax()+"");
+
+        Log.e("sdsd","//"+list.get(position).getMemberMax());
         if (list.get(position).isStatus()) {
             holder.imgTable.setImageResource(R.drawable.ic_table_true);
         }else {
@@ -59,7 +61,7 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         holder.ctTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("sdsd","//"+list.get(position).getId());
+
                 iOnClickSetColor.iClick("detail",list.get(position).getId());
             }
         });

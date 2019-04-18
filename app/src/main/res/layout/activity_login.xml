@@ -47,156 +47,18 @@
             android:layout_height="0dp">
 
             <RelativeLayout
-                android:layout_below="@+id/txtRes"
-                android:id="@+id/rlSignup"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:id="@+id/lnUserSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_user" />
-
-                    <EditText
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtUserSignup"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:background="#00ffffff"
-                        android:hint="@string/userName"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:id="@+id/lnPassSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_below="@+id/lnUserSignUp"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_password" />
-
-                    <EditText
-                        android:inputType="textPassword"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtPassSignUp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:background="#00ffffff"
-                        android:hint="@string/password"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:id="@+id/lnComfirmPassSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_below="@+id/lnPassSignUp"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_password" />
-
-                    <EditText
-                        android:inputType="textPassword"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtComfigPassSignUp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:background="#00ffffff"
-                        android:hint="@string/passConfig"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:id="@+id/lnPin"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_below="@+id/lnComfirmPassSignUp"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_pincode" />
-
-                    <EditText
-                        android:inputType="numberPassword"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
-                        android:id="@+id/edtPin"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_36sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:background="#00ffffff"
-                        android:hint="@string/pincode"
-                        tools:ignore="RtlCompat" />
-                </LinearLayout>
-                <Button
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/_16sdp"
-                    android:fontFamily="@font/rubik_bold"
-                    android:textColor="#d27700"
-                    android:background="@drawable/ct_bt_login"
-                    android:id="@+id/btnSignUp"
-                    android:layout_marginTop="@dimen/_18sdp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:layout_below="@+id/lnPin"
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_36sdp"
-                    android:text="@string/signUp" />
-
-
-            </RelativeLayout>
-            <RelativeLayout
                 android:id="@+id/rlLogin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:id="@+id/lnUser"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_cir_blue"
+                    android:paddingHorizontal="@dimen/_6sdp">
 
                     <ImageView
                         android:layout_width="@dimen/_16sdp"
@@ -205,109 +67,100 @@
                         android:src="@drawable/ic_user" />
 
                     <EditText
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
                         android:id="@+id/edtUser"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_36sdp"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:background="#00ffffff"
+                        android:fontFamily="@font/rubik_medium"
                         android:hint="@string/userName"
+                        android:textSize="@dimen/_12sdp"
                         tools:ignore="RtlCompat" />
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:background="@drawable/bg_cir_blue"
-                    android:orientation="horizontal"
                     android:id="@+id/lnPass"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_below="@+id/lnUser"
-                    android:layout_marginHorizontal="@dimen/_16sdp">
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_cir_blue"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_6sdp">
 
                     <ImageView
-                        android:layout_centerVertical="true"
                         android:layout_width="@dimen/_16sdp"
                         android:layout_height="@dimen/_16sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_password" />
 
                     <EditText
-                        android:layout_centerVertical="true"
-                        android:inputType="textPassword"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/rubik_medium"
                         android:id="@+id/edtPass"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_36sdp"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_26sdp"
                         android:background="#00ffffff"
+                        android:fontFamily="@font/rubik_medium"
                         android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/_12sdp"
                         tools:ignore="RtlCompat" />
+
                     <ImageView
 
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
                         android:id="@+id/imgEye"
-                        android:src="@drawable/ic_eye"
                         android:layout_width="@dimen/_16sdp"
                         android:layout_height="@dimen/_16sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_eye"
                         tools:ignore="RtlCompat" />
                 </RelativeLayout>
 
                 <CheckBox
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:layout_marginStart="@dimen/_25sdp"
-                    android:layout_below="@+id/lnPass"
                     android:id="@+id/chkRemember"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_12sdp"
-                    android:text="@string/remember"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/lnPass"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/rubik_regular"
+                    android:text="@string/remember"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/_12sdp"
                     tools:ignore="RtlCompat" />
 
                 <Button
-                    android:textColor="#0070d9"
-                    android:background="@drawable/ct_bt_login"
                     android:id="@+id/btnLogin"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:layout_below="@+id/chkRemember"
                     android:layout_width="@dimen/_120sdp"
                     android:layout_height="@dimen/_36sdp"
-                    android:text="@string/login" />
-                <TextView
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/_16sdp"
-                    android:fontFamily="@font/rubik_regular"
-                    android:layout_marginTop="@dimen/_13sdp"
+                    android:layout_below="@+id/chkRemember"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="@drawable/ct_bt_login"
                     android:gravity="center"
-                    android:layout_below="@+id/lnPass"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/_12sdp"
-                    android:text="@string/forget"
+                    android:text="@string/login"
+                    android:textColor="#0070d9" />
+
+                <TextView
                     android:id="@+id/txtForget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:ignore="RtlCompat" />
-                <TextView
-                    android:fontFamily="@font/yellowtailregular"
-                    android:id="@+id/txtSignup"
-                    android:layout_marginTop="@dimen/_35sdp"
+                    android:layout_below="@+id/lnPass"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:fontFamily="@font/rubik_regular"
                     android:gravity="center"
-                    android:layout_below="@+id/btnLogin"
-                    android:textSize="@dimen/_14sdp"
+                    android:text="@string/forget"
                     android:textColor="#fff"
-                    android:text="@string/register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="RtlCompat" />
             </RelativeLayout>
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -346,7 +199,7 @@
                             android:fontFamily="@font/rubik_italic"
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:text="Bàn Ăn"
+                            android:text="Đặt Bàn Ăn"
                             android:textSize="@dimen/_10sdp"
                             app:layout_constraintTop_toBottomOf="@+id/imgBanAn"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -383,7 +236,7 @@
                             android:textSize="@dimen/_10sdp"
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:text="Món Ăn"
+                            android:text="Món Ăn Nổi bật"
                             app:layout_constraintTop_toBottomOf="@+id/imgDoAn"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -419,7 +272,7 @@
                             android:textSize="@dimen/_10sdp"
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:text="Nguyên Liệu"
+                            android:text="Cài đặt"
                             app:layout_constraintTop_toBottomOf="@+id/imgNgLieu"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -465,82 +318,82 @@
                             android:layout_height="0dp" />
 
                     </android.support.constraint.ConstraintLayout>
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:id="@+id/ctTaiKhoan"
-                        android:background="@drawable/bg_cir_blue"
-                        app:layout_constraintWidth_percent="0.45"
-                        app:layout_constraintHeight_percent="0.28"
-                        app:layout_constraintTop_toBottomOf="@+id/ctNguyenLieu"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp">
+                    <!--<android.support.constraint.ConstraintLayout-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:id="@+id/ctTaiKhoan"-->
+                        <!--android:background="@drawable/bg_cir_blue"-->
+                        <!--app:layout_constraintWidth_percent="0.45"-->
+                        <!--app:layout_constraintHeight_percent="0.28"-->
+                        <!--app:layout_constraintTop_toBottomOf="@+id/ctNguyenLieu"-->
+                        <!--app:layout_constraintStart_toStartOf="parent"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="0dp">-->
 
-                        <ImageView
-                            android:src="@drawable/ic_user_1"
-                            android:scaleType="centerInside"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/imgTaiKhoan"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_percent="0.5"
-                            app:layout_constraintHeight_percent="0.6"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-                        <TextView
-                            android:fontFamily="@font/rubik_italic"
-                            android:textSize="@dimen/_10sdp"
-                            android:gravity="center"
-                            android:textColor="#ffffff"
-                            android:text="Tài Khoản"
-                            app:layout_constraintTop_toBottomOf="@+id/imgTaiKhoan"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintWidth_percent="1"
-                            app:layout_constraintHeight_percent="0.3"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
+                        <!--<ImageView-->
+                            <!--android:src="@drawable/ic_user_1"-->
+                            <!--android:scaleType="centerInside"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:id="@+id/imgTaiKhoan"-->
+                            <!--app:layout_constraintEnd_toEndOf="parent"-->
+                            <!--app:layout_constraintStart_toStartOf="parent"-->
+                            <!--app:layout_constraintTop_toTopOf="parent"-->
+                            <!--app:layout_constraintWidth_percent="0.5"-->
+                            <!--app:layout_constraintHeight_percent="0.6"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="0dp" />-->
+                        <!--<TextView-->
+                            <!--android:fontFamily="@font/rubik_italic"-->
+                            <!--android:textSize="@dimen/_10sdp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:textColor="#ffffff"-->
+                            <!--android:text="Tài Khoản"-->
+                            <!--app:layout_constraintTop_toBottomOf="@+id/imgTaiKhoan"-->
+                            <!--app:layout_constraintEnd_toEndOf="parent"-->
+                            <!--app:layout_constraintStart_toStartOf="parent"-->
+                            <!--app:layout_constraintWidth_percent="1"-->
+                            <!--app:layout_constraintHeight_percent="0.3"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="0dp" />-->
 
-                    </android.support.constraint.ConstraintLayout>
-                    <android.support.constraint.ConstraintLayout
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:id="@+id/ctCaiDat"
-                        android:background="@drawable/bg_cir_blue"
-                        app:layout_constraintWidth_percent="0.45"
-                        app:layout_constraintHeight_percent="0.28"
-                        app:layout_constraintTop_toBottomOf="@+id/ctBaoCao"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp">
+                    <!--</android.support.constraint.ConstraintLayout>-->
+                    <!--<android.support.constraint.ConstraintLayout-->
+                        <!--android:layout_marginTop="@dimen/_10sdp"-->
+                        <!--android:id="@+id/ctCaiDat"-->
+                        <!--android:background="@drawable/bg_cir_blue"-->
+                        <!--app:layout_constraintWidth_percent="0.45"-->
+                        <!--app:layout_constraintHeight_percent="0.28"-->
+                        <!--app:layout_constraintTop_toBottomOf="@+id/ctBaoCao"-->
+                        <!--app:layout_constraintEnd_toEndOf="parent"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="0dp">-->
 
-                        <ImageView
-                            android:src="@drawable/ic_setting"
-                            android:scaleType="centerInside"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/imgCaiDat"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintWidth_percent="0.5"
-                            app:layout_constraintHeight_percent="0.6"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
-                        <TextView
-                            android:fontFamily="@font/rubik_italic"
-                            android:gravity="center"
-                            android:textColor="#fdfdfd"
-                            android:text="Cài Đặt"
-                            android:textSize="@dimen/_12sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/imgCaiDat"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintWidth_percent="1"
-                            app:layout_constraintHeight_percent="0.3"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp" />
+                        <!--<ImageView-->
+                            <!--android:src="@drawable/ic_setting"-->
+                            <!--android:scaleType="centerInside"-->
+                            <!--android:layout_marginTop="10dp"-->
+                            <!--android:id="@+id/imgCaiDat"-->
+                            <!--app:layout_constraintEnd_toEndOf="parent"-->
+                            <!--app:layout_constraintStart_toStartOf="parent"-->
+                            <!--app:layout_constraintTop_toTopOf="parent"-->
+                            <!--app:layout_constraintWidth_percent="0.5"-->
+                            <!--app:layout_constraintHeight_percent="0.6"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="0dp" />-->
+                        <!--<TextView-->
+                            <!--android:fontFamily="@font/rubik_italic"-->
+                            <!--android:gravity="center"-->
+                            <!--android:textColor="#fdfdfd"-->
+                            <!--android:text="Cài Đặt"-->
+                            <!--android:textSize="@dimen/_12sdp"-->
+                            <!--app:layout_constraintTop_toBottomOf="@+id/imgCaiDat"-->
+                            <!--app:layout_constraintEnd_toEndOf="parent"-->
+                            <!--app:layout_constraintStart_toStartOf="parent"-->
+                            <!--app:layout_constraintWidth_percent="1"-->
+                            <!--app:layout_constraintHeight_percent="0.3"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="0dp" />-->
 
-                    </android.support.constraint.ConstraintLayout>
+                    <!--</android.support.constraint.ConstraintLayout>-->
                 </android.support.constraint.ConstraintLayout>
             </android.support.constraint.ConstraintLayout>
 

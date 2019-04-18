@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activiti.LoginActivity">
+        <activity android:name=".view.activiti.LoginActivity"/>
+        <activity android:name=".view.activiti.noibat.MainNoiBatActivity" />
+        <activity android:name=".view.activiti.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

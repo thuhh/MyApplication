@@ -40,7 +40,6 @@ public class MySingleton {
     }
 
     public <T>void addTorequestque(Request<T> request){
-        Log.e("sdsd","111"+request.toString());
         requestQueue.add(request);
     }
 

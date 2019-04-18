@@ -75,7 +75,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
 
     private fun getData(month: Int, year: Int) {
 
-        txtMonth.text = month.toString() + "/" + year.toString()
+        txtMonth.text = "$month/$year"
         verticalList = ArrayList<Float>()
         horizontalList = ArrayList<String>()
 
@@ -95,6 +95,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
             horizontalList!!.add("" + i)
             var k = 0f
             for (j in 0 until reports!!.size) {
+                Log.e("sdsd", reports!![j].date+"//"+reports!![j].month+"//"+reports!![j].year)
                 if (reports!![j].date == i.toString() && reports!![j].month == month.toString() && reports!![j].year == year.toString())  {
                     k += (reports!![j].money).toFloat()
                 }
@@ -114,9 +115,7 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
     private var verticalList: MutableList<Float>? = null
     private var horizontalList: MutableList<String>? = null
     private var barChart: ScrollBar? = null
-    private var random: Random? = null
-    internal var dulieu: StringBuilder? = null
-    private var rdbTable: RDBApp? = null
+    private var rdbApp: RDBApp? = null
     private var reports: List<Report>? = null
     private var adapterReport: AdapterReport? = null
 
@@ -128,10 +127,10 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
 
-
         try {
-            rdbTable = RDBApp.getAppDatabase(this)
-            reports = rdbTable!!.reportDAO().allReport
+            rdbApp = RDBApp.getAppDatabase(this)
+            reports = rdbApp!!.reportDAO().allReport
+            Log.e("sdsds",reports!!.size.toString()+"///")
 
         } catch (e: IllegalStateException) {
             e.printStackTrace()
@@ -178,52 +177,4 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         })
     }
 
-    inner class DownloadJSON : AsyncTask<String, Void, String>() {
-
-        override fun doInBackground(vararg strings: String): String {
-            try {
-                val url = URL(Utils.url  + "getReport.php")
-                val connection = url.openConnection() as HttpURLConnection
-                connection.connect()
-
-                val inputStream = connection.inputStream
-                val inputStreamReader = InputStreamReader(inputStream)
-
-                val bufferedReader = BufferedReader(inputStreamReader)
-                dulieu = StringBuilder()
-                val text:List<String> = bufferedReader.readLines()
-                for(line in text){
-                    dulieu!!.append(line)
-                }
-
-                var jsonarray: JSONArray? = null
-                try {
-                    jsonarray = JSONArray(dulieu.toString())
-                    for (i in 0 until jsonarray!!.length()) {
-                        val jsonobject = jsonarray.getJSONObject(i)
-                        val id = jsonobject.getInt("supplier_id")
-                        val price = jsonobject.getInt("report_price")
-                        val member = jsonobject.getInt("report_member")
-                        val table = jsonobject.getInt("report_table")
-                        val listFood = jsonobject.getString("report_list")
-                        val listCount = jsonobject.getString("list_count")
-                        val time = jsonobject.getString("create_at")
-
-                        rdbTable!!.reportDAO().insertAll(Report(id, "table$id",table,listFood,member,listCount, price.toString(),time,time,time,time))
-                    }
-
-
-                } catch (e: JSONException) {
-                    e.printStackTrace()
-                }
-
-            } catch (e: MalformedURLException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-
-            return dulieu.toString()
-        }
-    }
 }

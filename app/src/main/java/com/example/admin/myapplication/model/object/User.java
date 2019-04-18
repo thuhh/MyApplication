@@ -18,17 +18,20 @@ public class User implements Serializable {
     private String username;
     @ColumnInfo(name = "password")
     private String password;
-    @ColumnInfo(name = "configPass")
-    private String comfigPassword;
+    @ColumnInfo(name = "email")
+    private String email;
     @ColumnInfo(name = "pinCode")
     private String pinCode;
+    @ColumnInfo(name = "lever")
+    private int lever;
 
-    public User(@NonNull int id, String username, String password, String comfigPassword, String pinCode) {
+    public User(@NonNull int id, String username, String password, String email, String pinCode, int lever) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.comfigPassword = comfigPassword;
+        this.email = email;
         this.pinCode = pinCode;
+        this.lever = lever;
     }
 
     public String getUsername() {
@@ -47,12 +50,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getComfigPassword() {
-        return comfigPassword;
+    public String getEmail() {
+        return email;
     }
 
-    public void setComfigPassword(String comfigPassword) {
-        this.comfigPassword = comfigPassword;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPinCode() {
@@ -70,5 +73,13 @@ public class User implements Serializable {
 
     public void setId(@NonNull int id) {
         this.id = id;
+    }
+
+    public int getLever() {
+        return lever;
+    }
+
+    public void setLever(int lever) {
+        this.lever = lever;
     }
 }
