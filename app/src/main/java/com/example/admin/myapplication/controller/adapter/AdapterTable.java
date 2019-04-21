@@ -52,7 +52,6 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
         holder.txtName.setText(list.get(position).getName());
         holder.txtMember.setText(list.get(position).getMemberMax()+"");
 
-        Log.e("sdsd","//"+list.get(position).getMemberMax());
         if (list.get(position).isStatus()) {
             holder.imgTable.setImageResource(R.drawable.ic_table_true);
         }else {

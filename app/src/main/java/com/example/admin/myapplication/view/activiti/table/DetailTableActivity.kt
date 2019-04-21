@@ -145,7 +145,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                 var d = 0
                 for (i in 0 until listFood.size) {
                     val idFood = listFood[i].toInt()
-                    Log.e("sdsdsd",idFood.toString()+".."+id)
                     if (idFood != id) {
                         if (d == 0) {
                             listF = listFood[i]
@@ -337,7 +336,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             val time = calendar.get(Calendar.HOUR).toString() + ":" + calendar.get(Calendar.MINUTE).toString()
             var id = 0
             if (reports!!.isNotEmpty()) {
-                id = reports!!.size
+                id = reports!!.size + 1
             }
             rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, edtKh.text.toString().toInt(),table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
@@ -356,6 +355,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                     params["date"] = calendar.get(Calendar.DAY_OF_MONTH).toString()
                     params["month"] = (calendar.get(Calendar.MONTH)+1).toString()
                     params["year"] = calendar.get(Calendar.YEAR).toString()
+                    params["date"] = calendar.get(Calendar.YEAR).toString()+"-"+(calendar.get(Calendar.MONTH)+1).toString()+"-"+calendar.get(Calendar.DAY_OF_MONTH).toString()
 
                     return params
                 }

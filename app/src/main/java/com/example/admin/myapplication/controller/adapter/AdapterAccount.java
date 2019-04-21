@@ -104,7 +104,6 @@ public class AdapterAccount extends RecyclerView.Adapter<AdapterAccount.Viewholo
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
                         for (final Food g : filter) {
-                            Log.e("sdsd56",g.getName());
                             if (g.getName().toLowerCase().contains(constraint.toString()) ||
                                     g.getType().toLowerCase().contains(constraint.toString())) {
                                 results.add(g);

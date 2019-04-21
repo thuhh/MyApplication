@@ -31,7 +31,6 @@ class DialogAddMaterial(internal var context: Context) : Dialog(context, R.style
         } else if (v?.id == R.id.btnSave) {
             rdbFood = RDBApp.getAppDatabase(context)
             materials = rdbFood!!.materialDAO().allApp
-            Log.e("sdsdsdAll",materials!!.size.toString())
             var id = 0
             if (materials!!.isNotEmpty()) {
                 id = materials!!.size

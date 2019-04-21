@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.adapter.AdapterFood
@@ -86,6 +87,7 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
     private var rdbFood : RDBApp? =null
     private var foods: List<Food> ? =null
     private var adapterFood: AdapterFood? = null
+    private var adapterFood2: AdapterFood? = null
     private var dialogAddFood : DialogAddFood ?= null
 
     @SuppressLint("NewApi")
@@ -104,34 +106,27 @@ class FoodActivity : AppCompatActivity(), View.OnClickListener, IClickDialog, It
         initList()
     }
 
-    override fun onResume() {
-        super.onResume()
-//        try {
-//            rdbFood = RDBApp.getAppDatabase(this)
-//            foods = rdbFood!!.foodDAO().allFood
-//        }catch (e: IllegalStateException){
-//            e.printStackTrace()
-//        }
-//
-//        if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this)!=null){
-//            if (MyPreferenceHelper.getString(MyPreferenceHelper.DialogFood,this) == "yes"){
-//                dialogAddFood!!.show()
-//            }
-//        }
-//        initList()
-    }
-
     private fun initList() {
+        var food1: MutableList<Food> = mutableListOf<Food>()
+        var food2: MutableList<Food> = mutableListOf<Food>()
         Collections.reverse(foods)
-        adapterFood = AdapterFood(this@FoodActivity, foods,this)
-
+        for (i in 0 until foods!!.size) {
+            Log.e("sdsdsdsdsd",foods!![i].type)
+            if (foods!![i].type=="1"){
+                food1.add(foods!![i])
+            }else{
+                food2.add(foods!![i])
+            }
+        }
+        adapterFood2 = AdapterFood(this@FoodActivity, food1, this)
+        adapterFood = AdapterFood(this@FoodActivity, food2,this)
         val manager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         val manager2 = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         rvFood!!.layoutManager = manager
         rvMany!!.layoutManager = manager2
 
         rvFood.adapter = adapterFood
-        rvMany.adapter = adapterFood
+        rvMany.adapter = adapterFood2
     }
 
     private fun initListener() {

@@ -95,7 +95,6 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
             horizontalList!!.add("" + i)
             var k = 0f
             for (j in 0 until reports!!.size) {
-                Log.e("sdsd", reports!![j].date+"//"+reports!![j].month+"//"+reports!![j].year)
                 if (reports!![j].date == i.toString() && reports!![j].month == month.toString() && reports!![j].year == year.toString())  {
                     k += (reports!![j].money).toFloat()
                 }
@@ -130,7 +129,6 @@ class ReportActivity : AppCompatActivity(), ItemTableClick, View.OnClickListener
         try {
             rdbApp = RDBApp.getAppDatabase(this)
             reports = rdbApp!!.reportDAO().allReport
-            Log.e("sdsds",reports!!.size.toString()+"///")
 
         } catch (e: IllegalStateException) {
             e.printStackTrace()

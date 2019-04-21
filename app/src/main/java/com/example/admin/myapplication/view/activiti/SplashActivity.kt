@@ -247,7 +247,6 @@ class SplashActivity : AppCompatActivity() {
 //                        val time = jsonobject.getString("create_at")
 
                         rdbApp!!.reportDAO().insertAll(Report(id, "table$id",table,listFood,member,listCount, price.toString(),"12/12/2019",day.toString(),month.toString(),year.toString()))
-                        Log.e("sdsds",dulieu4.toString())
                     }
 
 
