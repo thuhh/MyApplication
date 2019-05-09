@@ -136,20 +136,44 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/ctAddFood"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#bd000000"
-        android:visibility="gone">
+        android:background="#bd000000">
+
+        <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_cir_blue"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/lnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_search"
+                android:layout_width="40dp"
+                android:layout_height="match_parent" />
+            <EditText
+                android:textColor="#ffffff"
+                android:textColorHint="#a9a9a9"
+                android:id="@+id/edtSearch"
+                android:background="#00ffffff"
+                android:hint="@string/search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/rcAddFood"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lnSearch"
             app:layout_constraintWidth_percent="0.8">
 
         </android.support.v7.widget.RecyclerView>

@@ -9,10 +9,7 @@ import android.util.Log
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.controller.util.Utils
-import com.example.admin.myapplication.model.`object`.Food
-import com.example.admin.myapplication.model.`object`.Report
-import com.example.admin.myapplication.model.`object`.TableDinner
-import com.example.admin.myapplication.model.`object`.User
+import com.example.admin.myapplication.model.`object`.*
 import com.example.admin.myapplication.model.database.RDBApp
 import org.json.JSONArray
 import org.json.JSONException
@@ -29,6 +26,7 @@ class SplashActivity : AppCompatActivity() {
     internal var dulieu2: StringBuilder? = null
     internal var dulieu3: StringBuilder? = null
     internal var dulieu4: StringBuilder? = null
+    internal var dulieu5: StringBuilder? = null
     internal var rdbApp: RDBApp? = null
     internal var users: List<User>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -164,6 +162,61 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    inner class DownloadJSONNg : AsyncTask<String, Void, String>() {
+
+        override fun doInBackground(vararg strings: String): String {
+            try {
+                val url = URL(Utils.url + "getSupplier.php")
+                val connection = url.openConnection() as HttpURLConnection
+                connection.connect()
+
+                val inputStream = connection.inputStream
+                val inputStreamReader = InputStreamReader(inputStream)
+
+                val bufferedReader = BufferedReader(inputStreamReader)
+                dulieu5 = StringBuilder()
+                val text:List<String> = bufferedReader.readLines()
+                for(line in text){
+                    dulieu5!!.append(line)
+                }
+
+                var jsonarray: JSONArray? = null
+                try {
+                    jsonarray = JSONArray(dulieu5.toString())
+                    for (i in 0 until jsonarray!!.length()) {
+                        val jsonobject = jsonarray.getJSONObject(i)
+                        val name = jsonobject.getString("name")
+                        val id = jsonobject.getInt("id")
+                        val image = Utils.url + jsonobject.getString("image")
+                        val type = jsonobject.getString("type")
+                        val unit = jsonobject.getString("unit")
+                        val count = jsonobject.getInt("count")
+                        val supp_id = jsonobject.getString("supp_id")
+                        val price = jsonobject.getInt("price")
+
+                        rdbApp!!.materialDAO().insertAll(Material(id,name,type,0,0,"","",image,unit,"","",0))
+
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+
+            } catch (e: MalformedURLException) {
+                e.printStackTrace()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return dulieu2.toString()
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            val downloadJSONEnd = DownloadJSONEnd()
+            downloadJSONEnd.execute(Utils.url + "getReport.php")
+        }
+    }
+
     inner class DownloadJSONTable : AsyncTask<String, Void, String>() {
 
         override fun doInBackground(vararg strings: String): String {
@@ -207,8 +260,8 @@ class SplashActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
-            val downloadJSONEnd = DownloadJSONEnd()
-            downloadJSONEnd.execute(Utils.url + "getReport.php")
+            val downloadJSONEnd = DownloadJSONNg()
+            downloadJSONEnd.execute(Utils.url + "getSupplier.php")
         }
     }
 

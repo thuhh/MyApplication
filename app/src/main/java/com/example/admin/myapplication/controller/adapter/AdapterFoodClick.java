@@ -7,12 +7,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.admin.myapplication.R;
@@ -24,7 +26,6 @@ import java.util.List;
 
 public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.Viewholor> {
     private ItemTableClick iOnClickSetColor;
-    private List<Food> list;
     private List<Food> filter;
     private List<Food> items;
     private Context context;
@@ -32,7 +33,7 @@ public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.View
 
     public AdapterFoodClick(ItemTableClick iOnClickSetColor, List<Food> list, Context context) {
         this.iOnClickSetColor = iOnClickSetColor;
-        this.list = list;
+        this.filter = list;
         this.items = list;
         this.context = context;
     }
@@ -48,9 +49,9 @@ public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.View
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
-        holder.txtName.setText(list.get(position).getName());
-        holder.txtMoney.setText(list.get(position).getMoney()+"K");
-        if (list.get(position).isNewFood()) {
+        holder.txtName.setText(items.get(position).getName());
+        holder.txtMoney.setText(items.get(position).getMoney()+"K");
+        if (items.get(position).isNewFood()) {
             holder.imgNew.setVisibility(View.VISIBLE);
         }else {
             holder.imgNew.setVisibility(View.GONE);
@@ -58,10 +59,10 @@ public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.View
         holder.ctFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickSetColor.iClick("click",list.get(position).getId());
+                iOnClickSetColor.iClick("click",items.get(position).getId());
             }
         });
-        String image = list.get(position).getImage();
+        String image = items.get(position).getImage();
         if (image !=null && image != ""){
             if (image.equals("R.drawable.food1")) {
                 Glide.with(context).asBitmap().load(R.drawable.food1).into(holder.imgFood);
@@ -133,14 +134,15 @@ public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.View
                     filter = items;
                 if (constraint != null) {
                     if (filter != null && filter.size() > 0) {
-                        for (final Food g : filter) {
-                            if (g.getName().toLowerCase().contains(constraint.toString()) ||
-                                    g.getType().toLowerCase().contains(constraint.toString())) {
+                        for (Food g : filter) {
+                            if (g.getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
                                 results.add(g);
+                                Log.e("sdsdsdsd",g.getName());
                             }
                         }
                     }
                     oReturn.values = results;
+                    oReturn.count = results.size();
                 }
                 return oReturn;
             }
@@ -150,6 +152,7 @@ public class AdapterFoodClick extends RecyclerView.Adapter<AdapterFoodClick.View
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 items = (List<Food>) results.values;
                 notifyDataSetChanged();
+                Toast.makeText(context,"số món tìm kiếm được: "+ items.size(),Toast.LENGTH_LONG).show();
             }
         };
     }

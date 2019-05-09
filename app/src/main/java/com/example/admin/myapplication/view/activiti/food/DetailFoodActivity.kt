@@ -2,12 +2,14 @@ package com.example.admin.myapplication.view.activiti.food
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.admin.myapplication.R
 import com.example.admin.myapplication.controller.interfaces.IClickDialog
 import com.example.admin.myapplication.controller.util.MyPreferenceHelper
 import com.example.admin.myapplication.model.`object`.Food
+import com.example.admin.myapplication.model.`object`.Material
 import com.example.admin.myapplication.model.database.RDBApp
 import com.example.admin.myapplication.view.dialog.DialogAddFood
 import kotlinx.android.synthetic.main.activity_detail_food.*
@@ -35,6 +37,7 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDial
 
     private var rdbFood: RDBApp? = null
     private var foods: List<Food>? = null
+    private var mas: List<Material>? = null
     private var id = 0
     private var dialogAddFood: DialogAddFood? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +49,7 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDial
         try {
             rdbFood = RDBApp.getAppDatabase(this)
             foods = rdbFood!!.foodDAO().allFood
+            mas = rdbFood!!.materialDAO().allApp
         } catch (e: IllegalStateException) {
             e.printStackTrace()
         }
@@ -63,11 +67,24 @@ class DetailFoodActivity : AppCompatActivity(), View.OnClickListener, IClickDial
     private fun initData() {
         for (i in 0 until foods!!.size) {
             if (foods!![i].id == id) {
+
                 txtName.text = foods!![i].name
                 txtType.text = "-loại: " + foods!![i].type
+
                 txtMaterial.text = "-Nguyên liệu chính: " + foods!![i].material
+
+                for (p in 0 until mas!!.size){
+                    Log.e("sdsdsd",mas!![p].id.toString())
+                    if (mas!![p].id  == foods!![i].material.toInt()){
+                        txtMaterial.text = "-Nguyên liệu chính: " + mas!![p].name
+                    }
+                }
+
+
+
                 txtMoney.text = foods!![i].money + "K"
                 txtSale.text = foods!![i].sale
+                txtDescrip.text = foods!![i].descrip
 
                 val image = foods!![i].image
                 if (image != null && image !== "") {

@@ -49,8 +49,8 @@ public class AdapterTable extends RecyclerView.Adapter<AdapterTable.Viewholor> {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull Viewholor holder, final int position) {
-        holder.txtName.setText(list.get(position).getName());
-        holder.txtMember.setText(list.get(position).getMemberMax()+"");
+        holder.txtName.setText("Bàn " + list.get(position).getName());
+        holder.txtMember.setText("Số người " +list.get(position).getMemberMax()+"");
 
         if (list.get(position).isStatus()) {
             holder.imgTable.setImageResource(R.drawable.ic_table_true);

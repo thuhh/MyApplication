@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
@@ -16,7 +18,6 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.StringRequest
 import com.example.admin.myapplication.R
-import com.example.admin.myapplication.controller.adapter.AdapterFood
 import com.example.admin.myapplication.controller.adapter.AdapterFoodClick
 import com.example.admin.myapplication.controller.adapter.AdapterFoodTable
 import com.example.admin.myapplication.controller.interfaces.ItemTableClick
@@ -42,7 +43,6 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                 table = tables!![k]
             }
         }
-
 
         if (check == "click") {
             ctAddFood.visibility = View.GONE
@@ -326,7 +326,19 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             }
         }
     }
+    private fun search(){
+        edtSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                adapterFood!!.filter.filter(charSequence)
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+
+            }
+        })
+    }
     override fun onClick(v: View?) {
         if (v?.id == R.id.btnAddFood) {
             ctAddFood.visibility = View.VISIBLE
@@ -337,7 +349,12 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             var id = 0
             if (reports!!.isNotEmpty()) {
                 id = reports!!.size + 1
+                for (i in 0 until reports!!.size){
+                    if (id<reports!![i].id)
+                        id= reports!![i].id+1
+                }
             }
+            Log.e("sdsdsd",id.toString())
             rdbTable!!.reportDAO().insertAll(Report(id, "Report $id", idTable, table!!.listFood, edtKh.text.toString().toInt(),table!!.listCount, txtSumMoney.text.toString(), time,calendar.get(Calendar.DAY_OF_MONTH).toString(),(calendar.get(Calendar.MONTH)+1).toString(),calendar.get(Calendar.YEAR).toString()))
             rdbTable!!.tableDAO().delete(idTable)
             rdbTable!!.tableDAO().insertAll(TableDinner(idTable, table!!.name, table!!.member, edtKh.text.toString().toInt(),false, "", "", table!!.iduser))
@@ -355,7 +372,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
                     params["date"] = calendar.get(Calendar.DAY_OF_MONTH).toString()
                     params["month"] = (calendar.get(Calendar.MONTH)+1).toString()
                     params["year"] = calendar.get(Calendar.YEAR).toString()
-                    params["date"] = calendar.get(Calendar.YEAR).toString()+"-"+(calendar.get(Calendar.MONTH)+1).toString()+"-"+calendar.get(Calendar.DAY_OF_MONTH).toString()
+                    params["date_rp"] = calendar.get(Calendar.YEAR).toString()+"-"+(calendar.get(Calendar.MONTH)+1).toString()+"-"+calendar.get(Calendar.DAY_OF_MONTH).toString()
 
                     return params
                 }
@@ -390,6 +407,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
         btnAddFood.setOnClickListener(this)
         btnThanhtoan.setOnClickListener(this)
         btnBack.setOnClickListener(this)
+        search()
         try {
             rdbTable = RDBApp.getAppDatabase(this)
             reports = rdbTable!!.reportDAO().allReport
@@ -433,7 +451,7 @@ class DetailTableActivity : AppCompatActivity(), View.OnClickListener, ItemTable
             }
         }
 
-        txtTable.text = table!!.name.toString()
+        txtTable.text = "Bàn ăn "+table!!.name.toString()
 //
         initListFood(initFoods)
         adapterFood = AdapterFoodClick(this, allFoods, this)
